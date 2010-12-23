@@ -1,50 +1,119 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>mercadolibre/chico @ GitHub</title>
-	
-</head>
+<!doctype html>
+<!--[if IE]><![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="es" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="es" class="no-js"> <!--<![endif]-->
+	<head>
+		<script></script>
+		<meta charset="utf-8">
+		<title>Chico UI, a visual framework for the web</title>
+		<link rel="stylesheet" type="text/css" href="src/css/chico.css">
+		<script src="libs/js/jquery-1.4.4.js"></script>
+		<script src="src/js/chico.js"></script>
+		<style>
+		
+		h1, .column, .download, .description, .nav {
+    	   display: inline-block;  
+		}
+		
+		.column {
+		    vertical-align: top;
+		    width: 16%;
+		 }
+		 
+		 .download, .description {
+		      vertical-align: top;
+		      width: 48%;
+		 }
+		 
+		 h1 {
+		   font-size: 50px; 
+		   font-weight: bold;
+		   line-height: 50px;
+		   height: 70px;
+		 }
+		</style>
+	</head>
 
 <body>
   <a href="http://github.com/mercadolibre/chico"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
+    <div class="header">
+    	<h1>Chico-UI ;)</h1>
+    	<div class="nav"><strong>Home</strong>, <a href="https://github.com/mercadolibre/chico">Download</a>, <!--<a href="documentation.html">Documentation</a>,--> <a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></div>
+    </div>
+    
   <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/mercadolibre/chico/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/mercadolibre/chico/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/mercadolibre/chico">chico</a>
-      <span class="small">by <a href="http://github.com/mercadolibre">mercadolibre</a></span></h1>
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/mercadolibre/chico/zipball/master">zip</a> or
-      <a href="http://github.com/mercadolibre/chico/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/mercadolibre/chico</pre>
-    </p>
-
-
+    <div class="description box">
     <h2>¿Que es Chico-UI?</h2>
-    <div class="description">
-      Chico-UI es un proyecto opensource que propone una solución de MercadoLibre que agrupa los Componentes y widgets desarrollados por GMP disponibles para usar. Su Diseño es simple y esta desarrollado con tecnologías abiertas de la web: HTML, JavaScript y CSS.
-Utiliza algunas características de HTML5 y CSS3, provee métodos de compatibilidad en navegadores de grado-c con jQuery y otros artilugios.
+    <p>
+      Chico-UI es un framework visual para la web montado sobre jQuery, es proyecto opensource de <a href="http://www.mercadolibre.com">MercadoLibre</a>. Su Diseño es simple y esta desarrollado con tecnologías abiertas de la web: HTML, JavaScript y CSS... y un poco de PHP.</p>
+    <p>Utiliza algunas características de HTML5 y CSS3, provee métodos de compatibilidad en navegadores de grado-c con jQuery y otros artilugios.<p>
+    <p>Chico-UI agrupa los patrones y componentes mas comunes con el objetivo de agilizar la producción de interfaces en los productos de <a href="http://www.mercadolibre.com">MercadoLibre</a>. Podés verlo en <a href="https://github.com/mercadolibre/chico">github</a>. Esta listo para usar!</p>
     </div>
-
-<h2>Componentes</h2>
-
+    <div class="download box">
+        <h2>Download</h2>
+        <p>
+          You can download this project in either
+          <a href="http://github.com/mercadolibre/chico/zipball/master">zip</a> or
+          <a href="http://github.com/mercadolibre/chico/tarball/master">tar</a> formats.
+        </p>
+        <div>
+          <a href="http://github.com/mercadolibre/chico/zipball/master">
+            <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+          <a href="http://github.com/mercadolibre/chico/tarball/master">
+            <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+        </div>
+        <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+          by running:
+          <pre>$ git clone git://github.com/mercadolibre/chico</pre>
+        </p>
+    </div>
+    
+    <div class="components box">
+        <h2>Componentes</h2>
+        <ul class="column">
+            <li><strong>Core</strong></li>
+            <li>Factory</li>
+            <li>Get</li>
+            <li>Positioner</li>
+        </ul>
+        <ul class="column">
+            <li><strong>Floats</strong></li>
+            <li>Tooltip</li>
+            <li>Layer</li>
+            <li>Modal</li>
+            <li>Helper</li>
+        </ul>
+        <ul class="column">
+            <li><strong>Navs</strong></li>
+            <li>Dropdown</li>
+            <li>Tab</li>
+            <li>Expando</li>
+        </ul>
+        <ul class="column">
+            <li><strong>Sliders</strong></li>
+            <li>Carousel</li>
+        </ul>
+        <ul class="column">
+            <li><strong>Watchers</strong></li>
+            <li>Required</li>
+            <li>Number</li>
+            <li>String</li>
+            <li>Custom</li>
+        </ul>
+        <ul class="column">
+            <li><strong>Controllers</strong></li>
+            <li>Form</li>
+            <li>TabNavigator</li>
+            <li>Viewer</li>
+        </ul>
+    </div>
 
     <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/mercadolibre/chico">mercadolibre/chico</a>
+      Get the source code on GitHub : <a href="http://github.com/mercadolibre/chico">mercadolibre/chico</a>
     </div>
 
   </div>
