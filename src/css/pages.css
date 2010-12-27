@@ -1,0 +1,52 @@
+
+		.header {
+		    border-bottom: 1px solid #CCCCCC;
+		    padding: 5px 0;
+		    position: relative;
+		}
+		
+		.header ul {
+			position: absolute;
+    		right: 0;
+    		top: 15px;
+		}
+		
+		.header ul li {
+		    display:inline;	
+		    margin:0;
+		    padding: 0 10px;
+		    border-right: 1px solid #ccc;
+		}
+		
+		.header ul li:last-child  {
+		    border: none;
+		}
+
+		.header h1 {
+			font-size: 46px;
+    		font-weight: bold;
+    		line-height: 46px;
+		}
+		
+		h2 {
+			font-size: 32px;
+			line-height: 32px;
+		}
+    	
+		h1, h2, .article.demo, .header {
+		    margin-bottom: 10px;
+		}
+		
+		.bugReport ul {
+			text-align: right;	
+			float: right;
+			margin-top: 10px;
+		}
+		
+		.bugReport ul li {
+			display: inline;	
+		}
+		
+		.bugReport ul li a:hover {
+			text-decoration: none;	
+		}
