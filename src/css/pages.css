@@ -44,10 +44,9 @@
 		}
 		
 		.bugReport ul li {
-			display: inline;	
+			display: inline-block;	
 		}
 		
 		.bugReport ul li form {
-			float:right;
 			margin-left: 10px;	
 		}

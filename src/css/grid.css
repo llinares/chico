@@ -1,49 +1,53 @@
 /*
-* Grid
-* @autor: Natalia Devalle	
-* @mod: 27/12/10
-*
-*/
+ * Grids
+ * @autor: Natalia Devalle
+ * @mod: 03/01/11
+ * @version: 0.3
+ *
+ */
  
-
-/* TODO: find a better class name!!! */
+/* about class names: 1-2 = 1/2 = 50% */
  
-.ch-g25,
-.ch-g33,
-.ch-g50,
-.ch-g66,
-.ch-g75,
-.ch-g100,
-.ch-g25-left,
-.ch-g33-left,
-.ch-g50-left,
-.ch-g66-left,
-.ch-g75-left,
-.ch-g25-right,
-.ch-g33-right,
-.ch-g50-right,
-.ch-g66-right,
-.ch-g75-right {
-float:left;
-display: inline-block;
-vertical-align: top;
+.ch-g1, 
+.ch-g5-6,
+.ch-g4-5,
+.ch-g3-4,
+.ch-g2-3, .ch-g4-6,
+.ch-g3-5,
+.ch-g1-2, .ch-g2-4, .ch-g3-6,
+.ch-g2-5,
+.ch-g1-3e,
+.ch-g1-3, .ch-g2-6,
+.ch-g1-4,
+.ch-g1-5,
+.ch-g1-6e,
+.ch-g1-6 {
+	float:left; 
+	display: inline-block; 
+	vertical-align: top;
+	overflow:hidden;
 }
 
-.ch-g25 { width:23%; padding: 0 1%;}
-.ch-g33 { width:31.33%;padding: 0 1%; }
-.ch-g50 { width:48%; padding: 0 1%;}
-.ch-g66 { width:64.67%;padding: 0 1%;}
-.ch-g75 { width:73%; padding: 0 1%;}
-.ch-g100 { width:100%;padding:0;} /* is this necessary? */
+.ch-g1 { width:100%;} 
+.ch-g5-6 {width: 83.3%;}
+.ch-g4-5 {width: 80%;}
+.ch-g3-4 { width:75%; }
+.ch-g2-3, .ch-g4-6 { width:66.67%;}
+.ch-g3-5 {width: 60%;}
+.ch-g1-2, .ch-g2-4, .ch-g3-6 { width:50%;} 
+.ch-g2-5 {width: 40%;}
+.ch-g1-3e { width:33.34%; } /* Rounding - TODO: define better class name*/
+.ch-g1-3, .ch-g2-6 { width:33.33%; }
+.ch-g1-4 { width:25%;}
+.ch-g1-5 { width:20%;}
+.ch-g1-6e { width:16.7%;}  /* Rounding - TODO: define better class name*/
+.ch-g1-6 { width:16.66%;}
 
-.ch-g25-left { width:24%; padding: 0 1% 0 0;}
-.ch-g33-left { width:32.33%;padding: 0 1% 0 0; }
-.ch-g50-left { width:49%; padding: 0 1% 0 0;}
-.ch-g66-left { width:65.67%;padding: 0 1% 0 0;}
-.ch-g75-left { width:74%; padding: 0 1% 0 0;}
 
-.ch-g25-right { width:24%; padding: 0 0 0 1%;}
-.ch-g33-right { width:32.33%;padding: 0 0 0 1%; }
-.ch-g50-right { width:49%; padding: 0 0 0 1%;}
-.ch-g66-right { width:65.67%;padding: 0 0 0 1%;}
-.ch-g75-right { width:74%; padding: 0 0 0 1%;}
+
+/* gutters */
+
+.rightcolumn {margin-left: 10px;}
+.leftcolumn {margin-right: 10px;}
+.centercolumn {margin-left: 10px; margin-right: 10px;}
+
