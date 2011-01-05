@@ -13,7 +13,7 @@ class DocBuilder {
 	private $files;
 	private $template;
 	
-	private $names = array(
+	private $names = array( // Buscar el título de fantasía en el <H1> de use.html
 		"dropdown" => "Dropdown",
 		"tabnavigator" => "Tab Navigator",
 		"layer" => "Contextual Layer"
@@ -24,8 +24,8 @@ class DocBuilder {
      */
 
     function __construct() {
-    	//$this->files = explode(", ", $pages);
-    	$this->files = array("dropdown");
+        
+    	$this->files = explode(", ", $this->pages);
     	$this->template = file_get_contents("template.html");
     	
     	foreach ($this->files as $file) {
