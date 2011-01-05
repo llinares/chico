@@ -44,11 +44,11 @@ h1, h2, .article.demo, .header {
 	width: auto;
 }
 
-.config {
+.config dl {
 	margin-top: 10px;
 }
 
-.config dt {
+.config dl dt {
 	font-weight: bold;
 	float: left;
 	width: 100px;
@@ -57,7 +57,7 @@ h1, h2, .article.demo, .header {
 .footer {
 	clear: left;
 	text-align: center;
-	height: 30px;
+	height: 50px;
 	line-height: 50px;
 	border-top: 1px solid #ccc;
 	color:#666;
