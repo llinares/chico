@@ -13,12 +13,6 @@ class DocBuilder {
 	private $files;
 	private $template;
 	
-	private $names = array( // Buscar el título de fantasía en el <H1> de use.html
-		"dropdown" => "Dropdown",
-		"tabnavigator" => "Tab Navigator",
-		"layer" => "Contextual Layer"
-	);
-	
 	/**
      * Constructor
      */
@@ -29,13 +23,14 @@ class DocBuilder {
     	$this->template = file_get_contents("template.html");
     	
     	foreach ($this->files as $file) {
-    		// Name
-			$html = str_replace("<!-- #name -->", $this->names[$file], $this->template);
 			
-			// Uses
+			// Uses & Name
 			$use = file_get_contents($file."/use.html");
-			$use = explode("<body>", $use);
-			$use = explode("</body>", $use[1]);
+			$use = explode("<h1>", $use);
+			$name = explode("</h1>", $use[1]);
+			$use = explode("</body>", $name[1]);
+			
+			$html = str_replace("<!-- #name -->", $name[0], $this->template);
 			$html = str_replace("<!-- #use -->", $use[0], $html);
 			
 			// Demo
