@@ -31,12 +31,16 @@
 			<em>string:</em> Puede ser un selector de CSS, contenido HTML o texto plano.
 		</dd>
 		
+
 		<dt>callbacks</dt>
 		<dd>
 			<em>object</em>
 			<dl>
 				<dt>show</dt>
-				<dd>Recibe como parametros "show" y/o "hide". Son las funciones que se ejecutarán como respuesta del componente al mostrarse u ocultarse.</dd>
+				<dd><em>function:</em> Se ejecutará una vez que se muestre el modal.</dd>
+				
+				<dt>hide</dt>
+				<dd><em>function:</em> Se ejecutará cuando el modal se oculte.</dd>
 			</dl>
 		</dd>
 	</dl>	

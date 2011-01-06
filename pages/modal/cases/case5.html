@@ -21,18 +21,20 @@
 	<script src="../../src/js/chico.js"></script>
 </head>
 <body>
-
-	<p>Modal ejecutado en el click de un link con ajax</p>	
 	
-	<a href="../examples/ajax.html" class="modal_link">Ejecutar Modal.</a></li>	
+	<p>Modal ejecutado en el click de un botón cargando contenido por parametro: Texto Plano.</p>	
+	
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary" id="modal_param3" value="Ejecutar Modal">
+	</form>
 	
 	<script>
-		$(".modal_link").modal(
+		$("#modal_param3").modal(
 			{
-				ajax:true
+				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 			}
 		);
 	</script>
-	
+
 </body>
 </html>

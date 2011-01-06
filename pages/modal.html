@@ -46,8 +46,8 @@
 				<h3>Demo</h3>
 				
 
-	<a href="test.html" class="demoModal">Modal ejecutado en un link.</a></li>
-	<form action="../examples/test.html">
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a></li>
+	<form action="../examples/ajax.html">
 		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
 	</form>
 	
@@ -120,12 +120,16 @@
 			<em>string:</em> Puede ser un selector de CSS, contenido HTML o texto plano.
 		</dd>
 		
+
 		<dt>callbacks</dt>
 		<dd>
 			<em>object</em>
 			<dl>
 				<dt>show</dt>
-				<dd>Recibe como parametros "show" y/o "hide". Son las funciones que se ejecutarán como respuesta del componente al mostrarse u ocultarse.</dd>
+				<dd><em>function:</em> Se ejecutará una vez que se muestre el modal.</dd>
+				
+				<dt>hide</dt>
+				<dd><em>function:</em> Se ejecutará cuando el modal se oculte.</dd>
 			</dl>
 		</dd>
 	</dl>	
@@ -134,28 +138,79 @@
 		</div>
 		
 		<div class="ch-g1"><div class="box clearfix"><h3>Casos de uso</h3><div class="ch-g2-3">
+
+	<p>Modal ejecutado en el click de un link con ajax</p>	
 	
-	<p>Dropdown ejecutado con ajax</p>
+	<a href="../examples/ajax.html" class="modal_link">Ejecutar Modal.</a></li>	
 	
-	<div class="demoDropdown">
-		<span>Sitios</span>
-		<ul>
-			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
-		</ul>
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$(".modal_link").modal(
+			{
+				ajax:true
+			}
+		);
+	</pre></code></div><div class="ch-g2-3">
+	
+	<p>Modal ejecutado en el click de un botón con ajax</p>	
+	
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary" id="modal_btn" value="Ejecutar Modal">
+	</form>
+	
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$("#modal_btn").modal(
+			{
+				ajax:true
+			}
+		);
+	</pre></code></div><div class="ch-g2-3">
+	
+	<p>Modal ejecutado en el click de un botón cargando contenido por parametro: selector CSS.</p>	
+	
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary" id="modal_param1" value="Ejecutar Modal">
+	</form>
+
+	<div id="modalContent" style="display:none;">
+		<h2>Contenido cargado desde el div #modalContent</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus. Vestibulum posuere purus non enim pharetra vel vulputate eros hendrerit. Ut pulvinar placerat risus quis interdum. Mauris eget tempus risus. Aenean accumsan dolor in lorem elementum ac tincidunt urna rutrum. Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>
 	</div>
 	
-	<p>Explicacion</p>
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$("#modal_param1").modal(
+			{
+				content: "#modalContent"
+			}
+		);
+	</pre></code></div><div class="ch-g2-3">
 	
-	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">$(".demoDropdown").dropdown();</pre></code></div><div class="ch-g2-3">
+	<p>Modal ejecutado en el click de un botón cargando contenido por parametro: HTML.</p>	
 	
-	<p>Dropdown ejecutado con balballbalbalab</p>
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary" id="modal_param2" value="Ejecutar Modal">
+	</form>
 	
-	<p>Explicacion</p>
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$("#modal_param2").modal(
+			{
+				content: "<h2>Contenido cargado por parametro HTML</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+			}
+		);
+	</pre></code></div><div class="ch-g2-3">
 	
-	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">$(".demoDropdown").dropdown();</pre></code></div></div></div>
+	<p>Modal ejecutado en el click de un botón cargando contenido por parametro: Texto Plano.</p>	
+	
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary" id="modal_param3" value="Ejecutar Modal">
+	</form>
+	
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$("#modal_param3").modal(
+			{
+				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+			}
+		);
+	</pre></code></div></div></div>
 	</div>
 	
 	<p class="footer">Chico-UI, powered by MercadoLibre.</p>
@@ -163,6 +218,16 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
-	<script>$(".demoModal").dropdown();</script>
+	<script>
+		$(".demoModal").modal();
+		$(".modal_link").modal({ajax:true});
+		$("#modal_btn").modal({ajax:true});
+		$("#modal_param1").modal({content: "#modalContent"});
+		$("#modal_param2").modal({content: "<h2>Contenido cargado por parametro HTML</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus. Vestibulum posuere purus non enim pharetra vel vulputate eros hendrerit. Ut pulvinar placerat risus quis interdum. Mauris eget tempus risus. Aenean accumsan dolor in lorem elementum ac tincidunt urna rutrum. Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>"});
+		$("#modal_param3").modal({content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus. Vestibulum posuere purus non enim pharetra vel vulputate eros hendrerit. Ut pulvinar placerat risus quis interdum. Mauris eget tempus risus. Aenean accumsan dolor in lorem elementum ac tincidunt urna rutrum. Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum."});
+		$("#modal_callShow").modal({ajax:true, callbacks: { show: function(){} } });
+		$("#modal_callHide").modal({ajax:true, callbacks: { hide: function(){} } });
+		$("#modal_callbacks").modal({ajax:true, callbacks: { show: function(){}, hide: function(){} } });
+	</script>
 </body>
 </html>
