@@ -9,7 +9,7 @@ class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
 	
-	private $pages = "dropdown, tabnavigator, modal, tooltip";
+	private $pages = "dropdown, tabnavigator, carousel, viewer, tooltip, watchers, string";
 	private $files;
 	private $template;
 	
@@ -23,6 +23,7 @@ class DocBuilder {
     	$this->template = file_get_contents("template.html");
     	
     	foreach ($this->files as $file) {
+			$scripts = ""; // All scripts that will be executed at end of page
 			
 			// Uses & Name
 			$use = file_get_contents($file."/use.html");
@@ -40,7 +41,7 @@ class DocBuilder {
 			$demo_js = explode("</script>", $demo_html[1]);
 			
 			$html = str_replace("<!-- #demo-html -->", $demo_html[0], $html);
-			$html = str_replace("<!-- #demo-js -->", "<script>".$demo_js[0]."</script>", $html);
+			$scripts .= $demo_js[0];
 			
 			// Sintax
 			$sintax = file_get_contents($file."/sintax.html");
@@ -73,7 +74,9 @@ class DocBuilder {
 					$self = "<div class=\"ch-g2-3\">".$case_html[0]."</div>";
 					$self.= "<div class=\"ch-g1-3\"><p>El javascript para iniciarlo es:</p>";
 					$self.= "<code><pre name=\"code\" class=\"js\">".$case_js[0]."</pre></code></div>";
-			
+					
+					$scripts .= $case_js[0];
+					
 					array_push($cases, $self);
 				};
 				
@@ -81,6 +84,9 @@ class DocBuilder {
 				
 				$html = str_replace("<!-- #cases -->", $cases, $html);
 			};
+			
+			// Scripts
+			$html = str_replace("<!-- #demo-js -->", "<script>".$scripts."</script>", $html);
 			
 			// File creation
 			$filename = $file.".html";
