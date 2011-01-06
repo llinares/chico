@@ -23,9 +23,7 @@
 .ch-g1-6e,
 .ch-g1-6 {
 	float:left; 
-	display: inline-block; 
 	vertical-align: top;
-	overflow:hidden;
 }
 
 .ch-g1 { width:100%;} 
