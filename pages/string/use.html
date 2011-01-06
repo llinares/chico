@@ -18,7 +18,7 @@
 	</p>Ejemplo del objeto de configuración:<p>
 	<code>
 		<pre name="code" class="js">
-        /* {
+        {
             text: boolean,
             email: boolean,
             url: boolean,
@@ -26,9 +26,9 @@
             minLength: number,
             callbacks: {
                 validate: function() {},
-                reset: funciont() {}
+                reset: function() {}
             }
-        } */
+        }
 		</pre>
 	</code>
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
@@ -46,5 +46,29 @@
         $("#Foobar").email().and().maxLength(20); // Same example
 		</pre>
 	</code>
+	<p>Cada vez que se instancia un componente de la familia <a href="watchers.html" lang="en">Watchers</a> éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $("#Foobar").email().and().maxLength(20); // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "watcher",                  //  Component Type
+            status: boolean,                  //  Status
+            reference: HTMLInputElement,      //  Positioner reference
+            parent: HTMLFormElement,          //  Form parent
+            validations: {                    //  Validation Map
+                email: true,                  
+                maxLength: 20                 
+            },
+            messages:{},                      //  Messages Map
+            and(),                            //  Concatenate method 
+            reset(),                          //  Reset the value
+            validate(),                       //  Execute the validations
+        }
+		</pre>
+	</code>	
 </body>
 </html>
