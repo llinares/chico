@@ -43,132 +43,127 @@
 		
 		<div class="ch-g2-3">
 			<div class="box leftcolumn">
-				<h3>¿Cómo se usa?</h3>
-				<p>El Tab Navigator se crea a partir de blablalbalbalbalbal ANCLAS.</p>
+				<h3>Demo</h3>
+				
+
+	<div class="demoTabNavigator">
+		<ul>
+			<li><a href="#tab1">Tab1</a></li>
+			<li><a href="#tab2">Tab2</a></li>
+			<li><a href="#tab3">Tab3</a></li>
+		</ul>
+		<div>
+			<div id="tab1">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus.</p>
+			</div>
+
+			<div id="tab2">
+				<p>Vestibulum posuere purus non enim pharetra vel vulputate eros hendrerit. Ut pulvinar placerat risus quis interdum. Mauris eget tempus risus. Aenean accumsan dolor in lorem elementum ac tincidunt urna rutrum. Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a.</p>
+			</div>
+	
+			<div id="tab3">
+				<p>Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>
+			</div>
+		</div>
+	</div>
+	
+	
 			</div>
 			<div class="box leftcolumn">
-				<h3>Demo</h3>
-				<div class="demoTabNavigator">
-					<ul>
-						<li><a href="#tab1">Tab1</a></li>
-						<li><a href="#tab2">Tab2</a></li>
-						<li><a href="#tab3">Tab3</a></li>
-					</ul>
-					<div>
-						<div id="tab1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus.</p>
-						</div>
-		
-						<div id="tab2">
-							<p>Vestibulum posuere purus non enim pharetra vel vulputate eros hendrerit. Ut pulvinar placerat risus quis interdum. Mauris eget tempus risus. Aenean accumsan dolor in lorem elementum ac tincidunt urna rutrum. Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a.</p>
-						</div>
+				<h3>¿Cómo se usa?</h3>
 				
-						<div id="tab3">
-							<p>Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>
-						</div>
-					</div>
-				</div>
+	<p>El Tab Navigator se crea a partir de agregarle funcionalidad a un conjunto de anclas.</p>
+	
+
 			</div>
 		</div>
 		<div class="ch-g1-3">
 			<div class="box rightcolumn">
 				<h3>Sintaxis</h3>
 				<p>El HTML para utilizar este componente es:</p>
-				<code>
-					<pre name="code" class="xml">
-						<div class="foo">
-							<ul>
-								<li><a href="#foo1">Tab1</a></li>
-								<li><a href="#foo2">Tab2</a></li>
-								<li><a href="#foo3">Tab3</a></li>
-							</ul>
-							<div>
-								<div id="foo1">...</div>
-								<div id="foo2">...</div>
-								<div id="foo3">...</div>
-							</div>
-						</div>
-					</pre>
-				</code>
+				
+	
+	<code>
+		<pre name="code" class="xml">
+			<div class="foo">
+				<ul>
+					<li><a href="#foo1">Tab1</a></li>
+					<li><a href="#foo2">Tab2</a></li>
+					<li><a href="#foo3">Tab3</a></li>
+				</ul>
+				<div>
+					<div id="foo1">...</div>
+					<div id="foo2">...</div>
+					<div id="foo3">...</div>
+				</div>
+			</div>
+		</pre>
+	</code>
+	
+	
 				
 				<p>El javascript para iniciarlo es:</p>
-				<code>
-					<pre name="code" class="js">
-						$('.foo').tabNavigator();
-					</pre>
-				</code>
+				
+	
+	<code>
+		<pre name="code" class="js">
+			$(".foo").tabNavigator();
+		</pre>
+	</code>
+	
+
 			</div>	
 		</div>
 		
 		<div class="ch-g1">
-			<div class="box">
+			<div class="box config">
 				<h3>Configuración</h3>
 				<p>Parámetros de configuración que puede recibir este componente:</p>
 			
-				<dl class="config">
-					<dt>callbacks</dt>
-					<dd><em>Opcional.</em> Recive como parametros "show" y/o "hide". Son las funciones que se ejecutarán como respuesta del componente al mostrarse u ocultarse.</dd>
-				</dl>
+				
+	
+	<dl>
+		<dt>callbacks</dt>
+		<dd>
+			<em>object</em>
+			<dl>
+				<dt>show</dt>
+				<dd><em>function:</em> Se ejecutará cuando cada uno de los tabs sea mostrado.</dd>
+				
+				<dt>hide</dt>
+				<dd><em>function:</em> Se ejecutará cuando cada uno de los tabs deje de mostrarse.</dd>
+			</dl>
+		</dd>
+	</dl>
+	
+
 			</div>
 		</div>
 		
-		<div class="ch-g1">
-			<div class="box clearfix">
-				<h3>Casos de uso</h3>
-				<div class="ch-g2-3">
-					<p>Contenido cargado por ajax.</p>
-					
-					<div class="demoTabNavigator">
-						<ul>
-							<li><a href="#tab1">Tab1</a></li>
-							<li><a href="test">Tab cargado por ajax</a></li>
-							<li><a href="#tab3">Tab3</a></li>
-						</ul>
-						<div>
-							<div id="tab1">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus.</p>
-							</div>
-				
-							<div id="tab3">
-								<p>Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>
-							</div>
-						</div>
-					</div>
-					
-					<p>Expllicacaion</p>
-				</div>
-				<div class="ch-g1-3">
-					<p>El HTML para ejecutar este caso es:</p>
-					<code>
-						<pre name="code" class="xml">
-							<div class="foo">
-								<ul>
-									<li><a href="#foo1">Tab1</a></li>
-									<li><a href="test.html">Tab2</a></li>
-									<li><a href="#foo3">Tab3</a></li>
-								</ul>
-								<div>
-									<div id="foo1">...</div>
-									<div id="foo3">...</div>
-								</div>
-							</div>
-						</pre>
-					</code>
-				</div>
-						
-				<div class="ch-g2-3">
-					Aca va la demo de este caso de uso
-				</div>
-				<div class="ch-g1-3">
-					<p>El javascript para iniciarlo es:</p>
-					<code>
-						<pre name="code" class="js">
-							// Javascript
-						</pre>
-					</code>
-				</div>		
+		<div class="ch-g1"><div class="box clearfix"><h3>Casos de uso</h3><div class="ch-g2-3">
+	
+	<p>Tab ejecutado con ajax</p>
+	
+	<div class="demoTabNavigator">
+		<ul>
+			<li><a href="#tab1">Tab1</a></li>
+			<li><a href="../examples/ajax.html">Tab cargado por ajax</a></li>
+			<li><a href="#tab3">Tab3</a></li>
+		</ul>
+		<div>
+			<div id="tab1">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet purus in sapien luctus sodales. Curabitur dui velit, cursus in sagittis aliquam, dictum at neque. Ut gravida scelerisque lorem non pulvinar. Pellentesque et urna vitae nisl porta imperdiet sed nec ipsum. Sed non sem velit. Cras id consectetur tellus.</p>
+			</div>
+
+			<div id="tab3">
+				<p>Sed sit amet nunc velit, vitae tincidunt ipsum. Fusce mattis elementum justo, et lacinia odio pharetra a. Donec egestas imperdiet eros a interdum. Suspendisse sodales, ligula vitae pulvinar aliquam, elit justo pretium urna, ut hendrerit arcu dolor vitae ipsum.</p>
 			</div>
 		</div>
+	</div>
+	
+	<p>Para cargar el contenido de un tab por ajax (en este caso, el tab 2), es necesario que el atributo "href" del link correspondiente, apunte a la URL de donde se va a obtener el contenido. El componente automáticamente creará el contenedor para alojar el resultado y lo vinculará con el tab en cuestión.</p>
+	
+	</div><div class="ch-g1-3"><p>El javascript para iniciarlo es:</p><code><pre name="code" class="js">$(".foo").tabNavigator();</pre></code></div></div></div>
 	</div>
 	
 	<p class="footer">Chico-UI, powered by MercadoLibre.</p>
@@ -176,8 +171,6 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
-	<script>
-		$('.demoTabNavigator').tabNavigator();
-	</script>
+	<script>$('.demoTabNavigator').tabNavigator();</script>
 </body>
 </html>
