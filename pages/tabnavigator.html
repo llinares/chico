@@ -66,7 +66,7 @@
 			<ul>
 				<li><h3><a href="controllers.html">Controllers</a></h3></li>
 	            <li><a href="form.html">Form</a></li>
-	            <li><a href="tabnavigator.html">TabNavigator</a></li>
+	            <li><strong>Tab Navigator</strong></li>
 	            <li><a href="viewer.html">Viewer</a></li>
 			</ul>
 		</div>
@@ -143,7 +143,7 @@
 	</div>
 	
 	</pre></code>
-						<p>Para iniciar este ejemplo, es necesario utilizar:</p>
+						<p>Para iniciar este ejemplo se utilizó:</p>
 						<code><pre name="code" class="xml">$('.demoTabNavigator').tabNavigator();</pre></code>
 					</div>
 				</div>
@@ -153,15 +153,30 @@
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El Tab Navigator se crea a partir de agregarle funcionalidad a un conjunto de anclas.</p>
+	<p>Cada vez que se instancia un Tab Navigator, éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $('.demoTabNavigator').tabNavigator(); // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "tabNavigator",             //  Component Type
+            tabs: array,                      //  Instances of tabs
+            select()                      	  //  Select a tab
+        }
+		</pre>
+	</code>
 	
 
 			</div>
 	
 			<div class="box clear"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
 	
-	<p>Tab ejecutado con ajax</p>
+	<h4>Tab ejecutado con ajax</h4>
 	
-	<div class="demoTabNavigator">
+	<div class="ajaxTabNavigator">
 		<ul>
 			<li><a href="#tab1">Tab1</a></li>
 			<li><a href="../examples/ajax.html">Tab cargado por ajax</a></li>
@@ -180,7 +195,7 @@
 	
 	<p>Para cargar el contenido de un tab por ajax (en este caso, el tab 2), es necesario que el atributo "href" del link correspondiente, apunte a la URL de donde se va a obtener el contenido. El componente automáticamente creará el contenedor para alojar el resultado y lo vinculará con el tab en cuestión.</p>
 	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">$(".demoTabNavigator").tabNavigator();</pre></code></div></div></div>
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">$(".ajaxTabNavigator").tabNavigator();</pre></code></div></div></div>
 		</div>
 	</div>
 	
@@ -190,6 +205,6 @@
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
 	<script>$(".docTabs").tabNavigator();</script>
-	<script>$('.demoTabNavigator').tabNavigator();$(".demoTabNavigator").tabNavigator();</script>
+	<script>$('.demoTabNavigator').tabNavigator();$(".ajaxTabNavigator").tabNavigator();</script>
 </body>
 </html>

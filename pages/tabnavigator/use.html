@@ -15,6 +15,21 @@
 	
 	<h1>Tab Navigator</h1>
 	<p>El Tab Navigator se crea a partir de agregarle funcionalidad a un conjunto de anclas.</p>
+	<p>Cada vez que se instancia un Tab Navigator, éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $('.demoTabNavigator').tabNavigator(); // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "tabNavigator",             //  Component Type
+            tabs: array,                      //  Instances of tabs
+            select()                      	  //  Select a tab
+        }
+		</pre>
+	</code>
 	
 </body>
 </html>
