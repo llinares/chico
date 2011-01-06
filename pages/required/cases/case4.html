@@ -8,7 +8,7 @@
 <head>
 	<script></script>
 	<meta charset="utf-8">
-	<title>Chico UI - Case String</title>
+	<title>Chico UI - Case Required</title>
 	<link rel="stylesheet" href="../../src/css/chico.css">
 	<link rel="stylesheet" href="../../src/css/grid.css">
 	<link rel="stylesheet" href="../../src/css/pages.css">
@@ -22,21 +22,30 @@
 </head>
 <body>
 	
-	<h4>Validando cantidad de caracteres en los campos</h4>
+	<h4>Validando grupos de radios requeridos</h4>
 	
-	<form action="test.html" class="c2">
-    	<fieldset>
-    		<ol>
-    			<li class="fieldBox">
-    				<label for="c2_edad">
-    					<span>Edad:</span>
-    					<input type="text" id="c2_edad" value="6">
-    				</label>
-    				<p class="help">Escribe una descripción corta y clara</p>
-    			</li>
-    		</ul>
-    	</fieldset>
-    	        
+	<form action="test.html" class="c4">
+		<fieldset>
+			<legend>Radio buttons obligatorios <em>*</em></legend>
+			<div class="c4_radio options required">
+				<ul>
+					<li class="fieldBox">
+						<label for="c4_radio2a">
+							<input type="radio" value="alpha" id="c4_radio2a" name="version5">
+							<span>Alpha</span>
+						</label>
+					</li>
+	
+					<li class="fieldBox">
+						<label for="c4_radio2b">
+							<input type="radio" value="beta" id="c4_radio2b" name="version5">
+							<span>Beta</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+	       	        
     	<p class="actions">
     		<input type="submit" value="Enviar" class="btn primary">
     		<a href="#">Cancelar</a>
@@ -44,8 +53,8 @@
     </form>
 	
 	<script>
-        $('.c2').forms();
-        $('#c2_edad').minLength(2);
+        $('.c4').forms();
+        $('.c4_radio').required();
 	</script>
 	
 </body>

@@ -30,86 +30,95 @@
 			<li><a href="mailto:chico@mercadolibre.com">Contacto</a></li>
 		</ul>
 	</div>
+		
+	<div class="ch-g1-6">
+		<div class="box leftcolumn components">
+			<ul>
+				<li><h3><a href="core.html">Core</a></h3></li>
+        		<li><a href="factory.html">Factory</a></li>
+	            <li><a href="get.html">Get</a></li>
+	            <li><a href="positioner.html">Positioner</a></li>
+			</ul>
+			<ul>
+				<li><h3><a href="floats.html">Floats</a></h3></li>
+	            <li><strong>Tooltip</strong></li>
+	            <li><a href="layer.html">Layer</a></li>
+	            <li><a href="modal.html">Modal</a></li>
+	            <li><a href="helper.html">Helper</a></li>
+			</ul>
+			<ul>
+	            <li><h3><a href="navs.html">Navs</a></h3></li>
+	            <li><a href="dropdown.html">Dropdown</a></li>
+	            <li><a href="tab.html">Tab</a></li>
+	            <li><a href="expando.html">Expando</a></li>
+			</ul>
+			<ul>
+				<li><h3>Sliders</h3></li>
+        		<li><a href="carousel.html">Carousel</a></li>
+			</ul>
+			<ul>
+			    <li><h3><a href="watchers.html">Watchers</a></h3></li>
+	            <li><a href="required.html">Required</a></li>
+	            <li><a href="number.html">Number</a></li>
+	            <li><a href="string.html">String</a></li>
+	            <li><a href="custom.html">Custom</a></li>
+			</ul>
+			<ul>
+				<li><h3><a href="controllers.html">Controllers</a></h3></li>
+	            <li><a href="form.html">Form</a></li>
+	            <li><a href="tabnavigator.html">TabNavigator</a></li>
+	            <li><a href="viewer.html">Viewer</a></li>
+			</ul>
+		</div>
+	</div>
 	
-	<div class="container">
-		<h2 class="ch-g1-2">Tooltip</h2>
+	<div class="ch-g5-6">
+		<div class="rightcolumn">
+			<h2 class="ch-g1-2">Tooltip</h2>
+			<form action="https://github.com/mercadolibre/chico/issues" class="bugs ch-g1-2">
+				<label>
+					<span>Encontraste algún bug?</span>
+					<input type="submit" value="Reportar Bug" class="btn secondary">
+				</label>
+			</form>
 		
-		<form action="https://github.com/mercadolibre/chico/issues" class="bugs">
-			<label>
-				<span>Encontraste algún bug?</span>
-				<input type="submit" value="Reportar Bug" class="btn secondary">
-			</label>
-		</form>
-		
-		<div class="ch-g2-3">
-			<div class="box leftcolumn">
-				<h3>Demo</h3>
-				
+			<div class="docTabs clear">
+				<ul>
+					<li><a href="#demo">Demo</a></li>
+					<li><a href="#sintax">Sintaxis</a></li>
+				</ul>
+			
+				<div>
+					<div id="demo">
+						<h3>Demo</h3>
+						
 
 	<img class="demoTooltip" title="Buen vendedor" src="http://img.mlstatic.com/org-img/rp2/termometro_vip_2/11.gif">
 	
 	
+					</div>
+					<div id="sintax">
+						<h3>Sintaxis</h3>
+						<p>El marcado de este componente es:</p>
+						<code><pre name="code" class="xml">
+
+	<img class="demoTooltip" title="Buen vendedor" src="http://img.mlstatic.com/org-img/rp2/termometro_vip_2/11.gif">
+	
+	</pre></code>
+					</div>
+				</div>
 			</div>
-			<div class="box leftcolumn">
+		
+			<div class="box clear">
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El tooltip es un componente emergente que puede iniciarse con cuaqluier elemento HTML que tenga el atributo title. Se dispara con el evento mouseover del elemento, o bien, cunado uno lo desees utilizando su método público.</p>	
 
 
 			</div>
+	
+			<!-- #cases -->
 		</div>
-		<div class="ch-g1-3">
-			<div class="box rightcolumn">
-				<h3>Sintaxis</h3>
-				<p>El HTML para utilizar este componente es:</p>
-				
-	
-	<code>
-		<pre name="code" class="xml">
-			<element class="foo" title="Foobar">...</element>
-		</pre>
-	</code>
-	
-	
-				
-				<p>El javascript para iniciarlo es:</p>
-				
-	
-	<code>
-		<pre name="code" class="js">
-			$('.foo').tooltip();
-		</pre>
-	</code>
-	
-
-			</div>	
-		</div>
-		
-		<div class="ch-g1">
-			<div class="box config">
-				<h3>Configuración</h3>
-				<p>Parámetros de configuración que puede recibir este componente:</p>
-			
-				
-	
-	<dl>
-		<dt>callbacks</dt>
-		<dd>
-			<em>object</em>
-			<dl>
-				<dt>show</dt>
-				<dd><em>function:</em> Se ejecutará una vez que se muestre el tooltip.</dd>
-				
-				<dt>hide</dt>
-				<dd><em>function:</em> Se ejecutará cuando el tooltip se oculte.</dd>
-			</dl>
-		</dd>
-	</dl>	
-
-			</div>
-		</div>
-		
-		<!-- #cases -->
 	</div>
 	
 	<p class="footer">Chico-UI, powered by MercadoLibre.</p>
@@ -117,6 +126,7 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
+	<script>$(".docTabs").tabNavigator();</script>
 	<script>$(".demoTooltip").tooltip();</script>
 </body>
 </html>
