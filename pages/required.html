@@ -8,7 +8,7 @@
 	<head>
 		<script></script>
 		<meta charset="utf-8">
-		<title>Chico UI - String</title>
+		<title>Chico UI - Required</title>
 		<link rel="stylesheet" href="../src/css/chico.css">
 		<link rel="stylesheet" href="../src/css/grid.css">
 		<link rel="stylesheet" href="../src/css/pages.css">
@@ -58,9 +58,9 @@
 			</ul>
 			<ul>
 			    <li><h3><a href="watchers.html">Watchers</a></h3></li>
-	            <li><a href="required.html">Required</a></li>
+	            <li><strong>Required</strong></li>
 	            <li><a href="number.html">Number</a></li>
-	            <li><strong>String</strong></li>
+	            <li><a href="string.html">String</a></li>
 	            <li><a href="custom.html">Custom</a></li>
 			</ul>
 			<ul>
@@ -74,7 +74,7 @@
 	
 	<div class="ch-g5-6">
 		<div class="rightcolumn">
-			<h2 class="ch-g1-2">String</h2>
+			<h2 class="ch-g1-2">Required</h2>
 			<form action="https://github.com/mercadolibre/chico/issues" class="bugs ch-g1-2">
 				<label>
 					<span>Encontraste algún bug?</span>
@@ -146,16 +146,12 @@
 			<div class="box clear">
 				<h3>¿Cómo se usa?</h3>
 				
-	<p>El objecto String es una interface del objecto <a href="watchers.html" lang="en">Watchers</a> donde se pueden definir algunas validaciones preformateadas de cadenas de caracteres. Recibe como argumento un objeto de propiedades que definen los tipos de validaciones y algunos aspecto de su comportamiento como los <em lang="en">callbacks</em>.</p>
+	<p>El objecto Required es una interface del objecto <a href="watchers.html" lang="en">Watchers</a> donde se pueden declarar que campos o grupos de formularios sean requeridos para efectuar un <em lang="en">submit</em>. Recibe como argumento un objeto de propiedades que definen algunos aspecto de su comportamiento como los <em lang="en">callbacks</em>.</p>
 	</p>Ejemplo del objeto de configuración:<p>
 	<code>
 		<pre name="code" class="js">
         {
-            text: boolean,
-            email: boolean,
-            url: boolean,
-            maxLength: int,
-            minLength: int,
+            required: boolean,
             callbacks: {
                 validate: function() {},
                 reset: function() {}
@@ -166,22 +162,19 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").string({ // Check for a valid email format smaller than 20 chars
-            email: true,
-            maxLength: 20
-        });
+        $("#Foobar").required();
 		</pre>
 	</code>
     <p>Además, el componente soporta algunos <em lang="en">shorthands</em> que se pueden concatenar con el método <strong lang="en">and()</strong> facilitando su instanciación con otras validaciones de distintos tipos, por ejemplo:
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").email().and().maxLength(20); // Same example
+        $("#Foobar").email().and().required();
 		</pre>
 	</code>
 	<p>Cada vez que se instancia un componente de la familia <a href="watchers.html" lang="en">Watchers</a> éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
 	<code>
 		<pre name="code" class="js">
-        var foo = $("#Foobar").email().and().maxLength(20); // Same example
+        var foo = $("#Foobar").required(); // Same example
         
         // returns
         foo = {
@@ -192,8 +185,7 @@
             reference: HTMLInputElement,      //  Positioner reference
             parent: HTMLFormElement,          //  Form parent
             validations: {                    //  Validation Map
-                email: true,                  
-                maxLength: 20                 
+                required: true                
             },
             messages:{},                      //  Messages Map
             and(),                            //  Concatenate method 
@@ -207,22 +199,29 @@
 	
 			<div class="box clear"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
 	
-	<h4>Validación de Email y URL</h4>
+	<h4>Validación de campos de texto requeridos</h4>
 	
     <form action="test.html" class="c1">
     	<fieldset>
     		<ol>
     			<li class="fieldBox">
-    				<label class="required" for="c1_email">
-    					<span>E-mail: <em>*</em></span>													
-    					<input type="email" id="c1_email" required="required">
+    				<label class="required" for="c1_fistname">
+    					<span>First name: <em>*</em></span>													
+    					<input type="email" id="c1_fistname" required="required">
     				</label>
     				<p class="help">Escribe una descripción corta y clara</p>
     			</li>
     			<li class="fieldBox">
-    				<label class="required" for="c1_url">
-    					<span>Website: <em>*</em></span>													
-    					<input type="email" id="c1_url" required="required">
+    				<label class="required" for="c1_middlename">
+    					<span>Middle name: <em>*</em></span>													
+    					<input type="email" id="c1_middlename" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    			<li class="fieldBox">
+    				<label class="required" for="c1_lastname">
+    					<span>Last name: <em>*</em></span>													
+    					<input type="email" id="c1_lastname" required="required">
     				</label>
     				<p class="help">Escribe una descripción corta y clara</p>
     			</li>
@@ -234,34 +233,44 @@
     		<a href="#">Cancelar</a>
     	</p>
     </form>
-	<p>En la configuración de los campos podemos conbinar con el método <strong lang="en">and()</strong> con otras interfaces del componente <a href="watchers.html" lang="en">Watchers</a> como la validación de campo requerido <a href="required" lang="en">Required</a>.
+
     </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
     $(".c1").forms();
-    $("#c1_email").email().and().required();
-    $("#c1_url").url().and().required();
-   	   
-/*  Otra alternativa es agrupar validaciones requeridas en una instrucción:
-    $("#c1_email").email();
-    $("#c1_url").url();
-    $(".c1 input").required();
-*/
+    $("#c1_fistname, #c1_middlename, #c1_lastname").required();
    </pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
-	<h4>Validando cantidad de caracteres en los campos</h4>
+	<h4>Validando listas de selección requeridas</h4>
 	
 	<form action="test.html" class="c2">
     	<fieldset>
-    		<ol>
-    			<li class="fieldBox">
-    				<label for="c2_edad">
-    					<span>Edad:</span>
-    					<input type="text" id="c2_edad" value="6">
-    				</label>
-    				<p class="help">Escribe una descripción corta y clara</p>
-    			</li>
-    		</ul>
-    	</fieldset>
-    	        
+		<legend>Casos de uso de Select</legend>
+		<ul>
+			<li class="fieldBox">
+				<label for="c2_selectM">
+					<span>Campo múltiple:</span>
+					<select id="c2_selectM" multiple="multiple" size="4">
+						<option value="1">Opción 1</option>
+						<option value="2">Opción 2</option>
+						<option value="3">Opción 3</option>
+						<option value="4">Opción 4</option>
+					</select>
+				</label>
+			</li>
+			
+			<li class="fieldBox">
+				<label for="c2_selectS">
+					<span>Campo común:</span>
+					<select id="c2_selectS">
+						<option value="-1">Selecciona...</option>
+						<option value="1">Opción 1</option>
+						<option value="2">Opción 2</option>
+						<option value="3">Opción 3</option>
+						<option value="4">Opción 4</option>
+					</select>
+				</label>
+			</li>
+        </fieldset>
+            	        
     	<p class="actions">
     		<input type="submit" value="Enviar" class="btn primary">
     		<a href="#">Cancelar</a>
@@ -270,7 +279,77 @@
 	
 	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
         $('.c2').forms();
-        $('#c2_edad').minLength(2);
+        $('#c2_selectM, #c2_selectS').required();
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
+	
+	<h4>Validando grupos de checkboxes requeridos</h4>
+	
+	<form action="test.html" class="c3">
+		<fieldset>
+			<legend>Legend de grupo obligatorio <em>*</em></legend>
+			<div class="c3_check options required">
+				<ul>
+					<li class="fieldBox">
+						<label for="c3_check2a">
+							<input type="checkbox" value="alpha" id="c3_check2a" name="version2">
+							<span>Alpha</span>
+						</label>
+					</li>
+	
+					<li class="fieldBox">
+						<label for="c3_check2b">
+							<input type="checkbox" value="beta" id="c3_check2b" name="version2">
+							<span>Beta</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		       	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    </form>
+	
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+        $('.c3').forms();
+        $('.c3_check').required();
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
+	
+	<h4>Validando grupos de radios requeridos</h4>
+	
+	<form action="test.html" class="c4">
+		<fieldset>
+			<legend>Radio buttons obligatorios <em>*</em></legend>
+			<div class="c4_radio options required">
+				<ul>
+					<li class="fieldBox">
+						<label for="c4_radio2a">
+							<input type="radio" value="alpha" id="c4_radio2a" name="version5">
+							<span>Alpha</span>
+						</label>
+					</li>
+	
+					<li class="fieldBox">
+						<label for="c4_radio2b">
+							<input type="radio" value="beta" id="c4_radio2b" name="version5">
+							<span>Beta</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+	       	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    </form>
+	
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+        $('.c4').forms();
+        $('.c4_radio').required();
 	</pre></code></div></div></div>
 		</div>
 	</div>
@@ -284,20 +363,19 @@
 	<script>
 		// Define a Form Controller
 		var form = $('.formulario').forms();
-		var email = $('#val_email').email().and().minLength(20).and().required();
+		var email = $('#val_email').required();
 	
     $(".c1").forms();
-    $("#c1_email").email().and().required();
-    $("#c1_url").url().and().required();
-   	   
-/*  Otra alternativa es agrupar validaciones requeridas en una instrucción:
-    $("#c1_email").email();
-    $("#c1_url").url();
-    $(".c1 input").required();
-*/
+    $("#c1_fistname, #c1_middlename, #c1_lastname").required();
    
         $('.c2').forms();
-        $('#c2_edad').minLength(2);
+        $('#c2_selectM, #c2_selectS').required();
+	
+        $('.c3').forms();
+        $('.c3_check').required();
+	
+        $('.c4').forms();
+        $('.c4_radio').required();
 	</script>
 </body>
 </html>

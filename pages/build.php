@@ -9,7 +9,7 @@ class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
 	
-	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, string";
+	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number";
 	private $files;
 	private $template;
 	
@@ -67,7 +67,7 @@ class DocBuilder {
 					array_push($cases, $self);
 				};
 				
-				$cases = "<div class=\"box ch-g1\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
+				$cases = "<div class=\"box clear\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
 				
 				$html = str_replace("<!-- #cases -->", $cases, $html);
 			};

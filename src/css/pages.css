@@ -76,9 +76,10 @@ h1, h2, .article.demo, .header {
 
 .cases {
 	border-top:1px dashed #ccc;
-	padding-top:10px;
+	padding:10px 0;
 }
 
 .clear {
 	clear:left;
+	overflow:hidden;
 }
