@@ -1,0 +1,60 @@
+<!doctype html>
+<!--[if IE]><![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="es" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="es" class="no-js"> <!--<![endif]-->
+<head>
+	<script></script>
+	<meta charset="utf-8">
+	<title>Chico UI - Use layer</title>
+	<link rel="stylesheet" href="../../src/css/chico.css">
+</head>
+<body>
+	
+	<h1>Layer</h1>
+	<p>El objecto Layer pertenece a la familia Floats (al igual que <a href="modal.html" lang="en">Modal</a> y <a href="watchers.html" lang="en">Tooltip</a>) donde se pueden definir algunas validaciones preformateadas de cadenas de caracteres. Recibe como argumento un objeto de propiedades que definen los tipos de validaciones y algunos aspecto de su comportamiento como los <em lang="en">callbacks</em>.</p>
+	</p>Ejemplo del objeto de configuración:<p>
+	<code>
+		<pre name="code" class="js">
+        /* {
+			content: string,
+			ajax: string,
+			event: string,
+            callbacks: {
+                show: function() {},
+                hide: funciont() {}
+            }
+        } */
+		</pre>
+	</code>
+    <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
+	<code>
+		<pre name="code" class="js">
+        $("#Foobar").layer({
+        	content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>",
+        	event: "click",
+        });
+		</pre>
+	</code>
+   
+	<p>Cada vez que se instancia un componente Layer retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $("#Foobar").layer() // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "watcher",                  //  Component Type
+          	content:,						  //  Get content	
+          	position:,						  //  Set position
+          	show:,							  //  Set position
+          	hide:							  //  Set position
+        }
+		</pre>
+	</code>
+</body>
+</html>
