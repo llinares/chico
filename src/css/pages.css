@@ -51,7 +51,10 @@ h1, h2, .article.demo, .header {
 .config dl dt {
 	font-weight: bold;
 	float: left;
-	width: 100px;
+}
+
+.config dl dd {
+	padding-left: 100px;
 }
 
 .footer {
