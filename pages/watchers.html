@@ -1,0 +1,164 @@
+<!doctype html>
+<!--[if IE]><![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="es" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="es" class="no-js"> <!--<![endif]-->
+	<head>
+		<script></script>
+		<meta charset="utf-8">
+		<title>Chico UI - Watchers (a.k.a. Validators)</title>
+		<link rel="stylesheet" href="../src/css/chico.css">
+		<link rel="stylesheet" href="../src/css/grid.css">
+		<link rel="stylesheet" href="../src/css/pages.css">
+		<link rel="stylesheet" href="../libs/css/highlight.css">
+		<!--[if lt IE 7 ]>
+			<script src="libs/js/dd_belatedpng.js"></script>
+			<script> DD_belatedPNG.fix('img, .ico'); //fix any <img> or .ico background-images </script>
+		<![endif]-->
+	</head>
+<body>	
+
+	<div class="header">
+		<h1>Chico-UI ;)</h1>
+		<ul>
+			<li><a href="/chico">Inicio</a></li>
+			<!--li><a href="/chico/components">Documentación</a></li-->
+			<li><a href="https://github.com/mercadolibre/chico/archives/master">Download</a></li>
+			<li><a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></li>
+			<li><a href="mailto:chico@mercadolibre.com">Contacto</a></li>
+		</ul>
+	</div>
+	
+	<div class="container">
+		<h2 class="ch-g1-2">Watchers (a.k.a. Validators)</h2>
+		
+		<form action="https://github.com/mercadolibre/chico/issues" class="bugs">
+			<label>
+				<span>Encontraste algún bug?</span>
+				<input type="submit" value="Reportar Bug" class="btn secondary">
+			</label>
+		</form>
+		
+		<div class="ch-g2-3">
+			<div class="box leftcolumn">
+				<h3>Demo</h3>
+				
+    
+    <form action="test.html" class="formulario">
+    	<fieldset>
+    		<legend>Casos de uso de Input</legend>
+    		<p class="required">* Datos obligatorios</p>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_email">
+    					<span>E-mail: <em>*</em></span>													
+    					<input type="email" id="val_email" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    			<li class="fieldBox">
+    				<label for="val_select">
+    					<span>Campo común:</span>
+    					<select id="val_select">
+    						<option value="-1">Selecciona...</option>
+    						<option value="1">Opción 1</option>
+    						<option value="2">Opción 2</option>
+    						<option value="3">Opción 3</option>
+    						<option value="4">Opción 4</option>
+    					</select>
+    				</label>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    	
+    </form>
+    
+	
+			</div>
+			<div class="box leftcolumn">
+				<h3>¿Cómo se usa?</h3>
+				
+	<p>El componente Watcher es la clase que define a todos los componentes de validación. Se asocia a uno o más controles de formularios y se encarga agrupar las validaciones por cada uno.</p>
+	<p>Existen varias interfaces que permiten la utilización de los Watchers. Se dividen en 4 grupos: <a href="string.html">String</a>, <a href="number.html">Number</a>, <a href="required.html">Required</a> y <a href="custom.html">Custom</a>. Cada uno de ellos define internamente un Watcher con configuraciones especiales de validación</p>
+	
+
+			</div>
+		</div>
+		<div class="ch-g1-3">
+			<div class="box rightcolumn">
+				<h3>Sintaxis</h3>
+				<p>El HTML para utilizar este componente es:</p>
+				
+	
+	<code>
+		<pre name="code" class="xml">
+<form action="..." class="foo">
+	<fieldset>
+		<legend>...</legend>
+		<ul>
+			<li class="fieldBox">
+				<label for="Foobar">
+					<span>E-mail:</span>
+					<input type="email" id="Foobar">
+				</label>
+			</li>
+		</ul>
+	</fieldset>
+</form>
+		</pre>
+	</code>
+	
+	
+				
+				<p>El javascript para iniciarlo es:</p>
+				
+	
+	<code>
+		<pre name="code" class="js">
+            $("#Foobar").email().and().required().and().minLength(6);
+		</pre>
+	</code>
+	
+
+			</div>	
+		</div>
+		
+		<div class="ch-g1">
+			<div class="box config">
+				<h3>Configuración</h3>
+				<p>Parámetros de configuración que puede recibir este componente:</p>
+			
+				
+	
+	<dl>
+		<dt>callbacks</dt>
+		<dd><em>validate</em> Recive una función que se ejecutará como respuesta del componente luego de efectuar las validaciones definidas.</dd>
+	</dl>
+	
+
+			</div>
+		</div>
+		
+		<!-- #cases -->
+	</div>
+	
+	<p class="footer">Chico-UI, powered by MercadoLibre.</p>
+	
+	<script src="../libs/js/highlight.js"></script>
+	<script src="../libs/js/jquery.js"></script>
+	<script src="../src/js/chico.js"></script>
+	<script>
+		// Define a Form Controller
+		var form = $('.formulario').forms();
+		var email = $('#val_email').email().and().minLength(20).and().required();
+    	var select = $('#val_select').required();
+	</script>
+</body>
+</html>
