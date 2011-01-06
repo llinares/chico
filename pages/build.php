@@ -42,8 +42,8 @@ class DocBuilder {
 			
 			$html = str_replace("<!-- #demo-html -->", $demo_html[0], $html);
 			$scripts .= $demo_js[0];
-			$html = str_replace("<!-- #sintax -->", "<code><pre name=\"code\" class=\"xml\">".$demo_html[0]."</pre></code>", $html);
-			
+			$html = str_replace("<!-- #sintax-html -->", "<code><pre name=\"code\" class=\"xml\">".$demo_html[0]."</pre></code>", $html);
+			$html = str_replace("<!-- #sintax-js -->", "<code><pre name=\"code\" class=\"xml\">".$demo_js[0]."</pre></code>", $html);
 						
 			// Cases
 			$casesQuantity = count(glob($file."/cases/case*.html"));
