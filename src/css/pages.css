@@ -36,7 +36,7 @@ h1, h2, .article.demo, .header {
     margin-bottom: 10px;
 }
 
-.bugs {
+.bugs label {
 	float: right;
 }
 
@@ -64,4 +64,21 @@ h1, h2, .article.demo, .header {
 	line-height: 50px;
 	border-top: 1px solid #ccc;
 	color:#666;
+}
+
+.components ul {
+	margin:0 0 20px 20px;
+}
+
+.components ul h3 {
+	margin-left:-20px;
+}
+
+.cases {
+	border-top:1px dashed #ccc;
+	padding-top:10px;
+}
+
+.clear {
+	clear:left;
 }

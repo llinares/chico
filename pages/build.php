@@ -9,7 +9,7 @@ class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
 	
-	private $pages = "dropdown, tabnavigator, carousel, viewer";
+	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, string";
 	private $files;
 	private $template;
 	
@@ -33,8 +33,8 @@ class DocBuilder {
 			
 			$html = str_replace("<!-- #name -->", $name[0], $this->template);
 			$html = str_replace("<!-- #use -->", $use[0], $html);
-			
-			// Demo
+						
+			// Demo + Sintax
 			$demo = file_get_contents($file."/demo.html");
 			$demo = explode("<body>", $demo);
 			$demo_html = explode("<script>", $demo[1]);	
@@ -42,22 +42,9 @@ class DocBuilder {
 			
 			$html = str_replace("<!-- #demo-html -->", $demo_html[0], $html);
 			$scripts .= $demo_js[0];
+			$html = str_replace("<!-- #sintax -->", "<code><pre name=\"code\" class=\"xml\">".$demo_html[0]."</pre></code>", $html);
 			
-			// Sintax
-			$sintax = file_get_contents($file."/sintax.html");
-			$sintax = explode("<body>", $sintax);
-			$sintax_html = explode("<!-- #codes -->", $sintax[1]);
-			$sintax_js = explode("</body>", $sintax_html[1]);
-			
-			$html = str_replace("<!-- #sintax-html -->", $sintax_html[0], $html);
-			$html = str_replace("<!-- #sintax-js -->", $sintax_js[0], $html);
-			
-			// Config
-			$config = file_get_contents($file."/config.html");
-			$config = explode("<body>", $config);
-			$config = explode("</body>", $config[1]);
-			$html = str_replace("<!-- #config -->", $config[0], $html);
-			
+						
 			// Cases
 			$casesQuantity = count(glob($file."/cases/case*.html"));
 			
@@ -71,16 +58,16 @@ class DocBuilder {
 					$case_html = explode("<script>", $case[1]);	
 					$case_js = explode("</script>", $case_html[1]);
 					
-					$self = "<div class=\"ch-g2-3\">".$case_html[0]."</div>";
-					$self.= "<div class=\"ch-g1-3\"><p>El javascript para iniciarlo es:</p>";
-					$self.= "<code><pre name=\"code\" class=\"js\">".$case_js[0]."</pre></code></div>";
+					$self = "<div class=\"ch-g2-3\"><div class=\"leftcolumn cases\">".$case_html[0]."</div></div>";
+					$self.= "<div class=\"ch-g1-3\"><div class=\"rightcolumn\"><p>El Javascript para iniciarlo es:</p>";
+					$self.= "<code><pre name=\"code\" class=\"js\">".$case_js[0]."</pre></code></div></div>";
 					
 					$scripts .= $case_js[0];
 					
 					array_push($cases, $self);
 				};
 				
-				$cases = "<div class=\"ch-g1\"><div class=\"box clearfix\"><h3>Casos de uso</h3>".implode("", $cases)."</div></div>";
+				$cases = "<div class=\"box ch-g1\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
 				
 				$html = str_replace("<!-- #cases -->", $cases, $html);
 			};
@@ -90,6 +77,10 @@ class DocBuilder {
 			
 			// File creation
 			$filename = $file.".html";
+			
+			// Remove link of nav bar
+			$html = str_replace("<a href=\"".$filename."\">".$name[0]."</a>", "<strong>".$name[0]."</strong>", $html);
+			
 			$chars = file_put_contents($filename, $html);
 			echo "<p><a href=\"".$filename."\">".$filename."</a> <small>(".$chars." bytes)</small></p>";
     	};
