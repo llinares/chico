@@ -86,7 +86,7 @@
 				</label>
 			</form>
 		
-			<div class="docTabs clear">
+			<div class="docTabs">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
 					<li><a href="#sintax">Código fuente</a></li>
@@ -119,10 +119,10 @@
 				</div>
 			</div>
 		
-			<div class="box clear use">
+			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
 				
-	<p>El objecto Contextual Layer pertenece a la familia Floats (al igual que <a href="modal.html" lang="en">Modal window</a> y <a href="tooltip.html" lang="en">Tooltip</a>). Recibe como argumento un objeto de propiedades para su funcionamiento, como el contenido o los <em lang="en">callbacks</em>.</p>
+	<p>El objecto Contextual Layer pertenece a la familia Floats (al igual que <a href="modal.html" lang="en">Modal window</a> y <a href="tooltip.html" lang="en">Tooltip</a>). Recibe como argumento un objeto de propiedades para su funcionamiento, contenido o para los <em lang="en">callbacks</em>.</p>
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
 		<pre name="code" class="js">
@@ -167,23 +167,23 @@
 
 			</div>
 	
-			<div class="box clear"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
+			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases-html">
 
 	<h4>Contextual Layer ejecutado en mouseover</h4>	
 	
 	<span class="layerOnmouseover">Layer ejecutado en mouseover.</span>
 	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
 		$(".layerOnmouseover").layer({
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
 	
 	<h4>Contextual Layer ejecutado en click</h4>	
 	
 	<span class="layerOnclick">Layer ejecutado con click.</span>
 	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
 		$(".layerOnclick").layer({
 			event: "click",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
