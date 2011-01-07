@@ -14,7 +14,21 @@
 <body>
 	
 	<h1>Viewer</h1>
-	<p>El Viewer se crea a partir de agregarle funcionalidad a un listado de imágenes, las cuales poseen un link a la misma imagen pero de mayor tamaño.</p>
-	
+	<p>El Viewer se genera a partir de extender la funcionalidad de un listado de imágenes, las cuales poseen un link a una imagen de mayor tamaño.</p>
+	<p>Cada vez que se instancia un Viewer, éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $('.demoViewer').viewer(); // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "viewer",                   //  Component Type
+            children: array,                  //  Instances of components controlled by Viewer
+            select()                      	  //  Select an item of main thumbnails
+        }
+		</pre>
+	</code>
 </body>
 </html>

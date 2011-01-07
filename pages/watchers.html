@@ -23,16 +23,18 @@
 	<div class="header">
 		<h1>Chico-UI ;)</h1>
 		<ul>
-			<li><a href="/chico">Inicio</a></li>
-			<!--li><a href="/chico/components">Documentación</a></li-->
+			<li><a href="../">Home</a></li>
+			<li><strong>Docs</strong></li>
+            <li><a href="https://github.com/mercadolibre/chico/">Github</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/archives/master">Download</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></li>
-			<li><a href="mailto:chico@mercadolibre.com">Contacto</a></li>
+			<li><a href="mailto:chico@mercadolibre.com">Give us feedback!</a></li>
 		</ul>
 	</div>
-		
+    <hr />
 	<div class="ch-g1-6">
-		<div class="box leftcolumn components">
+		<div class="leftcolumn components">
+            <h3>Docs</h3>
 			<ul>
 				<li><h3><a href="core.html">Core</a></h3></li>
         		<li><a href="factory.html">Factory</a></li>
@@ -49,7 +51,6 @@
 			<ul>
 	            <li><h3><a href="navs.html">Navs</a></h3></li>
 	            <li><a href="dropdown.html">Dropdown</a></li>
-	            <li><a href="tab.html">Tab</a></li>
 	            <li><a href="expando.html">Expando</a></li>
 			</ul>
 			<ul>
@@ -66,7 +67,7 @@
 			<ul>
 				<li><h3><a href="controllers.html">Controllers</a></h3></li>
 	            <li><a href="form.html">Form</a></li>
-	            <li><a href="tabnavigator.html">TabNavigator</a></li>
+	            <li><a href="tabnavigator.html">Tab Navigator</a></li>
 	            <li><a href="viewer.html">Viewer</a></li>
 			</ul>
 		</div>
@@ -77,15 +78,14 @@
 			<h2 class="ch-g1-2">Watchers (a.k.a. Validators)</h2>
 			<form action="https://github.com/mercadolibre/chico/issues" class="bugs ch-g1-2">
 				<label>
-					<span>Encontraste algún bug?</span>
-					<input type="submit" value="Reportar Bug" class="btn secondary">
+					<input type="submit" value="Report a Bug" class="btn secondary">
 				</label>
 			</form>
 		
 			<div class="docTabs clear">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
-					<li><a href="#sintax">Sintaxis</a></li>
+					<li><a href="#sintax">Código fuente</a></li>
 				</ul>
 			
 				<div>
@@ -130,8 +130,8 @@
 	
 					</div>
 					<div id="sintax">
-						<h3>Sintaxis</h3>
-						<p>El marcado de este componente es:</p>
+						<h3>Código fuente</h3>
+						<p>El marcado de este ejemplo es:</p>
 						<code><pre name="code" class="xml">
     
     <form action="test.html" class="formulario">
@@ -169,6 +169,13 @@
     </form>
     
 	</pre></code>
+						<p>Para iniciar este ejemplo se utilizó:</p>
+						<code><pre name="code" class="xml">
+		// Define a Form Controller
+		var form = $('.formulario').forms();
+		var email = $('#val_email').email().and().minLength(20).and().required();
+    	var select = $('#val_select').required();
+	</pre></code>
 					</div>
 				</div>
 			</div>
@@ -186,7 +193,7 @@
 		</div>
 	</div>
 	
-	<p class="footer">Chico-UI, powered by MercadoLibre.</p>
+	<p class="footer">Chico-UI, powered by <a href="http://www.mercadolibre.com">MercadoLibre</a>.</p>
 	
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
