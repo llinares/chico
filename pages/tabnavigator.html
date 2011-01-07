@@ -20,11 +20,15 @@
 	</head>
 <body>	
 
-	<div class="header">
-		<h1>Chico-UI ;)</h1>
+	<div class="header clearfix">
+		<h1 title="MercadoLibre's Visual Framework">Chico-UI ;)</h1>
+		<div class="iLike">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FChico-UI%2F189546681062056&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+		</div>
 		<ul>
 			<li><a href="../">Home</a></li>
 			<li><strong>Docs</strong></li>
+			<li><a href="http://twitter.com/#!/chicoui">Twitter</a></li>
             <li><a href="https://github.com/mercadolibre/chico/">Github</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/archives/master">Download</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></li>
@@ -204,7 +208,11 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
-	<script>$(".docTabs").tabNavigator();</script>
+	<script>
+    	$(".docTabs").tabNavigator();
+        $('h1').html("Chico-UI ;) <span class=\"version\">"+ui.version+"</span>"  );
+	</script>
+
 	<script>$('.demoTabNavigator').tabNavigator();$(".ajaxTabNavigator").tabNavigator();</script>
 </body>
 </html>

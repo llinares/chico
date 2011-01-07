@@ -20,11 +20,15 @@
 	</head>
 <body>	
 
-	<div class="header">
-		<h1>Chico-UI ;)</h1>
+	<div class="header clearfix">
+		<h1 title="MercadoLibre's Visual Framework">Chico-UI ;)</h1>
+		<div class="iLike">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FChico-UI%2F189546681062056&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+		</div>
 		<ul>
 			<li><a href="../">Home</a></li>
 			<li><strong>Docs</strong></li>
+			<li><a href="http://twitter.com/#!/chicoui">Twitter</a></li>
             <li><a href="https://github.com/mercadolibre/chico/">Github</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/archives/master">Download</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></li>
@@ -36,20 +40,20 @@
 		<div class="leftcolumn components">
             <h3>Docs</h3>
 			<ul>
-				<li><h3><a href="core.html">Core</a></h3></li>
+				<li><h3>Core</h3></li>
         		<li><a href="factory.html">Factory</a></li>
 	            <li><a href="get.html">Get</a></li>
 	            <li><a href="positioner.html">Positioner</a></li>
 			</ul>
 			<ul>
-				<li><h3><a href="floats.html">Floats</a></h3></li>
+				<li><h3>Floats</h3></li>
 	            <li><a href="tooltip.html">Tooltip</a></li>
-	            <li><a href="layer.html">Layer</a></li>
-	            <li><a href="modal.html">Modal</a></li>
+	            <li><a href="layer.html">Contextual Layer</a></li>
+	            <li><strong>Modal Window</strong></li>
 	            <li><a href="helper.html">Helper</a></li>
 			</ul>
 			<ul>
-	            <li><h3><a href="navs.html">Navs</a></h3></li>
+	            <li><h3>Navs</h3></li>
 	            <li><a href="dropdown.html">Dropdown</a></li>
 	            <li><a href="expando.html">Expando</a></li>
 			</ul>
@@ -65,7 +69,7 @@
 	            <li><a href="custom.html">Custom</a></li>
 			</ul>
 			<ul>
-				<li><h3><a href="controllers.html">Controllers</a></h3></li>
+				<li><h3>Controllers</h3></li>
 	            <li><a href="form.html">Form</a></li>
 	            <li><a href="tabnavigator.html">Tab Navigator</a></li>
 	            <li><a href="viewer.html">Viewer</a></li>
@@ -119,7 +123,7 @@
 				</div>
 			</div>
 		
-			<div class="box clear">
+			<div class="box clear use">
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El modal es disparado por un link o botón del tipo submit (dentro de un form). Esto puede ser en el evento click o bien cunado uno lo desee utilizando su método público.</p>
@@ -249,7 +253,11 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
-	<script>$(".docTabs").tabNavigator();</script>
+	<script>
+    	$(".docTabs").tabNavigator();
+        $('h1').html("Chico-UI ;) <span class=\"version\">"+ui.version+"</span>"  );
+	</script>
+
 	<script>
 		$(".demoModal").modal();		
 	
