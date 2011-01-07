@@ -1,3 +1,8 @@
+h1 .version {
+    font-size: 14px;
+    line-height: 1;
+}
+
 .ninja {
     margin: -90px auto;
     width: 278px;
@@ -31,6 +36,13 @@
 	font-size: 46px;
 	font-weight: bold;
 	line-height: 46px;
+	float:left;
+}
+
+.header .iLike {
+	float: left;
+    margin-left: 10px;
+    margin-top: 34px;
 }
 
 h2 {

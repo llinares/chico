@@ -8,11 +8,11 @@
 class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
-	
-	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number, positioner";
+
+	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number, layer, tooltip, modal, dropdown, positioner";
 	private $files;
 	private $template;
-	
+
 	/**
      * Constructor
      */

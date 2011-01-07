@@ -20,11 +20,15 @@
 	</head>
 <body>	
 
-	<div class="header">
-		<h1>Chico-UI ;)</h1>
+	<div class="header clearfix">
+		<h1 title="MercadoLibre's Visual Framework">Chico-UI ;)</h1>
+		<div class="iLike">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FChico-UI%2F189546681062056&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+		</div>
 		<ul>
 			<li><a href="../">Home</a></li>
 			<li><strong>Docs</strong></li>
+			<li><a href="http://twitter.com/#!/chicoui">Twitter</a></li>
             <li><a href="https://github.com/mercadolibre/chico/">Github</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/archives/master">Download</a></li>
 			<li><a href="https://github.com/mercadolibre/chico/wiki">Wiki</a></li>
@@ -122,7 +126,9 @@
 	
 	</pre></code>
 						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">$(".demoDropdown").dropdown();</pre></code>
+						<code><pre name="code" class="xml">
+		$(".demoDropdown").dropdown();
+	</pre></code>
 					</div>
 				</div>
 			</div>
@@ -130,34 +136,44 @@
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
 				
-	<p>El Dropdown se crea a partir de blablalbalbalbalbal.</p>
-	
+	<p>El objecto Dropdown es un componente que agrupa una lista de links, los cuales pueden disparar diferentes acciones. Puede recibir como argumento un objeto de propiedades para los <em lang="en">callbacks</em>.</p>
+	<p>Ejemplo del objeto de configuración:</p>
+	<code>
+		<pre name="code" class="js">
+		{
+			callbacks: {
+				show: function() {},
+				hide: function() {}
+			}
+		}
+		</pre>
+	</code>
+    <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
+	<code>
+		<pre name="code" class="js">
+        $("#Foobar").dropdown();
+		</pre>
+	</code>
+   
+	<p>Cada vez que se instancia un componente Contextual Layer retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+		var foo = $("#Foobar").dropdown();
+        
+		// returns
+		foo = {
+			uid: 121,                         //  Global number instance
+			element: HTMLInputElement,        //  Input DOM Interface
+			type: "dropdown",                 //  Component Type
+			show(),						  	  //  Show dropdown
+			hide()						  	  //  Hide dropdown
+		}
+		</pre>
+	</code>
 
 			</div>
 	
-			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases-html">
-	
-	<p>Dropdown ejecutado con ajax</p>
-	
-	<div class="demoDropdown">
-		<span>Sitios</span>
-		<ul>
-			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
-		</ul>
-	</div>
-	
-	<p>Explicacion</p>
-	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">$(".demoDropdown").dropdown();</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
-	
-	<p>Dropdown ejecutado con balballbalbalab</p>
-	
-	<p>Explicacion</p>
-	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">$(".demoDropdown").dropdown();</pre></code></div></div></div>
+			<!-- #cases -->
 		</div>
 	</div>
 	
@@ -166,7 +182,13 @@
 	<script src="../libs/js/highlight.js"></script>
 	<script src="../libs/js/jquery.js"></script>
 	<script src="../src/js/chico.js"></script>
-	<script>$(".docTabs").tabNavigator();</script>
-	<script>$(".demoDropdown").dropdown();$(".demoDropdown").dropdown();$(".demoDropdown").dropdown();</script>
+	<script>
+    	$(".docTabs").tabNavigator();
+        $('h1').html("Chico-UI ;) <span class=\"version\">"+ui.version+"</span>"  );
+	</script>
+
+	<script>
+		$(".demoDropdown").dropdown();
+	</script>
 </body>
 </html>

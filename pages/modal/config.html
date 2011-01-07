@@ -1,0 +1,48 @@
+<!doctype html>
+<!--[if IE]><![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="es" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="es" class="no-js"> <!--<![endif]-->
+<head>
+	<script></script>
+	<meta charset="utf-8">
+	<title>Chico UI - Config modal</title>
+	<link rel="stylesheet" href="../../src/css/chico.css">
+</head>
+<body>
+	
+	<dl>
+		<dt>Ajax</dt>
+		<dd>
+			<em>boolean o string</em>
+			<dl>
+				<dt>true</dt>
+				<dd>Recibe este parametro para cargar su contenido por ajax utilizando la url del href o del action del form del botón.</dd>
+
+				<dt>string</dt>
+				<dd>Se le especifica una url en formato string de la cual cargará el contenido (puede ser tanto absoluta como relativa).</dd>
+			</dl>
+		</dd>
+
+		<dt>Content</dt>
+		<dd>
+			<em>string:</em> Puede ser un selector de CSS, contenido HTML o texto plano.
+		</dd>
+		
+
+		<dt>callbacks</dt>
+		<dd>
+			<em>object</em>
+			<dl>
+				<dt>show</dt>
+				<dd><em>function:</em> Se ejecutará una vez que se muestre el modal.</dd>
+				
+				<dt>hide</dt>
+				<dd><em>function:</em> Se ejecutará cuando el modal se oculte.</dd>
+			</dl>
+		</dd>
+	</dl>	
+</body>
+</html>
