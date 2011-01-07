@@ -8,13 +8,13 @@
 <head>
 	<script></script>
 	<meta charset="utf-8">
-	<title>Chico UI - Use Dropdown</title>
+	<title>Chico UI - Use Tooltip</title>
 	<link rel="stylesheet" href="../../src/css/chico.css">
 </head>
 <body>
 	
-	<h1>Dropdown</h1>
-	<p>El objecto Dropdown es un componente que agrupa una lista de links, los cuales pueden disparar diferentes acciones. Puede recibir como argumento un objeto de propiedades para los <em lang="en">callbacks</em>.</p>
+	<h1>Tooltip</h1>
+	<p>El tooltip es un componente emergente que puede iniciarse con cualquier elemento HTML <strong>que tenga el atributo title</strong>. Se dispara con el evento mouseover del elemento, o bien, cuando uno lo desee utilizando su método público.</p>
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
 		<pre name="code" class="js">
@@ -29,22 +29,24 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").dropdown();
+        $("#Foobar").tooltip();
 		</pre>
 	</code>
    
-	<p>Cada vez que se instancia un componente Contextual Layer retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<p>Cada vez que se instancia un componente Tooltip retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
 	<code>
 		<pre name="code" class="js">
-		var foo = $("#Foobar").dropdown();
+		var foo = $("#Foobar").tooltip();
         
 		// returns
 		foo = {
 			uid: 121,                         //  Global number instance
 			element: HTMLInputElement,        //  Input DOM Interface
-			type: "dropdown",                 //  Component Type
-			show(),						  	  //  Show dropdown
-			hide()						  	  //  Hide dropdown
+			type: "tooltip",                  //  Component Type
+			content: string,				  //  Get content
+			position(),					  	  //  Refresh position
+			show(),						  	  //  Show tooltip
+			hide()						  	  //  Hide toolip
 		}
 		</pre>
 	</code>

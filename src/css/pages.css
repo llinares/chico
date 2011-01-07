@@ -89,3 +89,7 @@ h1, h2, .article.demo, .header {
 	clear:left;
 	overflow:hidden;
 }
+
+.use p {
+	margin-bottom:1em;
+}

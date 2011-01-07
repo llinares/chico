@@ -22,18 +22,13 @@
 </head>
 <body>
 
-	<div class="demoDropdown">
-		<span>Sitios</span>
-		<ul>
-			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
-		</ul>
-	</div>
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a></li>
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
+	</form>
 	
 	<script>
-		$(".demoDropdown").dropdown();
+		$(".demoModal").modal();		
 	</script>
 
 </body>

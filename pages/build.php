@@ -8,11 +8,11 @@
 class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
-	
-	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number";
+
+	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number, layer, tooltip, modal, dropdown";
 	private $files;
 	private $template;
-	
+
 	/**
      * Constructor
      */
@@ -21,6 +21,9 @@ class DocBuilder {
         
     	$this->files = explode(", ", $this->pages);
     	$this->template = file_get_contents("template.html");
+    	
+    	echo "<h1>Doc Builder</h2>";
+    	echo "<h4>Build: ".strftime("%c")."</h4>";
     	
     	foreach ($this->files as $file) {
 			$scripts = ""; // All scripts that will be executed at end of page
@@ -77,6 +80,9 @@ class DocBuilder {
 			
 			// File creation
 			$filename = $file.".html";
+			
+			// Delete existing file
+			unlink($filename);
 			
 			// Remove link of nav bar
 			$html = str_replace("<a href=\"".$filename."\">".$name[0]."</a>", "<strong>".$name[0]."</strong>", $html);
