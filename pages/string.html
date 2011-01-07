@@ -82,7 +82,7 @@
 				</label>
 			</form>
 		
-			<div class="docTabs clear">
+			<div class="docTabs">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
 					<li><a href="#sintax">Código fuente</a></li>
@@ -149,7 +149,7 @@
 				</div>
 			</div>
 		
-			<div class="box clear use">
+			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El objecto String es una interface del objecto <a href="watchers.html" lang="en">Watchers</a> donde se pueden definir algunas validaciones preformateadas de cadenas de caracteres. Recibe como argumento un objeto de propiedades que definen los tipos de validaciones y algunos aspecto de su comportamiento como los <em lang="en">callbacks</em>.</p>
@@ -211,7 +211,7 @@
 
 			</div>
 	
-			<div class="box clear"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
+			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases-html">
 	
 	<h4>Validación de Email y URL</h4>
 	
@@ -241,7 +241,7 @@
     	</p>
     </form>
 	<p>En la configuración de los campos podemos conbinar con el método <strong lang="en">and()</strong> con otras interfaces del componente <a href="watchers.html" lang="en">Watchers</a> como la validación de campo requerido <a href="required" lang="en">Required</a>.
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
     $(".c1").forms();
     $("#c1_email").email().and().required();
     $("#c1_url").url().and().required();
@@ -251,7 +251,7 @@
     $("#c1_url").url();
     $(".c1 input").required();
 */
-   </pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
+   </pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
 	
 	<h4>Validando cantidad de caracteres en los campos</h4>
 	
@@ -274,7 +274,7 @@
     	</p>
     </form>
 	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
         $('.c2').forms();
         $('#c2_edad').minLength(2);
 	</pre></code></div></div></div>
