@@ -92,7 +92,15 @@
 					<div id="demo">
 						<h3>Demo</h3>
 						
-
+	
+	<style>
+		/* Esto es necesario para que el componente haga los calculos necesarios */
+		.demoCarousel li {
+			width: 110px;
+			height: 110px;
+		}
+	</style>
+	
 	<div class="box demoCarousel">
 		<ul class="carousel">
 			<li><img src="http://img2.mlstatic.com/s_MLA_v_G_f_62634838_9736.jpg"></li>
@@ -119,7 +127,15 @@
 						<h3>Código fuente</h3>
 						<p>El marcado de este ejemplo es:</p>
 						<code><pre name="code" class="xml">
-
+	
+	<style>
+		/* Esto es necesario para que el componente haga los calculos necesarios */
+		.demoCarousel li {
+			width: 110px;
+			height: 110px;
+		}
+	</style>
+	
 	<div class="box demoCarousel">
 		<ul class="carousel">
 			<li><img src="http://img2.mlstatic.com/s_MLA_v_G_f_62634838_9736.jpg"></li>
@@ -147,13 +163,30 @@
 				</div>
 			</div>
 		
-			<div class="box clear">
+			<div class="box clear use">
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El Carousel se crea a partir de agregarle funcionalidad a una lista de objetos, ya sean imágenes, texto, o ambos.</p>
 	<p>Para crear un Carousel, es necesario iniciarlo a traves de un contenedor, en el cual puede haber todo tipo de elementos, y una lista con la clase css "carousel". Es decir, que el Carousel puede convivir dentro de una caja junto con contenido de cualquier tipo.</p>
 	<p>El ancho y alto de los elementos &lt;li&gt; del Carousel debe ser especificado obligatoriamente por css.</p>
-	
+	<p>Cada vez que se instancia un Carousel, éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $('.demoCarousel').carousel(); // Same example
+        
+        // returns
+        foo = {
+            uid: 121,                         //  Global number instance
+            element: HTMLInputElement,        //  Input DOM Interface
+            type: "viewer",                   //  Component Type
+            getSteps()						  //  Returns items amount of each page
+            getPage()						  //  Returns actual page
+            select()                      	  //  Select an item
+            next()							  //  Move to next page
+            prev()							  //  Move to previous page
+        }
+		</pre>
+	</code>
 
 			</div>
 	
