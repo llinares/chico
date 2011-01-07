@@ -96,8 +96,9 @@
 					<div id="demo">
 						<h3>Demo</h3>
 						
-
-	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a></li>
+	
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
+		
 	<form action="../examples/ajax.html">
 		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
 	</form>
@@ -108,8 +109,9 @@
 						<h3>Código fuente</h3>
 						<p>El marcado de este ejemplo es:</p>
 						<code><pre name="code" class="xml">
-
-	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a></li>
+	
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
+		
 	<form action="../examples/ajax.html">
 		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
 	</form>
@@ -117,7 +119,9 @@
 	</pre></code>
 						<p>Para iniciar este ejemplo se utilizó:</p>
 						<code><pre name="code" class="xml">
-		$(".demoModal").modal();		
+		$(".demoModal").modal({
+			ajax: true
+		});		
 	</pre></code>
 					</div>
 				</div>
@@ -259,7 +263,9 @@
 	</script>
 
 	<script>
-		$(".demoModal").modal();		
+		$(".demoModal").modal({
+			ajax: true
+		});		
 	
 		$(".modal_link").modal(
 			{
