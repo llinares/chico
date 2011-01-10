@@ -8,11 +8,11 @@
 class DocBuilder {
 	private $version = "0.1";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
-
-	private $pages = "core, factory, get, dropdown, tabnavigator, carousel, viewer, watchers, required, string, number, layer, tooltip, modal, dropdown, positioner, forms";
+	
+	private $pages = "dropdown, tabnavigator, carousel, viewer, watchers, required, string, number, css";
 	private $files;
 	private $template;
-
+	
 	/**
      * Constructor
      */
@@ -61,16 +61,17 @@ class DocBuilder {
 					$case_html = explode("<script>", $case[1]);	
 					$case_js = explode("</script>", $case_html[1]);
 					
-					$self = "<div class=\"ch-g2-3\"><div class=\"leftcolumn cases-html\">".$case_html[0]."</div></div>";
-					$self.= "<div class=\"ch-g1-3\"><div class=\"rightcolumn\"><p>La configuración que recibe es:</p>";
+					$self = "<div class=\"ch-g2-3\"><div class=\"leftcolumn cases\">".$case_html[0]."</div></div>";
+					$self.= "<div class=\"ch-g1-3\"><div class=\"rightcolumn\"><p>El Javascript para iniciarlo es:</p>";
 					$self.= "<code><pre name=\"code\" class=\"js\">".$case_js[0]."</pre></code></div></div>";
+					$self.= "<hr>";
 					
 					$scripts .= $case_js[0];
 					
 					array_push($cases, $self);
 				};
 				
-				$cases = "<div class=\"box cases\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
+				$cases = "<div class=\"box clearfix\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
 				
 				$html = str_replace("<!-- #cases -->", $cases, $html);
 			};
