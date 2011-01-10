@@ -71,7 +71,7 @@ class DocBuilder {
 					array_push($cases, $self);
 				};
 				
-				$cases = "<div class=\"box clearfix\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
+				$cases = "<div class=\"box cases\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
 				
 				$html = str_replace("<!-- #cases -->", $cases, $html);
 			};
