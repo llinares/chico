@@ -83,16 +83,7 @@
 				</label>
 			</form>
 		
-			<div class="docTabs">
-				<ul>
-					<li><a href="#demo">Demo</a></li>
-					<li><a href="#sintax">Código fuente</a></li>
-				</ul>
-			
-				<div>
-					<div id="demo">
-						<h3>Demo</h3>
-						
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
 	
 	<!-- First example -->
 	<div class="context" id="context1"></div>
@@ -105,12 +96,7 @@
 	<!-- Only for this example -->
 	<div class="clearfix"></div>
     
-	
-					</div>
-					<div id="sintax">
-						<h3>Código fuente</h3>
-						<p>El marcado de este ejemplo es:</p>
-						<code><pre name="code" class="xml">
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
 	
 	<!-- First example -->
 	<div class="context" id="context1"></div>
@@ -123,9 +109,7 @@
 	<!-- Only for this example -->
 	<div class="clearfix"></div>
     
-	</pre></code>
-						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
 		// First example
 		ui.positioner({
 			element: $("#element1"),
@@ -139,10 +123,31 @@
 			context: $("#context2"),
 			points: "cm cm"				//  Element center-middle axis equal to Context center-middle axis
 		});
-	</pre></code>
+	</pre></code></div></div></div>
+			
+			<!--div class="docTabs">
+				<ul>
+					<li><a href="#demo">Demo</a></li>
+					<li><a href="#sintax">Código fuente</a></li>
+				</ul>
+				<div>
+					<div id="demo">
+						<h3>Demo</h3>
+						<p>algo</p>
+					</div>
+					<div id="sintax">
+						<h3>Código fuente</h3>
+						<p>El marcado de este ejemplo es:</p>
+						<code>
+							<pre name="code" class="xml">ujkygkj</pre>
+						</code>
+						<p>Para iniciar este ejemplo se utilizó:</p>
+						<code>
+							<pre name="code" class="xml">dsadsad</pre>
+						</code>
 					</div>
 				</div>
-			</div>
+			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -189,105 +194,105 @@
 
 			</div>
 	
-			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases-html">
+			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element left-top axis equal to Context left-bottom axis</h4>
 	
     <div class="context" id="context3"></div>
 	<div class="element" id="element3"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element3"),
 		context: $("#context3"),
 		points: "lt lb"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element left-bottom axis equal to Context left-top axis</h4>
 	
     <div class="context" id="context4"></div>
 	<div class="element" id="element4"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element4"),
 		context: $("#context4"),
 		points: "lb lt"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element right-top axis equal to Context right-bottom axis</h4>
 	
     <div class="context" id="context5"></div>
 	<div class="element" id="element5"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element5"),
 		context: $("#context5"),
 		points: "rt rb"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element right-bottom axis equal to Context right-top axis</h4>
 	
     <div class="context" id="context6"></div>
 	<div class="element" id="element6"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element6"),
 		context: $("#context6"),
 		points: "rb rt"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element left-medium axis equal to Context left-medium axis</h4>
 	
     <div class="context" id="context7"></div>
 	<div class="element" id="element7"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element7"),
 		context: $("#context7"),
 		points: "lm lm"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element left-top axis equal to Context left-top axis</h4>
 	
     <div class="context" id="context8"></div>
 	<div class="element" id="element8"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element8"),
 		context: $("#context8"),
 		points: "lt lt"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element center-medium axis equal to Context center-medium axis</h4>
 	
     <div class="context" id="context9"></div>
 	<div class="element" id="element9"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element9"),
 		context: $("#context9"),
 		points: "cm cm"
 	});
-	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases-html">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Element left-top axis equal to Context right-top axis</h4>
 	
     <div class="context" id="context10"></div>
 	<div class="element" id="element10"></div>
 
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>La configuración que recibe es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
 	ui.positioner({
 		element: $("#element10"),
 		context: $("#context10"),
@@ -308,6 +313,8 @@
 	</script>
 
 	<script>
+		/* Demo */
+
 		// First example
 		ui.positioner({
 			element: $("#element1"),
@@ -322,48 +329,72 @@
 			points: "cm cm"				//  Element center-middle axis equal to Context center-middle axis
 		});
 	
+
+		/* Case 1 */
+
 	ui.positioner({
 		element: $("#element3"),
 		context: $("#context3"),
 		points: "lt lb"
 	});
 	
+
+		/* Case 2 */
+
 	ui.positioner({
 		element: $("#element4"),
 		context: $("#context4"),
 		points: "lb lt"
 	});
 	
+
+		/* Case 3 */
+
 	ui.positioner({
 		element: $("#element5"),
 		context: $("#context5"),
 		points: "rt rb"
 	});
 	
+
+		/* Case 4 */
+
 	ui.positioner({
 		element: $("#element6"),
 		context: $("#context6"),
 		points: "rb rt"
 	});
 	
+
+		/* Case 5 */
+
 	ui.positioner({
 		element: $("#element7"),
 		context: $("#context7"),
 		points: "lm lm"
 	});
 	
+
+		/* Case 6 */
+
 	ui.positioner({
 		element: $("#element8"),
 		context: $("#context8"),
 		points: "lt lt"
 	});
 	
+
+		/* Case 7 */
+
 	ui.positioner({
 		element: $("#element9"),
 		context: $("#context9"),
 		points: "cm cm"
 	});
 	
+
+		/* Case 8 */
+
 	ui.positioner({
 		element: $("#element10"),
 		context: $("#context10"),

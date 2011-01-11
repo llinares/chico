@@ -62,19 +62,6 @@ h1, h2, .article.demo, .header {
 	width: auto;
 }
 
-.config dl {
-	margin-top: 10px;
-}
-
-.config dl dt {
-	font-weight: bold;
-	float: left;
-}
-
-.config dl dd {
-	padding-left: 100px;
-}
-
 .footer {
 	clear: left;
 	text-align: center;
