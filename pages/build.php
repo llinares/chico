@@ -9,7 +9,7 @@ class DocBuilder {
 	private $version = "0.2";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
 	
-	private $pages = "carousel, core, dropdown, factory, forms, get, layer, modal, number, positioner, required, string, tabnavigator, tooltip, viewer, watchers";
+	private $pages = "carousel, core, dropdown, factory, forms, get, layer, modal, number, positioner, required, string, tabnavigator, tooltip, viewer, watchers, install, css";
 	private $files;
 	private $template;
 	private $scripts;
