@@ -19,7 +19,7 @@
   */
 var ui = window.ui = {
 
-    version: "0.4.7",
+    version: "0.4.8",
 
     components: "carousel,dropdown,layer,modal,tabNavigator,tooltip,string,number,required,helper,forms,viewer",
 
@@ -441,7 +441,7 @@ ui.positioner = function( o ) {
 		var viewport = getViewport();
 		
 		// Down to top
-		if ( ( points == "lt lb" ) && ( (styles.top + element.outerHeight()) > viewport.bottom) ) { // Element bottom > Viewport bottom
+		if ( (points == "lt lb") && ((styles.top + element.outerHeight()) > viewport.bottom) ) { // Element bottom > Viewport bottom
 			unitPoints.my_y = "b";
 			unitPoints.at_y = "t";
 			
@@ -451,17 +451,17 @@ ui.positioner = function( o ) {
 			styles.top -= context.height; // TODO: Al recalcular toma al top del context como si fuese el bottom. (Solo en componentes. En los tests anda ok)
 		};
 		
-		/*// Right to down
+		// Left to right
 		if ( (styles.left + element.outerWidth()) > viewport.right ) { // Element right > Viewport right
-			unitPoints.my_x = "l";
-			unitPoints.my_y = "t";
-			unitPoints.at_x = "l";
-			unitPoints.my_y = "t";
+			unitPoints.my_x = "r";
+			unitPoints.at_x = "r";
 			
 			// New styles
+			var current = styles.direction;
 			styles = getPosition(unitPoints);
-			styles.direction = "down";
-		};*/
+			styles.direction = current + "-right";
+			if(current == "top") styles.top -= context.height; // TODO: Al recalcular toma al top del context como si fuese el bottom. (Solo en componentes. En los tests anda ok)
+		};
 		
 		return styles;
 	};
@@ -486,7 +486,7 @@ ui.positioner = function( o ) {
 				left: styles.left,
 				top: styles.top
 			})
-			.removeClass( "ch-top ch-left ch-down ch-right" )
+			.removeClass( "ch-top ch-left ch-down ch-right ch-down-right ch-top-right" )
 			.addClass( "ch-" + styles.direction );
 	};	
 	
@@ -511,7 +511,6 @@ ui.positioner = function( o ) {
 	    
 	    // Set element position	    
 	    setPosition(o.points);
-	    
     };
     
     // Init
@@ -1125,6 +1124,9 @@ ui.carousel = function(conf){
 			$(".ch-pager li").removeClass("on");
 			$(".ch-pager li:nth-child(" + page + ")").addClass("on");
 		}
+		
+		// Callback
+		that.callbacks(conf, 'prev');
         
         // return publish object
         return conf.publish;
@@ -1171,6 +1173,9 @@ ui.carousel = function(conf){
 			$(".ch-pager li:nth-child(" + page + ")").addClass("on");
 		}
 		
+		// Callback
+		that.callbacks(conf, 'next');
+		
         // return publish object
         return conf.publish;
 	};
@@ -1192,6 +1197,9 @@ ui.carousel = function(conf){
 			$(".ch-pager li").removeClass("on");
 			$(".ch-pager li:nth-child(" + page + ")").addClass("on");
 		}
+		
+		// Callback
+		that.callbacks(conf, 'select');
 		
 		// return publish object
 	    return conf.publish;
@@ -2153,11 +2161,9 @@ ui.viewer = function(conf){
 	 */
 	var viewerModal = {};
 	viewerModal.carouselStruct = $(conf.element).find("ul").clone().addClass("carousel");	
-	viewerModal.carouselStruct.find("a").each(function(i, e){		
-		$(e).children().attr("src", $(e).attr("href"));
-		$(e).bind("click", function(event){
-			that.prevent(event);
-		});
+	viewerModal.carouselStruct.find("img").each(function(i, e){
+		$(e).attr("src", $(e).parent().attr("href")) // Image source change
+			.unwrap(); // Link deletion
 	});
 	viewerModal.showContent = function(){
 		$(".ch-viewer-modal-content").parent().addClass("ch-viewer-modal");
@@ -2256,7 +2262,7 @@ ui.viewer = function(conf){
 		});
 	});
 	// Inits carousel
-	that.children[0] = thumbnails.carousel = thumbnails.wrapper.carousel(); // TODO: guardar el carrousel dentro del viewer
+	that.children[0] = thumbnails.carousel = thumbnails.wrapper.carousel();
 	
 	
 	/**
@@ -2300,13 +2306,19 @@ ui.viewer = function(conf){
 		element: conf.element,
 		type: "viewer",
 		children: that.children,
-		select: function(i){ return select(i); }
+		select: function(i){
+			// Callback
+			that.callbacks(conf, 'select');
+			
+			return select(i);
+		}
     }
 	
-	// Default behavior
+	// Default behavior (Select first item and without callback)
 	select(0);
 	
 	return conf.publish;
 };
+
 ui.init();
 })(jQuery);
