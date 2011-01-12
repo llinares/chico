@@ -6,92 +6,157 @@
  */
 
 class DocBuilder {
-	private $version = "0.1";
+	private $version = "0.2";
 	private $autor = "Chico Team <chico@mercadolibre.com>";
 	
-	private $pages = "carousel, core, dropdown, factory, forms, get, install, layer, modal, number, positioner, required, string, tabnavigator, tooltip, viewer, watchers, css";
-
+	private $pages = "carousel, core, dropdown, factory, forms, get, layer, modal, number, positioner, required, string, tabnavigator, tooltip, viewer, watchers, install, css, grid";
 	private $files;
 	private $template;
+	private $scripts;
+	
+	
+	private function createUse($html, $file) {
+		$use = $this->getUse($file);
+		
+		$html = str_replace("<!-- #name -->", $use[0], $this->template);
+		$html = str_replace("<!-- #use -->", $use[1], $html);
+		
+		// Remove link of nav bar
+		$html = str_replace("<a href=\"".$file.".html\">".$use[0]."</a>", "<strong>".$use[0]."</strong>", $html);
+		
+		return $html;
+	}
+	
+	private function getUse($file) {
+		$content = file_get_contents($file."/use.html");
+		$content = explode("<h1>", $content);
+		$name = explode("</h1>", $content[1]);
+		$use = explode("</body>", $name[1]);
+		
+		$data[0] = $name[0];
+		$data[1] = $use[0];
+		
+		return $data;
+	}
+	
+	private function createDemo($html, $demo) {
+    	$out = "<div class=\"docTabs\">";
+    	$out.= "<ul><li><a href=\"#demo\">Demo</a></li> <li><a href=\"#sintax\">Código fuente</a></li></ul>";
+    	$out.= "<div><div id=\"demo\"><h3>Demo</h3>".$demo[0]."</div>";
+    	$out.= "<div id=\"sintax\"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name=\"code\" class=\"xml\">".$demo[0]."</pre></code>";
+    	$out.= "<p>Para iniciar este ejemplo se utilizó:</p><code><pre name=\"code\" class=\"js\">".$demo[1]."</pre></code></div></div></div>";
+    	
+    	$html = str_replace("<!-- #demo -->", $out, $html);
+    	
+    	$this->scripts .= "\n\t\t/* Demo */\n".$demo[1];
+				
+		return $html;
+    }
+    
+    
+    private function getDemo($file) {
+    	// File validation
+    	if(!file_exists($file."/demo.html")) {
+    		return false;
+    	};
+    	
+    	$content = file_get_contents($file."/demo.html");
+		$content = explode("<body>", $content);
+		$content_html = explode("<script>", $content[1]);
+		$content_js = explode("</script>", $content_html[1]);
+		
+		$data = array();
+		$data[0] = $content_html[0];
+		$data[1] = $content_js[0];
+		
+		return $data;
+    }
+    
+    
+    private function createCases($html, $cases, $file){
+    	$out = array();
+		
+		for($i = 0; $i < $cases; $i += 1){
+			$data = $this->getCases($file, $i);
+			
+			$self = "<div class=\"ch-g2-3\"><div class=\"leftcolumn cases\">".$data[0]."</div></div>";
+			$self.= "<div class=\"ch-g1-3\"><div class=\"rightcolumn\"><p>El Javascript para iniciarlo es:</p>";
+			$self.= "<code><pre name=\"code\" class=\"js\">".$data[1]."</pre></code></div></div>";
+			
+			$this->scripts .= "\n\n\t\t/* Case ".($i + 1)." */\n".$data[1];
+			
+			array_push($out, $self);
+		};
+		
+		$out = "<div class=\"box cases\"><h3>Casos de uso</h3>".implode("", $out)."</div>";
+		$html = str_replace("<!-- #cases -->", $out, $html);
+		
+		return $html;
+    }
+    
+    private function getCases($file, $index){
+    	$content = file_get_contents($file."/cases/case".($index + 1).".html");
+		$content = explode("<body>", $content);
+		$content_html = explode("<script>", $content[1]);	
+		$content_js = explode("</script>", $content_html[1]);
+		
+		$data = array();
+		$data[0] = $content_html[0];
+		$data[1] = $content_js[0];
+		
+		return $data;
+    }
+
+	
+	private function createFile($file) {
+		$this->scripts = ""; // All scripts that will be executed at end of page
+		$html = $this->template;
+		
+		// Name + Uses
+		$html = $this->createUse($html, $file);
+		
+		// Demo + Sintax
+		$demo = $this->getDemo($file);
+		if($demo) $html = $this->createDemo($html, $demo);
+		
+		// Cases
+		$cases = count(glob($file."/cases/case*.html"));
+		if($cases > 0) $html = $this->createCases($html, $cases, $file);
+		
+		// Scripts
+		$html = str_replace("<!-- #scripts -->", "<script>".$this->scripts."</script>", $html);
+		
+		// File creation
+		$filename = $file.".html";
+		if(file_exists($filename)) { // Delete file if exists
+    		unlink($filename);
+    	};
+		$chars = file_put_contents($filename, $html); // File size
+		
+		return "<li><a href=\"".$filename."\">".$filename."</a> <small>(".$chars." bytes)</small></li>";
+	}
+	
 	
 	/**
      * Constructor
      */
-
+     
     function __construct() {
         
     	$this->files = explode(", ", $this->pages);
     	$this->template = file_get_contents("template.html");
     	
-    	echo "<h1>Doc Builder</h2>";
-    	echo "<h4>Build: ".strftime("%c")."</h4>";
+    	// Out source
+    	$out_source = "<!doctype html><html><head><meta charset=\"utf-8\"><title>Doc Builder v".$this->version."</title><link rel=\"stylesheet\" href=\"../src/css/chico.css\"></head><body>";
+    	$out_source.= "<div class=\"box\"><h1>Doc Builder v".$this->version."</h1><h4>Build: ".strftime("%c")."</h4><ul>";
     	
+    	// Each file
     	foreach ($this->files as $file) {
-			$scripts = ""; // All scripts that will be executed at end of page
-			
-			// Uses & Name
-			$use = file_get_contents($file."/use.html");
-			$use = explode("<h1>", $use);
-			$name = explode("</h1>", $use[1]);
-			$use = explode("</body>", $name[1]);
-			
-			$html = str_replace("<!-- #name -->", $name[0], $this->template);
-			$html = str_replace("<!-- #use -->", $use[0], $html);
-						
-			// Demo + Sintax
-			$demo = file_get_contents($file."/demo.html");
-			$demo = explode("<body>", $demo);
-			$demo_html = explode("<script>", $demo[1]);	
-			$demo_js = explode("</script>", $demo_html[1]);
-			
-			$html = str_replace("<!-- #demo-html -->", $demo_html[0], $html);
-			$scripts .= $demo_js[0];
-			$html = str_replace("<!-- #sintax-html -->", "<code><pre name=\"code\" class=\"xml\">".$demo_html[0]."</pre></code>", $html);
-			$html = str_replace("<!-- #sintax-js -->", "<code><pre name=\"code\" class=\"xml\">".$demo_js[0]."</pre></code>", $html);
-						
-			// Cases
-			$casesQuantity = count(glob($file."/cases/case*.html"));
-			
-			if($casesQuantity > 0){
-				$cases = array();
-				
-				for($i = 0; $i < $casesQuantity; $i += 1){
-				
-					$case = file_get_contents($file."/cases/case".($i + 1).".html");
-					$case = explode("<body>", $case);
-					$case_html = explode("<script>", $case[1]);	
-					$case_js = explode("</script>", $case_html[1]);
-					
-					$self = "<div class=\"ch-g2-3\"><div class=\"leftcolumn cases\">".$case_html[0]."</div></div>";
-					$self.= "<div class=\"ch-g1-3\"><div class=\"rightcolumn\"><p>El Javascript para iniciarlo es:</p>";
-					$self.= "<code><pre name=\"code\" class=\"js\">".$case_js[0]."</pre></code></div></div>";
-					$self.= "<hr>";
-					
-					$scripts .= $case_js[0];
-					
-					array_push($cases, $self);
-				};
-				
-				$cases = "<div class=\"box cases\"><h3>Casos de uso</h3>".implode("", $cases)."</div>";
-				
-				$html = str_replace("<!-- #cases -->", $cases, $html);
-			};
-			
-			// Scripts
-			$html = str_replace("<!-- #demo-js -->", "<script>".$scripts."</script>", $html);
-			
-			// File creation
-			$filename = $file.".html";
-			
-			// Delete existing file
-			unlink($filename);
-			
-			// Remove link of nav bar
-			$html = str_replace("<a href=\"".$filename."\">".$name[0]."</a>", "<strong>".$name[0]."</strong>", $html);
-			
-			$chars = file_put_contents($filename, $html);
-			echo "<p><a href=\"".$filename."\">".$filename."</a> <small>(".$chars." bytes)</small></p>";
+			$out_source.= $this->createFile($file);
     	};
+    	
+    	$out_source.= "</ul></div></body></html>";
+    	echo $out_source;
     }
 };
 

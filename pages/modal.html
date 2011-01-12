@@ -83,46 +83,51 @@
 				</label>
 			</form>
 		
-			<div class="docTabs">
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+	
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
+		
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
+	</form>
+	
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+	
+	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
+		
+	<form action="../examples/ajax.html">
+		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
+	</form>
+	
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		$(".demoModal").modal({
+			ajax: true
+		});		
+	</pre></code></div></div></div>
+			
+			<!--div class="docTabs">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
 					<li><a href="#sintax">Código fuente</a></li>
 				</ul>
-			
 				<div>
 					<div id="demo">
 						<h3>Demo</h3>
-						
-	
-	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
-		
-	<form action="../examples/ajax.html">
-		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
-	</form>
-	
-	
+						<p>algo</p>
 					</div>
 					<div id="sintax">
 						<h3>Código fuente</h3>
 						<p>El marcado de este ejemplo es:</p>
-						<code><pre name="code" class="xml">
-	
-	<a href="../examples/ajax.html" class="demoModal">Modal ejecutado en un link.</a>
-		
-	<form action="../examples/ajax.html">
-		<input type="submit" class="btn secondary demoModal" value="Modal ejecutado en un botón">
-	</form>
-	
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">ujkygkj</pre>
+						</code>
 						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">
-		$(".demoModal").modal({
-			ajax: true
-		});		
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">dsadsad</pre>
+						</code>
 					</div>
 				</div>
-			</div>
+			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -184,7 +189,7 @@
 				ajax:true
 			}
 		);
-	</pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Modal ejecutado en el click de un botón con ajax</h4>	
 	
@@ -198,7 +203,7 @@
 				ajax:true
 			}
 		);
-	</pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Modal ejecutado en el click de un botón cargando contenido por parametro: selector CSS.</h4>	
 	
@@ -217,7 +222,7 @@
 				content: "#modalContent"
 			}
 		);
-	</pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Modal ejecutado en el click de un botón cargando contenido por parametro: HTML.</h4>	
 	
@@ -231,7 +236,7 @@
 				content: "<h2>Contenido cargado por parametro HTML</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
 			}
 		);
-	</pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Modal ejecutado en el click de un botón cargando contenido por parametro: Texto Plano.</h4>	
 	
@@ -245,7 +250,7 @@
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 			}
 		);
-	</pre></code></div></div><hr></div>
+	</pre></code></div></div></div>
 		</div>
 	</div>
 	
@@ -260,34 +265,51 @@
 	</script>
 
 	<script>
+		/* Demo */
+
 		$(".demoModal").modal({
 			ajax: true
 		});		
 	
+
+		/* Case 1 */
+
 		$(".modal_link").modal(
 			{
 				ajax:true
 			}
 		);
 	
+
+		/* Case 2 */
+
 		$("#modal_btn").modal(
 			{
 				ajax:true
 			}
 		);
 	
+
+		/* Case 3 */
+
 		$("#modal_param1").modal(
 			{
 				content: "#modalContent"
 			}
 		);
 	
+
+		/* Case 4 */
+
 		$("#modal_param2").modal(
 			{
 				content: "<h2>Contenido cargado por parametro HTML</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
 			}
 		);
 	
+
+		/* Case 5 */
+
 		$("#modal_param3").modal(
 			{
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

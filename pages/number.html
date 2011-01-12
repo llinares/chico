@@ -83,72 +83,77 @@
 				</label>
 			</form>
 		
-			<div class="docTabs">
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+
+    <form action="test.html" class="formulario">
+    	<fieldset>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_num">
+    					<span>Rango: <em>*</em></span>													
+    					<input type="email" id="val_num" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    </form>
+    
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+
+    <form action="test.html" class="formulario">
+    	<fieldset>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_num">
+    					<span>Rango: <em>*</em></span>													
+    					<input type="email" id="val_num" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    </form>
+    
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		// Define a Form Controller
+		var form = $('.formulario').forms();
+		var email = $('#val_num').min(13).and().max(20).and().required();
+	</pre></code></div></div></div>
+			
+			<!--div class="docTabs">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
 					<li><a href="#sintax">Código fuente</a></li>
 				</ul>
-			
 				<div>
 					<div id="demo">
 						<h3>Demo</h3>
-						
-
-    <form action="test.html" class="formulario">
-    	<fieldset>
-    		<ol>
-    			<li class="fieldBox">
-    				<label class="required" for="val_num">
-    					<span>Rango: <em>*</em></span>													
-    					<input type="email" id="val_num" required="required">
-    				</label>
-    				<p class="help">Escribe una descripción corta y clara</p>
-    			</li>
-    		</ul>
-    	</fieldset>
-    	        
-    	<p class="actions">
-    		<input type="submit" value="Enviar" class="btn primary">
-    		<a href="#">Cancelar</a>
-    	</p>
-    </form>
-    
-	
+						<p>algo</p>
 					</div>
 					<div id="sintax">
 						<h3>Código fuente</h3>
 						<p>El marcado de este ejemplo es:</p>
-						<code><pre name="code" class="xml">
-
-    <form action="test.html" class="formulario">
-    	<fieldset>
-    		<ol>
-    			<li class="fieldBox">
-    				<label class="required" for="val_num">
-    					<span>Rango: <em>*</em></span>													
-    					<input type="email" id="val_num" required="required">
-    				</label>
-    				<p class="help">Escribe una descripción corta y clara</p>
-    			</li>
-    		</ul>
-    	</fieldset>
-    	        
-    	<p class="actions">
-    		<input type="submit" value="Enviar" class="btn primary">
-    		<a href="#">Cancelar</a>
-    	</p>
-    </form>
-    
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">ujkygkj</pre>
+						</code>
 						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">
-		// Define a Form Controller
-		var form = $('.formulario').forms();
-		var email = $('#val_num').min(13).and().max(20).and().required();
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">dsadsad</pre>
+						</code>
 					</div>
 				</div>
-			</div>
+			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -236,7 +241,7 @@
     </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
     $(".c1").forms();
     $("#c1_horas").max(24).and().required();
-   </pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+   </pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Validando valor mínimo</h4>
 	
@@ -262,7 +267,7 @@
 	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
         $('.c2').forms();
         $('#c2_edad').min(13);
-	</pre></code></div></div><hr></div>
+	</pre></code></div></div></div>
 		</div>
 	</div>
 	
@@ -277,13 +282,21 @@
 	</script>
 
 	<script>
+		/* Demo */
+
 		// Define a Form Controller
 		var form = $('.formulario').forms();
 		var email = $('#val_num').min(13).and().max(20).and().required();
 	
+
+		/* Case 1 */
+
     $(".c1").forms();
     $("#c1_horas").max(24).and().required();
    
+
+		/* Case 2 */
+
         $('.c2').forms();
         $('#c2_edad').min(13);
 	</script>

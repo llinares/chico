@@ -83,16 +83,7 @@
 				</label>
 			</form>
 		
-			<div class="docTabs">
-				<ul>
-					<li><a href="#demo">Demo</a></li>
-					<li><a href="#sintax">Código fuente</a></li>
-				</ul>
-			
-				<div>
-					<div id="demo">
-						<h3>Demo</h3>
-						
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
     
     <form action="test.html" class="formulario">
     	<fieldset>
@@ -128,12 +119,7 @@
     	
     </form>
     
-	
-					</div>
-					<div id="sintax">
-						<h3>Código fuente</h3>
-						<p>El marcado de este ejemplo es:</p>
-						<code><pre name="code" class="xml">
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
     
     <form action="test.html" class="formulario">
     	<fieldset>
@@ -169,17 +155,36 @@
     	
     </form>
     
-	</pre></code>
-						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
 		// Define a Form Controller
 		var form = $('.formulario').forms();
 		var email = $('#val_email').email().and().minLength(20).and().required();
     	var select = $('#val_select').required();
-	</pre></code>
+	</pre></code></div></div></div>
+			
+			<!--div class="docTabs">
+				<ul>
+					<li><a href="#demo">Demo</a></li>
+					<li><a href="#sintax">Código fuente</a></li>
+				</ul>
+				<div>
+					<div id="demo">
+						<h3>Demo</h3>
+						<p>algo</p>
+					</div>
+					<div id="sintax">
+						<h3>Código fuente</h3>
+						<p>El marcado de este ejemplo es:</p>
+						<code>
+							<pre name="code" class="xml">ujkygkj</pre>
+						</code>
+						<p>Para iniciar este ejemplo se utilizó:</p>
+						<code>
+							<pre name="code" class="xml">dsadsad</pre>
+						</code>
 					</div>
 				</div>
-			</div>
+			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -205,6 +210,8 @@
 	</script>
 
 	<script>
+		/* Demo */
+
 		// Define a Form Controller
 		var form = $('.formulario').forms();
 		var email = $('#val_email').email().and().minLength(20).and().required();

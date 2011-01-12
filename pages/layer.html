@@ -83,38 +83,43 @@
 				</label>
 			</form>
 		
-			<div class="docTabs">
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+
+	<span class="demoLayerOnmouseover">Layer ejecutado en el hover.</span>
+	
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+
+	<span class="demoLayerOnmouseover">Layer ejecutado en el hover.</span>
+	
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		$(".demoLayerOnmouseover").layer({
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+		});	
+	</pre></code></div></div></div>
+			
+			<!--div class="docTabs">
 				<ul>
 					<li><a href="#demo">Demo</a></li>
 					<li><a href="#sintax">Código fuente</a></li>
 				</ul>
-			
 				<div>
 					<div id="demo">
 						<h3>Demo</h3>
-						
-
-	<span class="demoLayerOnmouseover">Layer ejecutado en el hover.</span>
-	
-	
+						<p>algo</p>
 					</div>
 					<div id="sintax">
 						<h3>Código fuente</h3>
 						<p>El marcado de este ejemplo es:</p>
-						<code><pre name="code" class="xml">
-
-	<span class="demoLayerOnmouseover">Layer ejecutado en el hover.</span>
-	
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">ujkygkj</pre>
+						</code>
 						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code><pre name="code" class="xml">
-		$(".demoLayerOnmouseover").layer({
-			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-		});	
-	</pre></code>
+						<code>
+							<pre name="code" class="xml">dsadsad</pre>
+						</code>
 					</div>
 				</div>
-			</div>
+			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -174,7 +179,7 @@
 		$(".layerOnmouseover").layer({
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
-	</pre></code></div></div><hr><div class="ch-g2-3"><div class="leftcolumn cases">
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Contextual Layer ejecutado en click</h4>	
 	
@@ -185,7 +190,7 @@
 			event: "click",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
-	</pre></code></div></div><hr></div>
+	</pre></code></div></div></div>
 		</div>
 	</div>
 	
@@ -200,14 +205,22 @@
 	</script>
 
 	<script>
+		/* Demo */
+
 		$(".demoLayerOnmouseover").layer({
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
 	
+
+		/* Case 1 */
+
 		$(".layerOnmouseover").layer({
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
 	
+
+		/* Case 2 */
+
 		$(".layerOnclick").layer({
 			event: "click",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
