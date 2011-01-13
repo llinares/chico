@@ -11,8 +11,10 @@ class DocBuilder {
 	
 	private $pages = "carousel, core, css, dropdown, factory, forms, get, grid, install, layer, modal, number, positioner, required, string, tabnavigator, tooltip, viewer, watchers";
 	private $files;
+	
 	private $template;
 	private $scripts;
+	private $globalMenu = "";
 	
 	
 	private function createUse($html, $file) {
@@ -22,7 +24,7 @@ class DocBuilder {
 		$html = str_replace("<!-- #use -->", $use[1], $html);
 		
 		// Remove link of nav bar
-		$html = str_replace("<a href=\"".$file.".html\">".$use[0]."</a>", "<strong>".$use[0]."</strong>", $html);
+		$html = str_replace("<a href=\"../".$file."\">".$use[0]."</a>", "<strong>".$use[0]."</strong>", $html);
 		
 		return $html;
 	}
@@ -133,7 +135,7 @@ class DocBuilder {
     	};
 		$chars = file_put_contents($filename, $html); // File size
 		
-		return "<li><a href=\"../".$file."/\">".ucfirst($file)."</a> <small>(".$chars." bytes)</small></li>";
+		return "<li><a href=\"../".$file."\">".ucfirst($file)."</a> <small>(".$chars." bytes)</small></li>";
 	}
 	
 	
@@ -147,7 +149,7 @@ class DocBuilder {
     	$this->template = file_get_contents("template.html");
     	
     	// Out source
-    	$out_source = "<!doctype html><html><head><meta charset=\"utf-8\"><title>Doc Builder v".$this->version."</title><link rel=\"stylesheet\" href=\"../src/css/chico.css\"></head><body>";
+    	$out_source = "<!doctype html><html><head><meta charset=\"utf-8\"><title>Doc Builder v".$this->version."</title><link rel=\"stylesheet\" href=\"../../src/css/chico.css\"></head><body>";
     	$out_source.= "<div class=\"box\"><h1>Doc Builder v".$this->version."</h1><h4>Build: ".strftime("%c")."</h4><ul>";
     	
     	// Each file
