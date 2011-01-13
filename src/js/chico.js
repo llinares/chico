@@ -190,7 +190,7 @@ ui.get = function(o) {
 				
 		$.ajax({
 			url: x.ajaxUrl,
-			type: x.ajaxType || 'POST', // Because ajax.data is sent everytime, Solucion temporal por el modal
+			type: x.ajaxType || 'GET', // Because ajax.data is sent everytime, Solucion temporal por el modal
 			data: x.ajaxParams,
 			cache: true,
 			async: false, // Because getAjaxContent function returnaba before success and error
