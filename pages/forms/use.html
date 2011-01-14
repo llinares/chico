@@ -14,12 +14,16 @@
 <body>
 	
 	<h1>Forms</h1>
-	<p>El componente Forms es un controlador que maneja las validaciones (<a href="watchers.html">Watchers</a>), resetea los campos y submitea los formularios. Este componente puede ser instanciado realizando una selección con jQuery, o bien, internamente por los watchers.</p>
+	<p>El componente Forms es un controlador que maneja las validaciones (<a href="../watchers">Watchers</a>), resetea los campos y submitea los formularios. Este componente puede ser instanciado realizando una selección con jQuery, o bien, internamente por los watchers.</p>
 	<!-- Agregar lo de la class reset-->
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
 		<pre name="code" class="js">
 		{
+		  	messages: { // Define validation messages
+                 email: "Este no es un email válido, nabolin!",
+                 numer: "Solo se permiten números"
+            },
 			callbacks: {
 				submit: function() {}
 			}
