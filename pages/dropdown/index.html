@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="../../src/css/pages.css">
 		<link rel="stylesheet" href="../../libs/css/highlight.css">
 		<!--[if lt IE 7 ]>
-			<script src="libs/js/dd_belatedpng.js"></script>
+			<script src="../../libs/js/dd_belatedpng.js"></script>
 			<script> DD_belatedPNG.fix('img, .ico'); //fix any <img> or .ico background-images </script>
 		<![endif]-->
 	</head>
@@ -115,30 +115,6 @@
 	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
 		$(".demoDropdown").dropdown();
 	</pre></code></div></div></div>
-			
-			<!--div class="docTabs">
-				<ul>
-					<li><a href="#demo">Demo</a></li>
-					<li><a href="#sintax">Código fuente</a></li>
-				</ul>
-				<div>
-					<div id="demo">
-						<h3>Demo</h3>
-						<p>algo</p>
-					</div>
-					<div id="sintax">
-						<h3>Código fuente</h3>
-						<p>El marcado de este ejemplo es:</p>
-						<code>
-							<pre name="code" class="xml">ujkygkj</pre>
-						</code>
-						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code>
-							<pre name="code" class="xml">dsadsad</pre>
-						</code>
-					</div>
-				</div>
-			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -180,7 +156,25 @@
 
 			</div>
 	
-			<!-- #cases -->
+			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
+	
+	<h4>Dropdown con skin secundario</h4>
+	
+	<div class="demoDropdown ch-secondary">
+		<span>Sitios</span>
+		<ul>
+			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
+			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
+			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
+			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+		</ul>
+	</div>
+	
+	<p>Agregando la clase css "ch-secondary" en el snippet de código html, se obtiene un skinning secundario de dropdown.</p>
+	
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		$(".demoDropdown").dropdown();
+	</pre></code></div></div></div>
 		</div>
 	</div>
 	
@@ -191,11 +185,16 @@
 	<script src="../../src/js/chico.js"></script>
 	<script>
     	$(".docTabs").tabNavigator();
-        $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
+        $('h1').html("Chico-UI ;) <span class=\"version\">alpha " + ui.version + "</span>"  );
 	</script>
 
 	<script>
 		/* Demo */
+
+		$(".demoDropdown").dropdown();
+	
+
+		/* Case 1 */
 
 		$(".demoDropdown").dropdown();
 	</script>
