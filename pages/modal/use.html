@@ -15,7 +15,7 @@
 	
 	<h1>Modal Window</h1>
 	<p>El modal es disparado por un link o botón del tipo submit (dentro de un form). Esto puede ser en el evento click, o bien, utilizando su método público.</p>
-	<p>Carga su contenido tanto por ajax como por parametro. Al configurarse para que lo cargue por ajax, toma por default la url del elemento HTML que lo incia (en caso de que sea un link, levanta el href y si es un botón de tipo submit, levatan el action del form).</p>
+	<p>Carga su contenido tanto por ajax como por parametro. Por defecto, lo hace por ajax tomando la url del elemento HTML que lo incia (en caso de que sea un link, levanta el href y si es un botón de tipo submit, levatan el action del form) o se le puede indicar una URL.</p>
 	<p>Por otra parte, el modal ofrece una clase de CSS <em>closeModal</em> la cual se la puede agregar a cualquier elemento HTML para que cierre el modal.</p>
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
@@ -33,9 +33,7 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").modal({
-        	ajax: true,        	
-        });
+        $("#Foobar").modal();
 		</pre>
 	</code>
    
@@ -50,11 +48,31 @@
 			element: HTMLInputElement,        //  Input DOM Interface
 			type: "modal",                    //  Component Type
 			content: string,				  //  Get content
-			position(),					  	  //  Refresh position
+			position(),					  	  //  Get, set and refresh position
 			show(),						  	  //  Show modal
 			hide()						  	  //  Hide modal
 		}
 		</pre>
 	</code>
+	
+	<p>El método público position() puede ser utilizado para:</p>
+	<p></p>
+	<code>
+		<pre name="code" class="js">
+		var foo = $("#Foobar").modal();
+        
+		// returns
+		foo = {
+			uid: 121,                         //  Global number instance
+			element: HTMLInputElement,        //  Input DOM Interface
+			type: "modal",                    //  Component Type
+			content: string,				  //  Get content
+			position(),					  	  //  Get, set and refresh position
+			show(),						  	  //  Show modal
+			hide()						  	  //  Hide modal
+		}
+		</pre>
+	</code>
+	
 </body>
 </html>
