@@ -83,7 +83,17 @@
 				</label>
 			</form>
 		
-			<!-- #demo -->
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+
+	<img class="demoTooltip" title="Buen vendedor" src="http://img.mlstatic.com/org-img/rp2/termometro_vip_2/11.gif">
+	
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+
+	<img class="demoTooltip" title="Buen vendedor" src="http://img.mlstatic.com/org-img/rp2/termometro_vip_2/11.gif">
+	
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		$(".demoTooltip").tooltip();
+	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
 				<ul>
@@ -165,6 +175,10 @@
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
 	</script>
 
-	<script></script>
+	<script>
+		/* Demo */
+
+		$(".demoTooltip").tooltip();
+	</script>
 </body>
 </html>

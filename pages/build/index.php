@@ -58,7 +58,7 @@ class DocBuilder {
     
     private function getDemo($file) {
     	// File validation
-    	if(!file_exists($file."/demo.html")) {
+    	if(!file_exists("../".$file."/demo.html")) {
     		return false;
     	};
     	

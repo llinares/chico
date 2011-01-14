@@ -83,7 +83,84 @@
 				</label>
 			</form>
 		
-			<!-- #demo -->
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+    
+    <form action="test.html" class="formulario">
+    	<fieldset>
+    		<legend>Casos de uso de Input</legend>
+    		<p class="required">* Datos obligatorios</p>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_email">
+    					<span>E-mail: <em>*</em></span>													
+    					<input type="email" id="val_email" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    			<li class="fieldBox">
+    				<label for="val_select">
+    					<span>Campo común:</span>
+    					<select id="val_select">
+    						<option value="-1">Selecciona...</option>
+    						<option value="1">Opción 1</option>
+    						<option value="2">Opción 2</option>
+    						<option value="3">Opción 3</option>
+    						<option value="4">Opción 4</option>
+    					</select>
+    				</label>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    	
+    </form>
+    
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+    
+    <form action="test.html" class="formulario">
+    	<fieldset>
+    		<legend>Casos de uso de Input</legend>
+    		<p class="required">* Datos obligatorios</p>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_email">
+    					<span>E-mail: <em>*</em></span>													
+    					<input type="email" id="val_email" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    			<li class="fieldBox">
+    				<label for="val_select">
+    					<span>Campo común:</span>
+    					<select id="val_select">
+    						<option value="-1">Selecciona...</option>
+    						<option value="1">Opción 1</option>
+    						<option value="2">Opción 2</option>
+    						<option value="3">Opción 3</option>
+    						<option value="4">Opción 4</option>
+    					</select>
+    				</label>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#">Cancelar</a>
+    	</p>
+    	
+    </form>
+    
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		// Define a Form Controller
+		var form = $('.formulario').forms();
+		var email = $('#val_email').email().and().minLength(20).and().required();
+    	var select = $('#val_select').required();
+	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
 				<ul>
@@ -132,6 +209,13 @@
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
 	</script>
 
-	<script></script>
+	<script>
+		/* Demo */
+
+		// Define a Form Controller
+		var form = $('.formulario').forms();
+		var email = $('#val_email').email().and().minLength(20).and().required();
+    	var select = $('#val_select').required();
+	</script>
 </body>
 </html>
