@@ -83,7 +83,33 @@
 				</label>
 			</form>
 		
-			<!-- #demo -->
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+
+	<div class="demoDropdown">
+		<span>Sitios</span>
+		<ul>
+			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
+			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
+			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
+			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+		</ul>
+	</div>
+	
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+
+	<div class="demoDropdown">
+		<span>Sitios</span>
+		<ul>
+			<li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
+			<li><a href="http://www.mercadopago.com">MercadoPago</a></li>
+			<li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
+			<li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+		</ul>
+	</div>
+	
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		$(".demoDropdown").dropdown();
+	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
 				<ul>
@@ -163,6 +189,10 @@
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
 	</script>
 
-	<script></script>
+	<script>
+		/* Demo */
+
+		$(".demoDropdown").dropdown();
+	</script>
 </body>
 </html>

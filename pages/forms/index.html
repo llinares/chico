@@ -83,7 +83,61 @@
 				</label>
 			</form>
 		
-			<!-- #demo -->
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+    
+    <form action="test.html" id="demoform">
+    	<fieldset>
+    		<legend>Manejo de Forms</legend>
+    		<p class="required">* Datos obligatorios</p>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_email">
+    					<span>E-mail: <em>*</em></span>													
+    					<input type="email" id="val_email" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#" class="resetForm">Cancelar</a>
+    	</p>
+    	
+    </form>
+    
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+    
+    <form action="test.html" id="demoform">
+    	<fieldset>
+    		<legend>Manejo de Forms</legend>
+    		<p class="required">* Datos obligatorios</p>
+    		<ol>
+    			<li class="fieldBox">
+    				<label class="required" for="val_email">
+    					<span>E-mail: <em>*</em></span>													
+    					<input type="email" id="val_email" required="required">
+    				</label>
+    				<p class="help">Escribe una descripción corta y clara</p>
+    			</li>
+    		</ul>
+    	</fieldset>
+    	        
+    	<p class="actions">
+    		<input type="submit" value="Enviar" class="btn primary">
+    		<a href="#" class="resetForm">Cancelar</a>
+    	</p>
+    	
+    </form>
+    
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		// Define a Form Controller
+		var form = $('#demoform').forms();
+		var email = $('#val_email').required();
+	
+		form.submit();
+	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
 				<ul>
@@ -166,6 +220,14 @@
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
 	</script>
 
-	<script></script>
+	<script>
+		/* Demo */
+
+		// Define a Form Controller
+		var form = $('#demoform').forms();
+		var email = $('#val_email').required();
+	
+		form.submit();
+	</script>
 </body>
 </html>

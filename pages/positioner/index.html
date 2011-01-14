@@ -83,7 +83,47 @@
 				</label>
 			</form>
 		
-			<!-- #demo -->
+			<div class="docTabs"><ul><li><a href="#demo">Demo</a></li> <li><a href="#sintax">Código fuente</a></li></ul><div><div id="demo"><h3>Demo</h3>
+	
+	<!-- First example -->
+	<div class="context" id="context1"></div>
+	<div class="element" id="element1"></div>
+	
+	<!-- Second example -->
+	<div class="context" id="context2"></div>
+	<div class="element" id="element2"></div>
+	
+	<!-- Only for this example -->
+	<div class="clearfix"></div>
+    
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+	
+	<!-- First example -->
+	<div class="context" id="context1"></div>
+	<div class="element" id="element1"></div>
+	
+	<!-- Second example -->
+	<div class="context" id="context2"></div>
+	<div class="element" id="element2"></div>
+	
+	<!-- Only for this example -->
+	<div class="clearfix"></div>
+    
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+		// First example
+		ui.positioner({
+			element: $("#element1"),
+			context: $("#context1"),
+			points: "lt lb"				//  Element left-top axis equal to Context left-bottom axis
+		});
+	    
+		// Second example
+		ui.positioner({
+			element: $("#element2"),
+			context: $("#context2"),
+			points: "cm cm"				//  Element center-middle axis equal to Context center-middle axis
+		});
+	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
 				<ul>
@@ -273,6 +313,22 @@
 	</script>
 
 	<script>
+		/* Demo */
+
+		// First example
+		ui.positioner({
+			element: $("#element1"),
+			context: $("#context1"),
+			points: "lt lb"				//  Element left-top axis equal to Context left-bottom axis
+		});
+	    
+		// Second example
+		ui.positioner({
+			element: $("#element2"),
+			context: $("#context2"),
+			points: "cm cm"				//  Element center-middle axis equal to Context center-middle axis
+		});
+	
 
 		/* Case 1 */
 
