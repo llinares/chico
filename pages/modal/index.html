@@ -147,12 +147,32 @@
 			element: HTMLInputElement,        //  Input DOM Interface
 			type: "modal",                    //  Component Type
 			content: string,				  //  Get content
-			position(),					  	  //  Refresh position
+			position(),					  	  //  Get, set and refresh position
 			show(),						  	  //  Show modal
 			hide()						  	  //  Hide modal
 		}
 		</pre>
-	</code>		
+	</code>
+	
+	<p>El método público position() puede ser utilizado para:</p>
+	<p></p>
+	<code>
+		<pre name="code" class="js">
+		var foo = $("#Foobar").modal();
+        
+		// returns
+		foo = {
+			uid: 121,                         //  Global number instance
+			element: HTMLInputElement,        //  Input DOM Interface
+			type: "modal",                    //  Component Type
+			content: string,				  //  Get content
+			position(),					  	  //  Get, set and refresh position
+			show(),						  	  //  Show modal
+			hide()						  	  //  Hide modal
+		}
+		</pre>
+	</code>
+	
 
 			</div>
 	
