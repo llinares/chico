@@ -39,8 +39,12 @@
 	<div class="ch-g1-6">
 		<div class="leftcolumn components">
             <h3>Docs</h3>
+            <ul>
+                <li><h3><a href="../css">Core.css</a></h3></li>
+                <li><a href="../grid">Grid System</a></li>
+            </ul>
 			<ul>
-				<li><h3><a href="../core">Core</a></h3></li>
+				<li><h3><a href="../core">Core.js</a></h3></li>
         		<li><a href="../factory">Factory</a></li>
 	            <li><a href="../get">Get</a></li>
 	            <li><a href="../positioner">Positioner</a></li>
@@ -134,9 +138,9 @@
 	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
 		// Define a Form Controller
 		var form = $('#demoform').forms();
-		var email = $('#val_email').required();
+		var email = $('#val_email').required().and().email();
 	
-		form.submit();
+		    form.submit();
 	</pre></code></div></div></div>
 			
 			<!--div class="docTabs">
@@ -166,12 +170,16 @@
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
 				
-	<p>El componente Forms es un controlador que maneja las validaciones (<a href="watchers.html">Watchers</a>), resetea los campos y submitea los formularios. Este componente puede ser instanciado realizando una selección con jQuery, o bien, internamente por los watchers.</p>
+	<p>El componente Forms es un controlador que maneja las validaciones (<a href="../watchers">Watchers</a>), resetea los campos y submitea los formularios. Este componente puede ser instanciado realizando una selección con jQuery, o bien, internamente por los watchers.</p>
 	<!-- Agregar lo de la class reset-->
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
 		<pre name="code" class="js">
 		{
+		  	messages: { // Define validation messages
+                 email: "Este no es un email válido, nabolin!",
+                 numer: "Solo se permiten números"
+            },
 			callbacks: {
 				submit: function() {}
 			}
@@ -225,9 +233,9 @@
 
 		// Define a Form Controller
 		var form = $('#demoform').forms();
-		var email = $('#val_email').required();
+		var email = $('#val_email').required().and().email();
 	
-		form.submit();
+		    form.submit();
 	</script>
 </body>
 </html>
