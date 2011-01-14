@@ -114,7 +114,7 @@
 				<h3>¿Cómo se usa?</h3>
 				
 	<p>El modal es disparado por un link o botón del tipo submit (dentro de un form). Esto puede ser en el evento click, o bien, utilizando su método público.</p>
-	<p>Carga su contenido tanto por ajax como por parametro. Al configurarse para que lo cargue por ajax, toma por default la url del elemento HTML que lo incia (en caso de que sea un link, levanta el href y si es un botón de tipo submit, levatan el action del form).</p>
+	<p>Carga su contenido tanto por ajax como por parametro. Por defecto, lo hace por ajax tomando la url del elemento HTML que lo incia (en caso de que sea un link, levanta el href y si es un botón de tipo submit, levatan el action del form) o se le puede indicar una URL.</p>
 	<p>Por otra parte, el modal ofrece una clase de CSS <em>closeModal</em> la cual se la puede agregar a cualquier elemento HTML para que cierre el modal.</p>
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
@@ -132,9 +132,7 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").modal({
-        	ajax: true,        	
-        });
+        $("#Foobar").modal();
 		</pre>
 	</code>
    
@@ -154,36 +152,30 @@
 			hide()						  	  //  Hide modal
 		}
 		</pre>
-	</code>
+	</code>		
 
 			</div>
 	
 			<div class="box cases"><h3>Casos de uso</h3><div class="ch-g2-3"><div class="leftcolumn cases">
 
-	<h4>Modal ejecutado en el click de un link con ajax</h4>	
+	<h4>Modal ejecutado en el click de un link con ajax por default</h4>	
 	
 	<a href="../examples/ajax.html" class="modal_link">Ejecutar Modal.</a></li>	
 	
 	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
-		$(".modal_link").modal(
-			{
-				ajax:true
-			}
-		);
+		$(".modal_link").modal();
 	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
-	<h4>Modal ejecutado en el click de un botón con ajax</h4>	
+	<h4>Modal ejecutado en el click de un botón con ajax, configurando una url.</h4>	
 	
-	<form action="../examples/ajax.html">
+	<form action="http://www.mercadolibre.com">
 		<input type="submit" class="btn secondary" id="modal_btn" value="Ejecutar Modal">
 	</form>
 	
 	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
-		$("#modal_btn").modal(
-			{
-				ajax:true
-			}
-		);
+		$("#modal_btn").modal({
+			ajax: "../examples/ajax.html"
+		});
 	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
 	
 	<h4>Modal ejecutado en el click de un botón cargando contenido por parametro: selector CSS.</h4>	
@@ -255,20 +247,14 @@
 
 		/* Case 1 */
 
-		$(".modal_link").modal(
-			{
-				ajax:true
-			}
-		);
+		$(".modal_link").modal();
 	
 
 		/* Case 2 */
 
-		$("#modal_btn").modal(
-			{
-				ajax:true
-			}
-		);
+		$("#modal_btn").modal({
+			ajax: "../examples/ajax.html"
+		});
 	
 
 		/* Case 3 */
