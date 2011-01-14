@@ -165,12 +165,40 @@
 			element: HTMLInputElement,        //  Input DOM Interface
 			type: "layer",                    //  Component Type
 			content: string,				  //  Get content
-			position(),					  	  //  Refresh position
+			position(),					  	  //  Get, set and refresh position
 			show(),						  	  //  Show layer
 			hide()						  	  //  Hide layer
 		}
 		</pre>
 	</code>
+	
+	<p>El método público position() puede ser utilizado para:</p>
+	<p>1. Obtener la configuración actual de posicionamiento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position();						  //  Get position
+		</pre>
+	</code>
+	
+	<p>2. Actualizar la posición del elemento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position("refresh");			  //  Refresh position
+		</pre>
+	</code>
+	
+	<p>3. Setear una nueva configuración para el <a href="../positioner">posicionamiento</a> del elemento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position({ 						  //  Set new position			
+			context: $(element),
+			offset: string,
+			points: string,
+			fixed: boolean
+		});					
+		</pre>
+	</code>
+	
 
 			</div>
 	
@@ -195,6 +223,22 @@
 			event: "click",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
+	</pre></code></div></div><div class="ch-g2-3"><div class="leftcolumn cases">
+	
+	<h4>Contextual Layer seteando una nueva configuración de posicionamiento.</h4>	
+	
+	<span class="layerOnclick2">Layer ejecutado con click.</span>
+	
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+		var LayerNewPosition = $(".layerOnclick2").layer({
+			event: "click",
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+		});
+		
+		LayerNewPosition.position({
+			points: "lb lt",
+			offset: "100 -10"
+		});
 	</pre></code></div></div></div>
 		</div>
 	</div>
@@ -230,6 +274,19 @@
 			event: "click",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		});	
+	
+
+		/* Case 3 */
+
+		var LayerNewPosition = $(".layerOnclick2").layer({
+			event: "click",
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+		});
+		
+		LayerNewPosition.position({
+			points: "lb lt",
+			offset: "100 -10"
+		});
 	</script>
 </body>
 </html>
