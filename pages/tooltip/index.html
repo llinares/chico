@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="../../src/css/pages.css">
 		<link rel="stylesheet" href="../../libs/css/highlight.css">
 		<!--[if lt IE 7 ]>
-			<script src="libs/js/dd_belatedpng.js"></script>
+			<script src="../../libs/js/dd_belatedpng.js"></script>
 			<script> DD_belatedPNG.fix('img, .ico'); //fix any <img> or .ico background-images </script>
 		<![endif]-->
 	</head>
@@ -99,30 +99,6 @@
 	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
 		$(".demoTooltip").tooltip();
 	</pre></code></div></div></div>
-			
-			<!--div class="docTabs">
-				<ul>
-					<li><a href="#demo">Demo</a></li>
-					<li><a href="#sintax">Código fuente</a></li>
-				</ul>
-				<div>
-					<div id="demo">
-						<h3>Demo</h3>
-						<p>algo</p>
-					</div>
-					<div id="sintax">
-						<h3>Código fuente</h3>
-						<p>El marcado de este ejemplo es:</p>
-						<code>
-							<pre name="code" class="xml">ujkygkj</pre>
-						</code>
-						<p>Para iniciar este ejemplo se utilizó:</p>
-						<code>
-							<pre name="code" class="xml">dsadsad</pre>
-						</code>
-					</div>
-				</div>
-			</div-->
 		
 			<div class="box use">
 				<h3>¿Cómo se usa?</h3>
@@ -157,12 +133,38 @@
 			element: HTMLInputElement,        //  Input DOM Interface
 			type: "tooltip",                  //  Component Type
 			content: string,				  //  Get content
-			position(),					  	  //  Refresh position
+			position(),					  	  //  Get, set and refresh position
 			show(),						  	  //  Show tooltip
 			hide()						  	  //  Hide toolip
 		}
 		</pre>
 	</code>
+	<p>El método público position() puede ser utilizado para:</p>
+	<p>1. Obtener la configuración actual de posicionamiento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position();						  //  Get position
+		</pre>
+	</code>
+	
+	<p>2. Actualizar la posición del elemento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position("refresh");			  //  Refresh position
+		</pre>
+	</code>
+	
+	<p>3. Setear una nueva configuración para el <a href="../positioner">posicionamiento</a> del elemento.</p>
+	<code>
+		<pre name="code" class="js">
+		foo.position({ 						  //  Set new position			
+			context: $(element),
+			offset: string,
+			points: string,
+			fixed: boolean
+		});					
+		</pre>
+	</code>	
 
 			</div>
 	
@@ -177,7 +179,7 @@
 	<script src="../../src/js/chico.js"></script>
 	<script>
     	$(".docTabs").tabNavigator();
-        $('h1').html("Chico-UI ;) <span class=\"version\">alpha "+ui.version+"</span>"  );
+        $('h1').html("Chico-UI ;) <span class=\"version\">alpha " + ui.version + "</span>"  );
 	</script>
 
 	<script>

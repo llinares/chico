@@ -272,6 +272,30 @@ ui.get = function(o) {
 
 }
 
+<<<<<<< HEAD
+=======
+/**
+ *  Support
+ */
+ 
+ui.support = function() {
+	
+	// Based on: http://gist.github.com/373874
+	// Verify that CSS3 transition is supported (or any of its browser-specific implementations)
+	var transition = (function(){
+		var thisBody = document.body || document.documentElement;
+		var thisStyle = thisBody.style;
+
+		return thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.OTransition !== undefined || thisStyle.transition !== undefined;
+	})();
+	
+	return {
+		transition: transition
+		// gradient: gradient
+	};
+	
+};
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 /**
  *  Support
  */
@@ -1067,8 +1091,12 @@ ui.carousel = function(conf){
 
 	// UL Width calculator
 	var htmlElementMargin = (ui.utils.html.hasClass("ie6")) ? 21 : 20; // IE needs 1px more
+<<<<<<< HEAD
 	var extraWidth = (ui.utils.html.hasClass("ie6")) ? conf.$htmlContent.children().outerWidth() : 0;
 	var htmlContentWidth = conf.$htmlContent.children().size() * (conf.$htmlContent.children().outerWidth() + htmlElementMargin) + extraWidth;
+=======
+	var htmlContentWidth = conf.$htmlContent.children().size() * (conf.$htmlContent.children().outerWidth() + htmlElementMargin);
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 	
 	// UL configuration
 	conf.$htmlContent
@@ -1098,6 +1126,7 @@ ui.carousel = function(conf){
 	var buttons = {
 		prev: {
 			$element: $('<p class="prev">Previous</p>').bind('click', function(){ move("prev", 1) }).css('top', (conf.$trigger.outerHeight() - 22) / 2), // 22 = button height
+<<<<<<< HEAD
 			on: function(){ buttons.prev.$element.addClass("ch-prev-on") },
 			off: function(){ buttons.prev.$element.removeClass("ch-prev-on") }
 		},
@@ -1105,6 +1134,15 @@ ui.carousel = function(conf){
 			$element: $('<p class="next">Next</p>').bind('click', function(){ move("next", 1) }).css('top', (conf.$trigger.outerHeight() - 22) / 2), // 22 = button height
 			on: function(){ buttons.next.$element.addClass("ch-next-on") },
 			off: function(){ buttons.next.$element.removeClass("ch-next-on") }
+=======
+			on: function(){ buttons.prev.$element.addClass("on")/*.bind('click', function(){ move("prev", 1) });*/ },
+			off: function(){ buttons.prev.$element.removeClass("on")/*.unbind('click');*/ }
+		},
+		next: {
+			$element: $('<p class="next">Next</p>').bind('click', function(){ move("next", 1) }).css('top', (conf.$trigger.outerHeight() - 22) / 2), // 22 = button height
+			on: function(){ buttons.next.$element.addClass("on")/*.bind('click', function(){ move("next", 1) });*/ },
+			off: function(){ buttons.next.$element.removeClass("on")/*.unbind('click');*/ }
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 		}
 	};
 	
@@ -1156,8 +1194,13 @@ ui.carousel = function(conf){
 			
 			// Pager behavior
 			if (conf.pager) {
+<<<<<<< HEAD
 				$(".ch-pager li").removeClass("ch-pager-on");
 				$(".ch-pager li:nth-child(" + page + ")").addClass("ch-pager-on");
+=======
+				$(".ch-pager li").removeClass("on");
+				$(".ch-pager li:nth-child(" + page + ")").addClass("on");
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 			};
 
 			// Callbacks
@@ -1422,10 +1465,13 @@ ui.layer = function(conf) {
     conf.publish.show = function(){ return show($.Event()) };
     conf.publish.hide = function(){ return hide($.Event()) };
     conf.publish.position = function(o){ return that.position(o, conf) };
+<<<<<<< HEAD
 
     // Fix: change layout problem
     ui.utils.body.bind(ui.events.CHANGE_LAYOUT, function(){ that.position("refresh", conf) });
 
+=======
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 
 	return conf.publish;
 
@@ -1674,10 +1720,14 @@ ui.tooltip = function(conf){
     conf.publish.show = function(){ return show($.Event()) };
     conf.publish.hide = function(){ return hide($.Event()) };
     conf.publish.position = function(o){ return that.position(o, conf) };
+<<<<<<< HEAD
 
     // Fix: change layout problem
     ui.utils.body.bind(ui.events.CHANGE_LAYOUT, function(){ that.position("refresh", conf) });
 
+=======
+        
+>>>>>>> 105ed096d2d9c42366e70a3cffec36b3a8cbf2f8
 	return that.publish;
 };
 /**

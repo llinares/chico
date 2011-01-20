@@ -79,7 +79,7 @@ h1, h2, .article.demo, .header {
 	margin-left: -10px;
 }
 
-.cases-html {
+.cases.leftcolumn {
 	border-top:1px dashed #ccc;
 	padding:10px 0;
 }
@@ -90,6 +90,11 @@ h1, h2, .article.demo, .header {
 
 .cases {
 	overflow:hidden;
+}
+
+.cases h4 {
+	font-weight:bold;
+	font-size:14px;
 }
 
 .use p {

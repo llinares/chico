@@ -8,7 +8,7 @@
 <head>
 	<script></script>
 	<meta charset="utf-8">
-	<title>Chico UI - Case Grids</title>
+	<title>Chico UI - Case Contextual Layer</title>
 	<link rel="stylesheet" href="../../src/css/chico.css">
 	<link rel="stylesheet" href="../../src/css/grid.css">
 	<link rel="stylesheet" href="../../src/css/pages.css">
@@ -22,31 +22,21 @@
 </head>
 <body>
 	
-		
-	<h4>2 columnas</h4>
+	<h4>Contextual Layer seteando una nueva configuración de posicionamiento.</h4>	
 	
-	 <div class="ch-g1-3">
-	     <div class="box leftcolumn">
-	        		Izquierda 1/3
-	        	</div>
-	        </div>
-	        <div class="ch-g2-3">
-	        	<div class="box rightcolumn">
-	        		Derecha 2/3
-	        	</div>
-	        </div>
-		<script>	
-<div class="ch-g1-3">
-	<div class="box leftcolumn">
-		Izquierda 1/3
-	</div>
-</div>
-<div class="ch-g2-3">
-	<div class="box rightcolumn">
-		Derecha 2/3
-	</div>
-</div>
-		</script>	
-			
+	<span class="layerOnclick2">Layer ejecutado con click.</span>
+	
+	<script>
+		var LayerNewPosition = $(".layerOnclick2").layer({
+			event: "click",
+			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+		});
+		
+		LayerNewPosition.position({
+			points: "lb lt",
+			offset: "100 -10"
+		});
+	</script>
+	
 </body>
 </html>
