@@ -9,7 +9,7 @@
 		<script></script>
 		<meta charset="utf-8">
 		<title>Chico UI - Positioner</title>
-		<link rel="stylesheet" href="../../src/css/chico.css">
+		<link rel="stylesheet" href="../../build/chico.css">
 		<link rel="stylesheet" href="../../src/css/grid.css">
 		<link rel="stylesheet" href="../../src/css/pages.css">
 		<link rel="stylesheet" href="../../libs/css/highlight.css">
@@ -59,6 +59,7 @@
 			<ul>
 	            <li><h3>Navs</h3></li>
 	            <li><a href="../dropdown">Dropdown</a></li>
+	            <li><a href="../expando">Expando</a></li>
 			</ul>
 			<ul>
 				<li><h3>Sliders</h3></li>
@@ -138,7 +139,7 @@
 	
 	<!--p><em>Pendiente de documentar: Inteligencia de posicionamiento en base al viewport.</p-->
 	
-	<p>Existen 2 maneras de utilizar el componente:</p>
+	<p>Existen 2 maneras de utilizar el componente, como objeto global o desde una instancia de componente:</p>
 	<code>
 		<pre name="code" class="js">
 		ui.positioner();				//  Simple sintaxis
@@ -162,8 +163,18 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").positioner({
-        	element: $(".element"),
+        $("#Foobar").position({
+        	context: $(".context"),
+        	offset: "10 0",
+        	points: "cm cm"
+        });
+		</pre>
+	</code>	
+	<p>ó desde el objecto público:</p>
+	<code>
+		<pre name="code" class="js">
+        ui.positioner({
+        	element: $("#Foobar"),
         	context: $(".context"),
         	offset: "10 0",
         	points: "cm cm"
@@ -285,7 +296,7 @@
 	
 	<script src="../../libs/js/highlight.js"></script>
 	<script src="../../libs/js/jquery.js"></script>
-	<script src="../../src/js/chico.js"></script>
+	<script src="../../build/chico.js"></script>
 	<script>
     	$(".docTabs").tabNavigator();
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha " + ui.version + "</span>"  );

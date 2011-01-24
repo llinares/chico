@@ -9,7 +9,7 @@
 		<script></script>
 		<meta charset="utf-8">
 		<title>Chico UI - Number</title>
-		<link rel="stylesheet" href="../../src/css/chico.css">
+		<link rel="stylesheet" href="../../build/chico.css">
 		<link rel="stylesheet" href="../../src/css/grid.css">
 		<link rel="stylesheet" href="../../src/css/pages.css">
 		<link rel="stylesheet" href="../../libs/css/highlight.css">
@@ -59,6 +59,7 @@
 			<ul>
 	            <li><h3>Navs</h3></li>
 	            <li><a href="../dropdown">Dropdown</a></li>
+	            <li><a href="../expando">Expando</a></li>
 			</ul>
 			<ul>
 				<li><h3>Sliders</h3></li>
@@ -169,6 +170,15 @@
         $("#Foobar").min(13).and().max(20); // Same example
 		</pre>
 	</code>
+	<div class="box">
+	<p><span class="ico attention" style="float:left;margin:0 2px 0 0"></span> Existe un caso no soportado por este componente. Cuando se realiza una query al <abbr title="Document Object Model">DOM</abbr> de múltiples resultados, por ejemplo:</p>
+	<code>
+		<pre name="code" class="js">
+        $(".foobar").min(13).and().max(20);
+		</pre>
+	</code>
+	<p>La selección <strong>".foobar"</strong> es una clase que puede estar repetida, si esa query me devuelve mas de un resultado, el <a href="../factory">Factory</a> object me va a devolver una <em>Collección</em> de resultados, por ende el método <strong>.and()</strong> queda obsoleto. Este caso puede llegar a ser soportado en próximas versiones de Chico-UI.</p>
+	</div>
 	<p>Cada vez que se instancia un componente de la familia <a href="watchers.html" lang="en">Watchers</a> éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
 	<code>
 		<pre name="code" class="js">
@@ -191,6 +201,25 @@
             reset(),                          //  Reset the value
             validate(),                       //  Execute the validations
         }
+		</pre>
+	</code>
+<h3>Algunas interfaces disponibles</h3>
+    <p><a name="number">Number</a>: Esta interface configura automáticamente una validación de Number.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $("#Foobar").number("This must be a valid number.");
+		</pre>
+	</code>	
+    <p><a name="max">max</a>: Esta interface configura automáticamente una validación de max.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $("#Foobar").max(20, "The max value is 20.");
+		</pre>
+	</code>	
+    <p><a name="min">min</a>: Esta interface configura automáticamente una validación de min.</p>
+	<code>
+		<pre name="code" class="js">
+        var foo = $("#Foobar").min(10, "The min value is 10.");
 		</pre>
 	</code>	
 
@@ -256,7 +285,7 @@
 	
 	<script src="../../libs/js/highlight.js"></script>
 	<script src="../../libs/js/jquery.js"></script>
-	<script src="../../src/js/chico.js"></script>
+	<script src="../../build/chico.js"></script>
 	<script>
     	$(".docTabs").tabNavigator();
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha " + ui.version + "</span>"  );

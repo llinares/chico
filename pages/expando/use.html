@@ -8,17 +8,18 @@
 <head>
 	<script></script>
 	<meta charset="utf-8">
-	<title>Chico UI - Use Dropdown</title>
+	<title>Chico UI - Use Expando</title>
 	<link rel="stylesheet" href="../../src/css/chico.css">
 </head>
 <body>
 	
-	<h1>Dropdown</h1>
-	<p>El objeto Dropdown es un componente que agrupa una lista de links, los cuales disparan diferentes acciones. Puede recibir como argumento un objeto de propiedades para los <em lang="en">callbacks</em>.</p>
+	<h1>Expando</h1>
+	<p>El objecto Expando es un componente que muestra u oculta información relacionada a un titular. Puede recibir como argumento un objeto de propiedades para modificar su comportamiento por default y para los <em lang="en">callbacks</em>.</p>
 	<p>Ejemplo del objeto de configuración:</p>
 	<code>
 		<pre name="code" class="js">
 		{
+			open: true,
 			callbacks: {
 				show: function() {},
 				hide: function() {}
@@ -29,20 +30,21 @@
     <p>Realizando una selección con jQuery podemos asignarle una configuración de la siguiente forma:</p>
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").dropdown();
+        $("#Foobar").expando();
 		</pre>
 	</code>
    
-	<p>Cada vez que se instancia un componente Dropdown, éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
+	<p>Cada vez que se instancia un componente Expando, retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
 	<code>
 		<pre name="code" class="js">
-		var foo = $("#Foobar").dropdown();
+		var foo = $("#Foobar").expando();
         
 		// returns
 		foo = {
 			uid: 121,                         //  Global number instance
 			element: HTMLInputElement,        //  Input DOM Interface
-			type: "dropdown",                 //  Component Type
+			type: "expando ",                 //  Component Type
+			open: boolean,				  	  //  Default behavior
 			show(),						  	  //  Show dropdown
 			hide()						  	  //  Hide dropdown
 		}

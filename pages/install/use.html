@@ -14,7 +14,7 @@
 <body>
 	
     <h1>How to install</h1>
-    <p>Nota: Todos los archivos mencionados en las instrucciones se encuentran disponibles en el código fuente del proyecto.<br />
+    <p><span class="ico attention" style="float:left;margin:0 2px 0 0"></span> Nota: Todos los archivos mencionados en las instrucciones se encuentran disponibles en el código fuente del proyecto.<br />
        Podés bajarlo desde la <a href="../">página de inicio</a>.</p>
     <h3>Paso 1: <strong>Browser sniffing</strong></h3>
     <p>Para lograr crossbrowsing visual en la capa de estilos <abbr title="Cascade Style Sheet">CSS</abbr> se encuentran pre-definidos los arreglos necesarios para errores comunes. Es necesario agregar un atributo <em>class</em> al elemento <em>html</em>, para lograrlo utilizamos los comentarios condicionales para <abbr tile="Internet Explorer">IE</abbr>:
@@ -36,7 +36,7 @@
 	<code>
 		<pre name="code" class="xml">
 ...
-<script src="./libs/js/jquery.js"></script>
+<script src="libs/js/jquery.js"></script>
 ...
 		</pre>
 	</code>
@@ -56,9 +56,9 @@
 	<code>
 		<pre name="code" class="xml">
 ...
-<link rel="stylesheet" href="./src/css/chico.css">
+<link rel="stylesheet" href="build/chico-min-0.x.x.css">
 ...
-<script src="./src/js/chico.js"></script>
+<script src="build/chico-min-0.x.x.js"></script>
 ...
 		</pre>
 	</code>
@@ -84,7 +84,7 @@
 		<script></script> <!-- Avoid script blocking -->
 		<meta charset="utf-8">
 		<title>Document Title</title>
-		<link rel="stylesheet" href="./src/css/chico.css"> <!-- Chico-UI Core Style Sheet -->
+		<link rel="stylesheet" href="build/chico-min-0.x.x.css"> <!-- Chico-UI Core Style Sheet -->
 		<!--[if lt IE 7 ]>
 			<script src="./libs/js/dd_belatedpng.js"></script>
 			<script> DD_belatedPNG.fix('img, .ico'); //fix any <img> or .ico background-images </script>
@@ -94,8 +94,8 @@
 ...
 <!-- All markup here... -->
 ...
-<script src="./libs/js/jquery.js"></script>
-<script src="./src/js/chico.js"></script>	
+<script src="libs/js/jquery.js"></script>
+<script src="build/chico-min-0.x.x.js"></script>	
 <script>
     // Write your JavaScript here...
 </script>
