@@ -19,9 +19,7 @@
 	<code>
 		<pre name="code" class="js">
 		{
-			callbacks: {
-				select: function() {}
-			}
+			onMove: function() {}			 // Callback executed on viewer move
 		}
 		</pre>
 	</code>
@@ -36,7 +34,7 @@
             element: HTMLInputElement,        //  Input DOM Interface
             type: "viewer",                   //  Component Type
             children: array,                  //  Instances of components controlled by Viewer
-            select()                      	  //  Select an item of main thumbnails
+            moveTo()                      	  //  Select an item of main thumbnails
         }
 		</pre>
 	</code>
