@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="../../build/chico.css">
 		<link rel="stylesheet" href="../../src/css/grid.css">
 		<link rel="stylesheet" href="../../src/css/pages.css">
-		<link rel="stylesheet" href="../../libs/css/highlight.css">
 		<!--[if lt IE 7 ]>
 			<script src="../../libs/js/dd_belatedpng.js"></script>
 			<script> DD_belatedPNG.fix('img, .ico'); //fix any <img> or .ico background-images </script>
@@ -111,7 +110,7 @@
     	</p>
     </form>
     
-	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre name="code" class="xml">
+	</div><div id="sintax"><h3>Código fuente</h3><p>El marcado de este ejemplo es:</p><code><pre class="xml" name="code">
 
     <form action="test.html" class="formulario">
     	<fieldset>
@@ -132,10 +131,16 @@
     	</p>
     </form>
     
-	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre name="code" class="js">
+	</pre></code><p>Para iniciar este ejemplo se utilizó:</p><code><pre class="js" name="code">
 		// Define a Form Controller
-		var form = $('.formulario').forms();
-		var email = $('#val_email').email().and().minLength(20).and().required();
+		var form = $('.formulario').forms({
+		      messages: {
+		          email: "Default message for email validation.",
+		          minLength: "Default message for minLength validation",
+		          required: "Default message for required validation"
+		      }
+		});
+		var email = $('#val_email').email("This must be a valid email.").and().minLength(20,"You miss some characters, try 10 as minimum.").and().required();
 	</pre></code></div></div></div>
 		
 			<div class="box use">
@@ -154,6 +159,13 @@
             callbacks: {
                 validate: function() {},
                 reset: function() {}
+            },
+            messages: {
+                text: string,
+                email: string,
+                url: string,
+                maxLength: string,
+                minLength: string
             }
         }
 		</pre>
@@ -170,14 +182,14 @@
     <p>Además, el componente soporta algunos <em lang="en">shorthands</em> que se pueden concatenar con el método <strong lang="en">and()</strong> facilitando su instanciación con otras validaciones de distintos tipos, por ejemplo:
 	<code>
 		<pre name="code" class="js">
-        $("#Foobar").email().and().maxLength(20); // Same example
+        $("#Foobar").email("message").and().maxLength(20,"message"); // Same example
 		</pre>
 	</code>
 	<div class="box">
 	<p><span class="ico attention" style="float:left;margin:0 2px 0 0"></span> Existe un caso no soportado por este componente. Cuando se realiza una query al <abbr title="Document Object Model">DOM</abbr> de múltiples resultados, por ejemplo:</p>
 	<code>
 		<pre name="code" class="js">
-        $(".foobar").email().and().maxLength(20);
+        $(".foobar").email("message").and().maxLength(20,"message");
 		</pre>
 	</code>
 	<p>La selección <strong>".foobar"</strong> es una clase que puede estar repetida, si esa query me devuelve mas de un resultado, el <a href="../factory">Factory</a> object me va a devolver una <em>Collección</em> de resultados, por ende el método <strong>.and()</strong> queda obsoleto. Este caso puede llegar a ser soportado en próximas versiones de Chico-UI.</p>
@@ -185,7 +197,7 @@
 	<p>Cada vez que se instancia un componente de la familia <a href="../watchers" lang="en">Watchers</a> éste retorna un objecto público de control que nos brinda información sobre la instancia y nos permite ejecutar algunos métodos públicos.</p>
 	<code>
 		<pre name="code" class="js">
-        var foo = $("#Foobar").email().and().maxLength(20); // Same example
+        var foo = $("#Foobar").email("message").and().maxLength(20,"message"); // Same example
         
         // returns
         foo = {
@@ -264,7 +276,7 @@
     	</p>
     </form>
 	<p>En la configuración de los campos podemos conbinar con el método <strong lang="en">and()</strong> con otras interfaces del componente <a href="watchers.html" lang="en">Watchers</a> como la validación de campo requerido <a href="required.html" lang="en">Required</a>.
-    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+    </div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre class="js" name="code">
     $(".c1").forms();
     $("#c1_email").email().and().required();
     $("#c1_url").url().and().required();
@@ -297,7 +309,7 @@
     	</p>
     </form>
 	
-	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre name="code" class="js">
+	</div></div><div class="ch-g1-3"><div class="rightcolumn"><p>El Javascript para iniciarlo es:</p><code><pre class="js" name="code">
         $('.c2').forms();
         $('#c2_edad').minLength(2);
 	</pre></code></div></div></div>
@@ -306,20 +318,26 @@
 	
 	<p class="footer">Chico-UI, powered by <a href="http://www.mercadolibre.com">MercadoLibre</a>.</p>
 	
-	<script src="../../libs/js/highlight.js"></script>
 	<script src="../../libs/js/jquery.js"></script>
 	<script src="../../build/chico.js"></script>
 	<script>
     	$(".docTabs").tabNavigator();
         $('h1').html("Chico-UI ;) <span class=\"version\">alpha " + ui.version + "</span>"  );
+        ui.codelighter();
 	</script>
 
 	<script>
 		/* Demo */
 
 		// Define a Form Controller
-		var form = $('.formulario').forms();
-		var email = $('#val_email').email().and().minLength(20).and().required();
+		var form = $('.formulario').forms({
+		      messages: {
+		          email: "Default message for email validation.",
+		          minLength: "Default message for minLength validation",
+		          required: "Default message for required validation"
+		      }
+		});
+		var email = $('#val_email').email("This must be a valid email.").and().minLength(20,"You miss some characters, try 10 as minimum.").and().required();
 	
 
 		/* Case 1 */
