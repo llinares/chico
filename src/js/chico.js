@@ -2,15 +2,16 @@
   * Chico-UI
   * Packer-o-matic
   * Like the pizza delivery service: "Les than 100 milisecons delivery guarantee!"
-  * @components: core, position, positioner, object, floats, navs, carousel, dropdown, layer, modal, tabNavigator, tooltip, validator
+  * @components: core, position, positioner, object, floats, navs, controllers, watcher, carousel, dropdown, layer, modal, tabNavigator, tooltip, string, number, required, helper, forms, viewer
   * @version 0.4
-  * @autor Natan Santolo <natan.santolo@mercadolibre.com>
+  * @autor Chico Team <chico@mercadolibre.com>
   *
-  * based on:
+  * @based on:
   * @package JSMin
-  * @package CssMin
-  * Stoyan Stefanov on DataURI: 
-  * http://www.phpied.com/data-urls-what-are-they-and-how-to-use/ 
+  * @author Ryan Grove <ryan@wonko.com> 
+  * @copyright 2002 Douglas Crockford <douglas@crockford.com> (jsmin.c) 
+  * @copyright 2008 Ryan Grove <ryan@wonko.com> (PHP port) 
+  * @link http://code.google.com/p/jsmin-php/ 
   */
 ;(function($){
 /** 
@@ -18,17 +19,21 @@
   */
 var ui = window.ui = {
 
-    version: "0.4.6",
+    version: "0.4.9",
 
-    components: "carousel,dropdown,layer,modal,tabNavigator,tooltip,validator",
+    components: "carousel,dropdown,layer,modal,tabNavigator,tooltip,string,number,required,helper,forms,viewer",
 
-    internals: "position,positioner,object,floats,navs",
+    internals: "position,positioner,object,floats,navs,controllers,watcher",
 
     instances: {},
+    
+    features: {},
  	
     init: function() { 
         // unmark the no-js flag on html tag
         $("html").removeClass("no-js");
+        // check for browser support
+		ui.features = ui.support();
         // check for pre-configured components
         ui.components = (window.components) ? ui.components+","+window.components : ui.components ;
         // check for pre-configured internals
@@ -78,11 +83,6 @@ ui.factory = function(o) {
 
     var x = o.component;
 
-    // If component don't exists in the instances map create an empty array
-    if (!ui.instances[x]) {
-         ui.instances[x] = []; 
-    }
-
     var create = function(x) { 
 
         // Send configuration to a component trough options object
@@ -91,44 +91,52 @@ ui.factory = function(o) {
             var results = [];			    
             var that = this;
             var options = options || {};
-            
-            if (typeof options !== "object") { 
-                alert("Factory " + x + " configure error: Need a basic configuration."); 
-                return;
-            };		
-                            
+
             that.each( function(i, e) {
 
                 var conf = {};
                     conf.name = x;
                     conf.element = e ;
                     conf.id = ui.utils.index++; // Global instantiation index
-
-                $.extend( conf , options );
+                
+                // If argument is a number, join with the conf
+                if (typeof options === "number") {
+                    conf.value = options;
+                } else {
+                    // Check for an object
+                    if (typeof options !== "object") { 
+                        alert("Factory " + x + " configure error: Need a basic configuration."); 
+                        return;
+                    };
+                    // Extend conf with the options
+                    $.extend( conf , options );   
+                }
 
                 // Create a component from his constructor
                 var created = ui[x]( conf );
 
 				/* 
-						MAPPING INSTANCES
+					MAPPING INSTANCES
 				
-				Internal interface for avoid mapping objects
-				{
-					exists:true,
-					object: {}
-				}
+    				Internal interface for avoid mapping objects
+    				{
+    					exists:true,
+    					object: {}
+    				}
 				*/
 
+			    if (created.type) {
+			        var type = created.type;		    
+                    // If component don't exists in the instances map create an empty array
+                    if (!ui.instances[type]) { ui.instances[type] = []; }
+                         ui.instances[type].push( created );
+			    }
+			    		
 				if (created.exists) {				
 					// Avoid mapping objects that already exists
 					created = created.object;
+				}			
 
-				} else {								
-			        // Map the instance
-			        ui.instances[x].push( created );   
-				}
-	            
-	            // Save results to return the created components    
 			    results.push( created );
 
             });
@@ -252,6 +260,30 @@ ui.get = function(o) {
 }
 
 /**
+ *  Support
+ */
+ 
+ui.support = function() {
+	
+	// Based on: http://gist.github.com/373874
+	// Verify that CSS3 transition is supported (or any of its browser-specific implementations)
+	var transition = (function(){
+		var thisBody = document.body || document.documentElement;
+		var thisStyle = thisBody.style;
+
+		return thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.OTransition !== undefined || thisStyle.transition !== undefined;
+	})();
+	
+	return {
+		transition: transition
+		// gradient: gradient
+	};
+	
+};
+/**
+ *      DEPRECATED
+ */
+/**
 *  @static @class Positionator
 *	@author <a href="mailto:leandro.linares@mercadolibre.com">Leandro Linares</a>
 *	@author <a href="mailto:guillermo.paz@mercadolibre.com">Guillermo Paz</a>
@@ -345,7 +377,8 @@ ui.positioner = function( o ) {
 		"lb lt": "top",
 		"rt rb": "down",
 		"rb rt": "top",
-		"lt rt": "right"
+		"lt rt": "right",
+		"cm cm": "center"
 	};
 	
 	// Offset parameter
@@ -434,7 +467,7 @@ ui.positioner = function( o ) {
 		var viewport = getViewport();
 		
 		// Down to top
-		if ( ( points == "lt lb" ) && ( (styles.top + element.outerHeight()) > viewport.bottom) ) { // Element bottom > Viewport bottom
+		if ( (points == "lt lb") && ((styles.top + element.outerHeight()) > viewport.bottom) ) { // Element bottom > Viewport bottom
 			unitPoints.my_y = "b";
 			unitPoints.at_y = "t";
 			
@@ -444,17 +477,17 @@ ui.positioner = function( o ) {
 			styles.top -= context.height; // TODO: Al recalcular toma al top del context como si fuese el bottom. (Solo en componentes. En los tests anda ok)
 		};
 		
-		/*// Right to down
+		// Left to right
 		if ( (styles.left + element.outerWidth()) > viewport.right ) { // Element right > Viewport right
-			unitPoints.my_x = "l";
-			unitPoints.my_y = "t";
-			unitPoints.at_x = "l";
-			unitPoints.my_y = "t";
+			unitPoints.my_x = "r";
+			unitPoints.at_x = "r";
 			
 			// New styles
+			var current = styles.direction;
 			styles = getPosition(unitPoints);
-			styles.direction = "down";
-		};*/
+			styles.direction = current + "-right";
+			if(current == "top") styles.top -= context.height; // TODO: Al recalcular toma al top del context como si fuese el bottom. (Solo en componentes. En los tests anda ok)
+		};
 		
 		return styles;
 	};
@@ -479,7 +512,7 @@ ui.positioner = function( o ) {
 				left: styles.left,
 				top: styles.top
 			})
-			.removeClass( "ch-top ch-left ch-down ch-right" )
+			.removeClass( "ch-top ch-left ch-down ch-right ch-down-right ch-top-right" )
 			.addClass( "ch-" + styles.direction );
 	};	
 	
@@ -504,7 +537,6 @@ ui.positioner = function( o ) {
 	    
 	    // Set element position	    
 	    setPosition(o.points);
-	    
     };
     
     // Init
@@ -513,11 +545,11 @@ ui.positioner = function( o ) {
    	ui.utils.window.bind("resize scroll", initPosition);
    	return $(element);
 };
-
 /**
-*	Creates a new Object.
-*  Represent the abstract class of all ui objects.
-*/	
+ *  @class Object. Represent the abstract class of all ui objects.
+ *  @return {object} Object.
+ */	
+
 ui.object = function(){
 	
 	var that = this;
@@ -582,7 +614,7 @@ ui.object = function(){
 		},
 		
 		callbacks: function(conf, when){
-			if(conf.callbacks && conf.callbacks[when]) conf.callbacks[when](conf);
+			if(conf.callbacks && conf.callbacks[when]) conf.callbacks[when](conf.publish);
 		},
         
         publish: { 
@@ -590,31 +622,27 @@ ui.object = function(){
         }
 
 	};
-}
-/**
-*  @static @class Floats. Represent the abstract class of all floats ui objects.
-*  @requires ui.object
-*  @returns {Object} New Floats.
-*/
-ui.floats = function(){
-	var that = ui.object(); // Inheritance	
+}/**
+ *  @class Floats. Represent the abstract class of all floats UI-Objects.
+ *  @requires object.
+ *  @returns {Object} Floats.
+ */
+ 
+ui.floats = function() {
     
-	var clearTimers = function(){
-		clearTimeout(st);
-		clearTimeout(ht);
-	};
+	var that = ui.object(); // Inheritance	
 
-	var createClose = function(conf){
-		$('<p class="btn close">x</p>').bind('click', function(event){
+	var createClose = function(conf) {
+		$('<p class="btn close">x</p>').bind('click', function(event) {
 			that.hide(event, conf);
 		}).prependTo(conf.$htmlContent);
 	};
 
-	var createCone = function(conf){
+	var createCone = function(conf) {
 		$('<div class="cone"></div>').prependTo(conf.$htmlContent);
 	};
 
-	that.show = function(event, conf){
+	that.show = function(event, conf) {
 		that.prevent(event);
 		
 		if(conf.visible) return;
@@ -652,6 +680,35 @@ ui.floats = function(){
 		conf.visible = false;
 		that.callbacks(conf, 'hide');
 	};
+	
+	that.position = function(o, conf){
+		
+		switch(typeof o){
+			case "object":
+				conf.position.context = o.context || conf.position.context;
+				conf.position.points = o.points || conf.position.points;
+				conf.position.offset = o.offset || conf.position.offset;				
+				conf.position.fixed = o.fixed || conf.position.fixed;
+				
+				ui.positioner(conf.position);
+				return conf.publish;
+			break;
+			
+			case "string":
+				if(o!="refresh"){
+					alert("ChicoUI error: position() expected to find \"refresh\" parameter.");
+				};
+				
+				ui.positioner(conf.position);
+				return conf.publish;   			
+			break;
+			
+			case "undefined":
+				return conf.position;
+			break;
+		};
+		
+	};
 
 	return that;
 }
@@ -687,6 +744,366 @@ ui.navs = function(){
 	return that;
 }
 /**
+ *	Controllers
+ *	@author 
+ *	@Contructor
+ *	@return An interface object
+ */
+
+ui.controllers = function(){
+	var that = ui.object(); // Inheritance
+	
+	that.children = [];
+	
+	return that;
+};
+/**
+ *	Field validation Watcher
+ *	@author 
+ *	@Contructor
+ *	@return An interface object
+ */
+
+ui.watcher = function(conf) {
+
+	/**
+	 *  Alerts
+	 *  Configration is needed
+	 */	
+
+    if (!conf) {
+        alert("Watcher fatal error: Need a configuration object to create a validation.");
+    }
+    
+	/**
+	 *  Inheritance
+	 */	
+
+    var that = ui.object();
+
+	/**
+	 *  @ Private methods
+	 */
+    
+	/**
+	 *  Check for instances with the same trigger
+	 */
+	var checkInstance = function(conf) {	
+        var instance = ui.instances.watcher;
+        if (instance&&instance.length>0) {
+            for (var i = 0, j = instance.length; i < j; i ++) {
+                if (instance[i].element === conf.element) {
+            	    // Mergeo Validations
+                    $.extend(instance[i].validations, getValidations(conf));
+            	    // Mergeo Conditions
+                    $.extend(instance[i].conditions, getConditions(conf));
+                    // Merge Messages
+                    $.extend(instance[i].messages, getMessages(conf));
+                    // Merge types
+            	    instance[i].types = mergeTypes(instance[i].types);
+    				return { 
+    				    exists: true, 
+    				    object: instance[i] 
+    			    };
+                }
+            }
+        }
+    };
+    
+    var mergeTypes = function (types) {
+        if (!types || types == "") {
+            return conf.types;
+        } else {
+            var currentTypes = types.split(",");
+            var newTypes = conf.types.split(",");
+            var toMerge = [];
+            // For all new types, check if don't exists
+            var e = 0; g = newTypes.length;
+            for (e; e < g; e++) {
+                if (types.indexOf(newTypes[e]) === -1) {
+                    // If is a new type, pushed to merge it with the currents
+                    toMerge.push(newTypes[e]);
+                }
+            }
+            // If are things to merge, do it.
+            if (toMerge.length > 0) {
+                $.merge(currentTypes, toMerge);
+            }
+            // Return as string
+            return currentTypes.join(",");
+        }    
+    }
+    
+    // Reference: for the Positioner
+    var getReference = function(conf) {
+        var reference;
+        // CHECKBOX, RADIO
+        if ($(conf.element).hasClass("options")) {
+        	// Helper reference from will be fired
+        	// H4
+        	if ($(conf.element).find('h4').length > 0) {
+        		var h4 = $(conf.element).find('h4'); // Find h4
+        			h4.wrapInner('<span>'); // Wrap content with inline element
+        		reference = h4.children(); // Inline element in h4 like helper reference	
+        	// Legend
+        	} else if ($(conf.element).prev().attr('tagName') == 'LEGEND') {
+        		reference = $(conf.element).prev(); // Legend like helper reference
+        	};
+        // INPUT, SELECT, TEXTAREA
+        } else {
+        	reference = $(conf.element);
+        };
+        return reference;
+    }
+    
+	// Get my parent or set it
+	var getParent = function(conf) {
+		if (ui.instances.forms.length > 0) {	
+		  var i = 0, j = ui.instances.forms.length; 
+		  for (i; i < j; i ++) {
+				if (ui.instances.forms[i].element === $(conf.element).parents("form")[0]) {
+					return ui.instances.forms[i]; // Get my parent
+				}
+			};
+		} else {
+			$(conf.element).parents("form").forms();
+			var last = (ui.instances.forms.length - 1);
+			return ui.instances.forms[last]; // Set my parent
+		};
+	}
+    
+    // Collect validations
+    var getValidations = function(conf) {
+        var collection = {};
+        var types = conf.types.split(",");
+        for (var i = 0, j = types.length; i < j; i ++) {
+            for (var val in conf) {
+                if (types[i] == val) {
+                    collection[val] = conf[val];
+                    // TODO: eliminar conf[val]???
+                };
+            };
+        };
+        return collection;
+    };
+
+    // Collect conditions
+    var getConditions = function(conf) {
+        var collection = {};        
+        var types = conf.types.split(",");
+        for (var i = 0, j = types.length; i < j; i ++) {
+            for (var val in conf) {
+                if (types[i] == val) {
+                    collection[val] = conf.conditions[val];
+                    // TODO: eliminar conf[val]???
+                };
+            };
+        };
+        return collection;
+    };
+
+	// Get Messages
+    var getMessages = function(conf) {	
+    	// Configure messages by parameter (conf vs. default messages)
+    	var messages = {};
+    	for (var msg in conf.messages) {
+    	   messages[msg] = conf.messages[msg];
+    	}
+        return messages;
+    };
+
+    // Evaluate Conditions
+    var evaluateConditions = function(condition, conf) {
+        
+        var value = $(conf.element).val();
+        var gotError = true;
+        
+        if (condition.patt) {
+            gotError = /condition.pattern/.test(value)
+        } else if (condition.expr) {
+            //gotError = condition.expr(value);
+        } else if (condition.func) {
+            gotError = eval(condition.func);
+        }
+        
+        return gotError;
+    }
+
+	/**
+	 *  @ Protected Members, Properties and Methods ;)
+	 */	
+    
+    // Status
+	that.status = true;
+	
+	// Types
+	that.types = conf.types;
+	
+	// Reference
+	that.reference = conf.reference = getReference(conf);
+
+	// Parent
+	that.parent = conf.parent = getParent(conf);
+
+	// Validations Map
+	that.validations = getValidations(conf);
+
+	// Conditions Map
+	that.conditions = getConditions(conf);
+
+    // Messages
+    that.messages = getMessages(conf);
+    
+    // Helper
+    that.helper = ui.helper(conf);
+    
+    // Validate Method
+	that.validate = function(conf) {
+		
+		// Pre-validation: Don't validate disabled or not required&empty elements
+		if ($(conf.element).attr('disabled')) { return; };
+		if (that.publish.types.indexOf("required") == -1 && that.isEmpty(conf)) { return; };
+       
+        // Validate each type of validation
+		for (var type in that.validations) {
+			// Status error (stop the flow)
+
+			var condition = that.conditions[type];
+            var value = $(conf.element).val();
+            var gotError = true;
+            
+            if (condition.patt) {
+                gotError = condition.patt.test(value)
+            };
+            
+            if (condition.expr) {
+                gotError = condition.expr((type.indexOf("Length")>-1) ? value.length : value, that.validations[type]);
+            };
+            
+            if (condition.func) {
+                gotError = !that.isEmpty(conf); //condition.func(value);
+            };
+                    
+			if (!gotError) {
+    			// Field error style
+				$(conf.element).addClass("error");
+				// With previous error
+				if (!conf.status) { that.helper.hide(); };
+				// Show helper with message
+				that.helper.show( that.messages[type] ); 
+				// Status false
+				that.publish.status = that.status =  conf.status = false;
+				
+				var revalidate = function() {
+                        that.validate(conf);
+                        that.parent.checkStatus();  // Check everthing?
+			    }
+			    
+				var event = (conf.tag == 'OPTIONS' || conf.tag == 'SELECT') ? "change" : "blur";
+				
+				$(conf.element).one(event, revalidate); // Add blur event only one time
+                    
+                return;
+			};
+        };
+		
+		// Status OK (with previous error)
+		if (!conf.status) {
+		    // Remove field error style
+			$(conf.element).removeClass("error"); 
+            // Hide helper  
+			that.helper.hide();
+			// Public status OK
+			that.publish.status = that.status =  conf.status = true; // Status OK
+			// Remove blur event on status OK
+			$(conf.element).unbind( (conf.tag == 'OPTIONS' || conf.tag == 'SELECT') ? "change" : "blur" );
+		};
+	};
+	
+	// Reset Method
+	that.reset = function(conf) {
+		that.publish.status = that.status = conf.status = true; // Public status OK
+		$(conf.element).removeClass("error");
+		that.helper.hide(); // Hide helper
+		$(conf.element).unbind("blur"); // Remove blur event 
+		
+		that.callbacks(conf, 'reset');
+	};
+	
+	// isEmpty Method
+	that.isEmpty = function(conf) {
+		conf.tag = ($(conf.element).hasClass("options")) ? "OPTIONS" : conf.element.tagName;
+		switch (conf.tag) {
+			case 'OPTIONS':
+				return $(conf.element).find('input:checked').length == 0;
+			break;
+			
+			case 'SELECT':
+			    var val = $(conf.element).val();
+				return val == -1 || val == null;
+			break;
+			
+			case 'INPUT':
+			case 'TEXTAREA':
+				return $.trim( $(conf.element).val() ).length == 0;
+			break;
+		};
+	};
+    
+/**
+ *  Expose propierties and methods
+ */	
+	that.publish = {
+	/**
+	 *  @ Public Properties
+	 */
+    	uid: conf.id,
+		element: conf.element,
+		type: "watcher",
+		types: that.types,
+		status: that.status,
+		reference: that.reference,
+		parent: that.parent,
+		validations: that.validations,
+		conditions: that.conditions,
+		messages: that.messages,
+	/**
+	 *  @ Public Methods
+	 */
+		and: function() {
+		  return $(conf.element);
+		},
+		reset: function() {
+			that.reset(conf);
+    		that.callbacks(conf, 'reset');
+			return that.publish;
+		},
+		validate: function() {
+			that.validate(conf);
+                that.callbacks(conf, 'validate');
+			return that.publish;
+		}
+	};
+
+    // Run the instances checker        
+    // TODO: Maybe is better to check this on top to avoid all the process. 
+    var check = checkInstance(conf);
+    // If a match exists
+    if (check) {
+        // Create a publish object and save the existing object
+        // in the publish object to mantain compatibility
+        var that = {};
+            that.publish = check;        
+        // ;) repleace that object with the repeated instance
+    } else {
+        // this is a new instance: "Come to papa!"
+        that.parent.children.push(that.publish);
+    }
+
+	// return public object
+	return that;
+};
+/**
  *	Carousel
  *	@author
  *	@Contructor
@@ -696,6 +1113,7 @@ ui.navs = function(){
 ui.carousel = function(conf){
 	var that = ui.object(); // Inheritance
 	var status = false;
+	var page = 1;
 
 	// Global configuration
 	conf.$trigger = $(conf.element).addClass('ch-carousel');
@@ -703,7 +1121,7 @@ ui.carousel = function(conf){
     conf.publish = that.publish;
 
 	// UL Width calculator
-	var htmlElementMargin = ($.browser.msie && $.browser.version == '6.0') ? 21 : 20;//IE necesita 1px de mÃ¡s
+	var htmlElementMargin = (ui.utils.html.hasClass("ie6")) ? 21 : 20; // IE needs 1px more
 	var htmlContentWidth = conf.$htmlContent.children().size() * (conf.$htmlContent.children().outerWidth() + htmlElementMargin);
 	
 	// UL configuration
@@ -714,89 +1132,180 @@ ui.carousel = function(conf){
 	// Mask Object	
 	var $mask = conf.$trigger.find('.mask');
 
-	// Steps = (width - marginMask / elementWidth + elementMargin)
+	// Steps = (width - marginMask / elementWidth + elementMargin) 70 = total margin (see css)
 	var steps = ~~( (conf.$trigger.width() - 70) / (conf.$htmlContent.children().outerWidth() + 20));
 		steps = (steps == 0) ? 1 : steps;	
+	var totalPages = Math.ceil(conf.$htmlContent.children().size() / steps);
 
 	// Move to... (steps in pixels)
 	var moveTo = (conf.$htmlContent.children().outerWidth() + 20) * steps;
 
 	// Mask configuration
 	var margin = ($mask.width()-moveTo) / 2;
-	$mask.width( moveTo ).height( conf.$htmlContent.children().outerHeight() );
-	if(conf.arrows != false) $mask.css('marginLeft', margin);
-	
-	var prev = function(event) {
-		if(status) return;//prevButton.css('display') === 'none' limit public movement
-		
-		var htmlContentPosition = conf.$htmlContent.position();
-		
-		status = true;
-		
-		conf.$htmlContent.animate({ left: htmlContentPosition.left + moveTo }, function(){
-			htmlContentPosition = conf.$htmlContent.position();			
-			if(htmlContentPosition.left >= 0) prevButton.hide();
-			nextButton.show();
-			status = false;
-		});
-        
-        // return publish object
-        return conf.publish;
-	}
+	$mask.width( moveTo ).height( conf.$htmlContent.children().outerHeight() + 2 ); // +2 for content with border
+	//if(conf.arrows != false) $mask.css('marginLeft', margin);
 	
 	//En IE6 al htmlContentWidth por algun motivo se le suma el doble del width de un elemento (li) y calcula mal el next()
 	if($.browser.msie && $.browser.version == '6.0') htmlContentWidth = htmlContentWidth - (conf.$htmlContent.children().outerWidth()*2);
 	
-	var next = function(event){
-		if(status) return;//nextButton.css('display') === 'none' limit public movement
+	
+	// Buttons
+	var buttons = {
+		prev: {
+			$element: $('<p class="prev">Previous</p>').bind('click', function(){ move("prev", 1) }).css('top', (conf.$trigger.outerHeight() - 22) / 2), // 22 = button height
+			on: function(){ buttons.prev.$element.addClass("on")/*.bind('click', function(){ move("prev", 1) });*/ },
+			off: function(){ buttons.prev.$element.removeClass("on")/*.unbind('click');*/ }
+		},
+		next: {
+			$element: $('<p class="next">Next</p>').bind('click', function(){ move("next", 1) }).css('top', (conf.$trigger.outerHeight() - 22) / 2), // 22 = button height
+			on: function(){ buttons.next.$element.addClass("on")/*.bind('click', function(){ move("next", 1) });*/ },
+			off: function(){ buttons.next.$element.removeClass("on")/*.unbind('click');*/ }
+		}
+	};
+	
+	// Buttons behavior
+	conf.$trigger.prepend( buttons.prev.$element ).append( buttons.next.$element ); // Append prev and next buttons
+	if (htmlContentWidth > $mask.width()) buttons.next.on(); // Activate Next button if items amount is over carousel size
+	
+	
+	var move = function(direction, distance){
+		var movement;
 		
-		var htmlContentPosition = conf.$htmlContent.position(); // Position before moving
-		
+		switch(direction){
+			case "prev":
+				// Validation
+				if(status || (page - distance) <= 0) return;
+				
+				// Next move
+				page -= distance;
+				
+				// Css object
+				movement = conf.$htmlContent.position().left + (moveTo * distance);
+				
+				// Buttons behavior
+				if(page == 1) buttons.prev.off();
+				buttons.next.on();
+			break;
+			case "next":
+				// Validation
+				if(status || (page + distance) > totalPages) return;
+				
+				// Next move
+				page += distance;
+				
+				// Css object
+				movement = conf.$htmlContent.position().left - (moveTo * distance);
+				
+				// Buttons behavior
+				if(page == totalPages) buttons.next.off();
+				buttons.prev.on();
+			break;
+		};
+				
+		// Status moving
 		status = true;
 		
-		conf.$htmlContent.animate({ left: htmlContentPosition.left - moveTo }, function(){
-			htmlContentPosition = conf.$htmlContent.position(); // Position after moving
-			if(htmlContentPosition.left + htmlContentWidth <= $mask.width()) nextButton.hide();
-			prevButton.show();
+		// Function executed after movement
+		var afterMove = function(){
 			status = false;
-		});		
+			
+			// Pager behavior
+			if (conf.pager) {
+				$(".ch-pager li").removeClass("on");
+				$(".ch-pager li:nth-child(" + page + ")").addClass("on");
+			};
 
-        // return publish object
-        return conf.publish;
-	}
+			// Callbacks
+			that.callbacks(conf, direction);
+		};
+		
+		// Have CSS3 Transitions feature?
+		if (ui.features.transition) {
+			
+			// Css movement
+			conf.$htmlContent.css({ left: movement });
+			
+			// Callback
+			afterMove();
+			
+		// Ok, let JQuery do the magic...
+		} else {
+			conf.$htmlContent.animate({ left: movement }, afterMove);
+		};
+		
+		// Returns publish object
+		return conf.publish;
+	};
 	
-	// Create buttons
-	var prevButton = $('<p>')
-		.html('Previous')
-		.addClass('prev')
-		.bind('click', prev)
-		.hide()
-		.css('top', (conf.$htmlContent.children().outerHeight() - 57) / 2 + 10); // 57 = button height | 10 = box padding top
-
-	var nextButton = $('<p>')
-		.html('Next')
-		.addClass('next')
-		.bind('click', next)
-		.hide()
-		.css('top', (conf.$htmlContent.children().outerHeight() - 57) / 2 + 10); // 57 = button height | 10 = box padding top
+	
+	var select = function(item){
+		var itemPage = ~~(item / steps) + 1; // Page of "item"
+		
+		// Move right
+		if(itemPage > page){
+			move("next", itemPage - page);
+		// Move left
+		}else if(itemPage < page){
+	        move("prev", page - itemPage);
+		};
+		
+		if (conf.pager) {
+			$(".ch-pager li").removeClass("on");
+			$(".ch-pager li:nth-child(" + page + ")").addClass("on");
+		}
+		
+		// Callback
+		that.callbacks(conf, 'select');
+		
+		// return publish object
+	    return conf.publish;
+	};
 	
 	
+	var pager = function(){
+		var list = $("<ul class=\"ch-pager\">");
+		var thumbs = [];
+		
+		// Create each mini thumb
+		for(var i = 1, j = totalPages + 1; i < j; i += 1){
+			thumbs.push("<li>");
+			thumbs.push(i);
+			thumbs.push("</li>");
+		};
+		list.append( thumbs.join("") );
+		
+		// Create pager
+		conf.$trigger.append( list );
+		
+		// Position
+		var pager = $(".ch-pager");
+		var contextWidth = pager.parent().width();
+		var pagerWidth = pager.outerWidth();
+		
+		pager.css('left', (contextWidth - pagerWidth) / 2);
+		
+		// Children functionality
+		pager.children().each(function(i, e){
+			$(e).bind("click", function(){
+				select(i);
+			});
+		});
+	};
 	
-	if (conf.arrows != false) {
-		// Append buttons
-		conf.$trigger.prepend(prevButton).append(nextButton);
-		// Si el ancho del UL es mayor que el de la mascara, muestra next
-		if(htmlContentWidth > $mask.width()){ nextButton.show();}
-	}
-
-    // create the publish object to be returned
-
-        conf.publish.uid = conf.id;
-        conf.publish.element = conf.element;
-        conf.publish.type = "ui.carousel";
-        conf.publish.next = function(){ return next($.Event()); };
-        conf.publish.prev = function(){ return prev($.Event()); };
-
+	// Create pager if it was configured
+	if (conf.pager) pager();
+	
+	
+    // Create the publish object to be returned
+    conf.publish.uid = conf.id;
+    conf.publish.element = conf.element;
+    conf.publish.type = "carousel";
+    conf.publish.getSteps = function() { return steps; };
+    conf.publish.getPage = function() { return page; };
+    conf.publish.select = function(item) { return select(item); };
+    conf.publish.next = function(){ return move("next", 1); };
+    conf.publish.prev = function(){ return move("prev", 1); };
+ 
 	return conf.publish;
 }
 /**
@@ -808,63 +1317,82 @@ ui.carousel = function(conf){
 ui.dropdown = function(conf){
 	var that = ui.navs(); // Inheritance
 
+	var skin;
+	// Primary or secondary behavior
+	if($(conf.element).hasClass("ch-secondary")){
+		$(conf.element).addClass('ch-dropdown');
+		skin = "secondary";
+	}else{
+		$(conf.element).addClass("ch-dropdown ch-primary");
+		skin = "primary";
+	};
+	
 	// Global configuration
-	$(conf.element).addClass('ch-dropdown');
 	conf.$trigger = $(conf.element).children(':first');
-	conf.$htmlContent = conf.$trigger.next().bind('click', function(event){ event.stopPropagation() });
+	conf.$htmlContent = conf.$trigger.next();
     conf.publish = that.publish;
 	
-	// Methods
+	// Private methods
 	var show = function(event){ 
-
         that.show(event, conf);
-
-        // return publish object
-        return conf.publish;  
+        return conf.publish; // Returns publish object
     };
 	
-    var hide = function(event){ 
-
+    var hide = function(event){
+    	// Secondary behavior
+		if(skin == "secondary"){
+			$(conf.element).removeClass("on"); // Container OFF
+		};
         that.hide(event, conf); 
-
-        // return publish object
-        return conf.publish; 
+        return conf.publish; // Returns publish object
     };
     
 	// Trigger
 	conf.$trigger
 		.bind('click', function(event){
-			if(that.status){ that.hide(event, conf); return; };
+			// Toggle
+			if(that.status){
+				hide(event);
+				return;
+			};
 			
 			// Reset all dropdowns
 			$(ui.instances.dropdown).each(function(i, e){ e.hide() });
 			
+			// Show menu
+			conf.$htmlContent.css('z-index', ui.utils.zIndex++);
 			that.show(event, conf);
+			
+			// Secondary behavior
+			if(skin == "secondary"){
+				conf.$trigger.css('z-index', ui.utils.zIndex++); // Z-index of trigger over content
+				$(conf.element).addClass("on"); // Container ON
+			};
 		
 			// Document events
-			$(document).bind('click', function(event){
-				//that.hide(event, conf);
-                hide(event);
-				$(document).unbind('click');
+			ui.utils.document.bind('click', function(event){
+                hide($.Event());
+				ui.utils.document.unbind('click');
 			});
 		})
-		.css('cursor','pointer')
 		.addClass('ch-dropdown-trigger')
-		.append('<span class="down">&raquo;</span>');
+		.append('<span class="ch-down">&raquo;</span>');
+	
 	
 	// Content
 	conf.$htmlContent
+		.bind('click', function(event){ event.stopPropagation() })
 		.addClass('ch-dropdown-content')
-		.css('z-index', ui.utils.zIndex++)
-		.find('a')
-			.bind('click', function(){ hide($.Event()) });
+		// Close when click an option
+		.find('a').bind('click', function(){ hide($.Event()) });
+	
 
-    // create the publish object to be returned
-        conf.publish.uid = conf.id,
-        conf.publish.element = conf.element,
-        conf.publish.type = "ui.dropdown",
-        conf.publish.show = function(event){ return show(event, conf) },
-        conf.publish.hide = function(event){ return hide(event, conf) }
+    // Create the publish object to be returned
+    conf.publish.uid = conf.id;
+    conf.publish.element = conf.element;
+    conf.publish.type = "dropdown";
+    conf.publish.show = function(){ return show($.Event()) };
+    conf.publish.hide = function(){ return hide($.Event()) };
 
 	return conf.publish;
 
@@ -876,8 +1404,17 @@ ui.dropdown = function(conf){
  *	@return An interface object
  */
 
-ui.layer = function(conf){
+ui.layer = function(conf) {
+    
 	var that = ui.floats(); // Inheritance
+
+    var showTime = conf.showTime || 300;
+    var hideTime = conf.hideTime || 300;
+    
+	var st, ht; // showTimer and hideTimer
+	var showTimer = function(event){ st = setTimeout(function(){ show(event) }, showTime) };
+	var hideTimer = function(event){ ht = setTimeout(function(){ hide(event) }, hideTime) };
+	var clearTimers = function(){ clearTimeout(st); clearTimeout(ht); };
 
 	// Global configuration
 	conf.$trigger = $(conf.element);
@@ -886,87 +1423,73 @@ ui.layer = function(conf){
 	conf.visible = false;	
 	conf.position = {
    		context: conf.$trigger,
-        offset: "0 10",
-		points: "lt lb"
+        offset: conf.offset || "0 10",
+		points: conf.points || "lt lb"
     }
     conf.publish = that.publish;
 
-
     var show = function(event) {
-        
         that.show(event, conf);				
 
         if (conf.event === "click") {
             
             $('.ch-layer').bind('click', function(event){ event.stopPropagation() });
-								
+	
             // Document events
-            $(document).bind('click', function(event){
+            $(document).bind('click', function(event) {
                 that.hide(event, conf);
                 $(document).unbind('click');
             });
         }
-
-        // return publish object
-        return conf.publish;    
+        
+        return conf.publish; // Returns publish object
     }
 
     var hide = function(event) {
-        
         that.hide(event, conf);
-        
-        // return publish object
-        return conf.publish;
+        return conf.publish; // Returns publish object
     }
-    
-    var position = function(event){
-		ui.positioner(conf.position);
-		
-		return conf.publish;
-	}
 
 	// Click
-	if(conf.event === 'click'){
+	if(conf.event === 'click') {
 		// Local configuration
 		conf.closeButton = true;
 
 		// Trigger events
 		conf.$trigger
 			.css('cursor', 'pointer')
-			.bind('click',show);
+			.bind('click', show);
 
 	// Hover
-	}else{
+	} else {
 		// Trigger events
 		conf.$trigger
 			.css('cursor', 'default')
-			.bind('mouseover', show)
-			.bind('mouseout', hide);
+			.bind('mouseover', showTimer)
+			.bind('mouseout', hideTimer);
 	};
 
-    // create the publish object to be returned
-
-        conf.publish.uid = conf.id,
-        conf.publish.element = conf.element,
-        conf.publish.type = "ui.layer",
-        conf.publish.content = (conf.content) ? conf.content : conf.ajax,
-        conf.publish.show = function(event){ return show(event, conf) },
-        conf.publish.hide = function(event){ return hide(event, conf) },
-        conf.publish.position = function(event){return position(event) }
+    // Create the publish object to be returned
+    conf.publish.uid = conf.id;
+    conf.publish.element = conf.element;
+    conf.publish.type = "layer";
+    conf.publish.content = (conf.content) ? conf.content : conf.ajax;
+    conf.publish.show = function(){ return show($.Event()) };
+    conf.publish.hide = function(){ return hide($.Event()) };
+    conf.publish.position = function(o){ return that.position(o, conf) };
 
 	return conf.publish;
-    
+
 };
 /**
- *	Modal window
- *	@author
- *	@Contructor
- *	@return An interface object
+ *	@class Modal. Create and manage modal windows
+ *  @requires: floats.
+ *	@return Public Object.
  */
 
 ui.modal = function(conf){
 	var that = ui.floats(); // Inheritance
-	
+
 	// Global configuration
 	conf.$trigger = $(conf.element);
 	conf.closeButton = true;
@@ -974,47 +1497,38 @@ ui.modal = function(conf){
 	conf.position = {
 		fixed:true
 	};
+	if( !conf.hasOwnProperty("ajax") && !conf.hasOwnProperty("content") ) conf.ajax = true; //Default
+
 	conf.publish = that.publish;
-			
 	
-	// Methods Privates
+	// Privated methods
 	var show = function(event){
 		dimmer.on();
 		that.show(event, conf);
 		$('.ch-modal .btn.close, .closeModal').bind('click', hide);
 		conf.$trigger.blur();
-        
-        // return publish object
-        return conf.publish;        
+
+        return conf.publish; // Returns publish object
 	};
 
 	var hide = function(event){
 		dimmer.off();
 		that.hide(event, conf);
-
-        // return publish object
-        return conf.publish;
+        return conf.publish; // Returns publish object
 	};
 	
-	var position = function(event){
+	var position = function(){
 		ui.positioner(conf.position);
-		
-		// return publish object
-		return conf.publish;
+		return conf.publish; // Returns publish object
 	}
+
 
 	// Dimmer
 	var dimmer = {
-		on:function(){
+		on: function(){ //TODO: posicionar el dimmer con el positioner
 			$('<div>').bind('click', hide).addClass('ch-dimmer').css({height:$(window).height(), display:'block', zIndex:ui.utils.zIndex++}).hide().appendTo('body').fadeIn();
-			/*ui.positioner({
-				element: $('.ch-dimmer'),
-				fixed: true,
-				points: 'lt lt'
-			});*/
-			//$('.ch-dimmer').fadeIn();
 		},
-		off:function(){
+		off: function(){
 			$('div.ch-dimmer').fadeOut('normal', function(){ $(this).remove(); });
 		}
 	};
@@ -1024,18 +1538,18 @@ ui.modal = function(conf){
 	conf.$trigger
 		.css('cursor', 'pointer')
 		.bind('click', show);
-		
-        // create the publish object to be returned
-        conf.publish.uid = conf.id,
-        conf.publish.element = conf.element,
-        conf.publish.type = "ui.modal",
-        conf.publish.content = (conf.content) ? conf.content : ((conf.ajax === true) ? (conf.$trigger.attr('href') || conf.$trigger.parents('form').attr('action')) : conf.ajax),
-        conf.publish.show = function(event){ return show(event) },
-        conf.publish.hide = function(event){ return hide(event) },
-        conf.publish.position = function(event){return position(event) }
+	
+	
+    // Create the publish object to be returned
+    conf.publish.uid = conf.id;
+    conf.publish.element = conf.element;
+    conf.publish.type = "modal";
+    conf.publish.content = (conf.content) ? conf.content : ((conf.ajax === true) ? (conf.$trigger.attr('href') || conf.$trigger.parents('form').attr('action')) : conf.ajax);
+    conf.publish.show = function(){ return show($.Event()) };
+    conf.publish.hide = function(){ return hide($.Event()) };
+    conf.publish.position = function(o){ return that.position(o, conf) };
 
 	return conf.publish;
-
 };
 /**
  *	Tabs Navigator
@@ -1046,13 +1560,12 @@ ui.modal = function(conf){
 
 ui.tabNavigator = function(conf){
 
-    var that = ui.object();
+    var that = ui.controllers();
     
     conf.publish = that.publish;
 
 	var $triggers = $(conf.element).children(':first').find('a');
 	var $htmlContent = $(conf.element).children(':first').next();
-	var instances = [];
 
 	// Global configuration
 	$(conf.element).addClass('ch-tabNavigator');
@@ -1062,14 +1575,14 @@ ui.tabNavigator = function(conf){
 
 	// Starts (Mother is pregnant, and her children born)
 	$.each($triggers, function(i, e){
-		instances.push(ui.tab(i, e, conf));
+		that.children.push(ui.tab(i, e, conf));
 	});
     
-    // TODO: Normalizar las nomenclaturas de mÃ©todos, "show" deberÃ­a ser "select"
+    // TODO: Normalizar las nomenclaturas de métodos, "show" debería ser "select"
 	var show = function(event, tab){
 		//ui.instances.tabNavigator[conf.instance].tabs[tab].shoot(event);
 		        
-        instances[tab].shoot(event);
+        that.children[tab].shoot(event);
         
         /* The potato is ready!!
 		Use this to execute a specific tab on console (on h1 click)
@@ -1082,14 +1595,17 @@ ui.tabNavigator = function(conf){
 	};
     
     // create the publish object to be returned
-
-        conf.publish.uid = conf.id,
-        conf.publish.element = conf.element,
-        conf.publish.type = "ui.tabNavigator",
-        conf.publish.tabs = instances,
-        conf.publish.select = function(tab){ return show($.Event(), tab) }
+	conf.publish.uid = conf.id;
+	conf.publish.element = conf.element;
+	conf.publish.type = "tabNavigator";
+	conf.publish.tabs = that.children;
+	conf.publish.select = function(tab){ return show($.Event(), tab) };
     
+    //Default: Open first tab in any case.
+	show($.Event(), 0);
+	
 	return conf.publish;
+	
 };
 
 
@@ -1130,19 +1646,14 @@ ui.tab = function(index, element, conf){
 	};
 	that.conf.$htmlContent = results();
 
-	// Open first tab by default
-	if(index == 0){
-		that.status = true;
-		that.conf.$trigger.addClass('on');
-	};
-
 	// Hide all closed tabs
 	if(!that.status) that.conf.$htmlContent.hide();
 
 	// Process show event
 	that.shoot = function(event){
 		that.prevent(event);
-		var tabs = ui.instances.tabNavigator[conf.id].tabs; // All my bros
+        
+		var tabs = conf.publish.tabs; //ui.instances.tabNavigator[conf.id].tabs; // All my bros
 		if(tabs[index].status) return; // Don't click me if I'm open
 
 		// Hide my open bro
@@ -1158,11 +1669,11 @@ ui.tab = function(index, element, conf){
 	};
 
 	// Events
-	that.conf.$trigger.bind('click', that.shoot);
+	that.conf.$trigger.bind('click', that.shoot);		
+
 
 	return that;
-}
-/**
+}/**
  *	Tooltip
  *	@author 
  *	@Contructor
@@ -1173,10 +1684,9 @@ ui.tab = function(index, element, conf){
 ui.tooltip = function(conf){
 	var that = ui.floats(); // Inheritance
 
-	conf.name = 'tooltip';
 	conf.cone = true;
 	conf.content = conf.element.title;	
-	conf.visible = false;   	
+	conf.visible = false;
    	conf.position = {
    		context: $(conf.element),
         offset: "0 10",
@@ -1188,22 +1698,18 @@ ui.tooltip = function(conf){
         $(conf.element).attr('title', ''); // IE8 remembers the attribute even when is removed, so ... empty the attribute to fix the bug.
 		that.show(event, conf);
         
-        // return publish object
-        return conf.publish;  
+        return conf.publish; // Returns publish object
     }
 	
     var hide = function(event) {
 		$(conf.element).attr('title', conf.content);
 		that.hide(event, conf);
-
-        // return publish object
-        return conf.publish;
+        return conf.publish; // Returns publish object
     }
     
     var position = function(event){
 		ui.positioner(conf.position);
-		
-		return conf.publish;
+		return conf.publish; // Returns publish object
 	}
             	
 	conf.$trigger = $(conf.element)
@@ -1211,229 +1717,306 @@ ui.tooltip = function(conf){
 		.bind('mouseenter', show)
 		.bind('mouseleave', hide);
     
-    // create the publish object to be returned
-
-        conf.publish.uid = conf.id,
-        conf.publish.element = conf.element,
-        conf.publish.type = "ui.tooltip",
-        conf.publish.content = conf.content,
-        conf.publish.show = function(event){ return show(event, conf) },
-        conf.publish.hide = function(event){ return hide(event, conf) },
-        conf.publish.position = function(event){return position(event) }
+    // Create the publish object to be returned
+    conf.publish.uid = conf.id;
+    conf.publish.element = conf.element;
+    conf.publish.type = "tooltip";
+    conf.publish.content = conf.content;
+    conf.publish.show = function(){ return show($.Event()) };
+    conf.publish.hide = function(){ return hide($.Event()) };
+    conf.publish.position = function(o){ return that.position(o, conf) };
         
 	return that.publish;
 };
 /**
- *	Validator
- *	@author 
+ *	@Interface String validations
+ *	@return An interface object
+ */
+
+ui.string = function(conf) {
+
+    /**
+	 *  Override Watcher Configuration
+	 */
+	// Add validation types
+	conf.types = "text,email,url,minLength,maxLength";
+	// Redefine Helper's reference;
+	conf.reference = $(conf.element);
+	// Conditions map TODO: uppercase, lowercase, varchar
+	/*
+           Awful performance!!!!!!
+	       TODO: The regex object process all conditions, we need to refactor this pattern
+              validation {
+                  pattern: /w/
+              };
+              validation {
+                  expresion: {
+                      value1: value.length,
+                      operator: >=,
+                      value2: parseInt(conf.minLength)   
+                  }
+              };
+	
+	conf.checkConditions = function(type){
+		var value = $(conf.element).val();
+		var regex = {
+			text:		(/^([a-zA-Z\s]+)$/m).test(value),
+			email:		(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i).test(value),
+//			url:		(/^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([\w]+)(.[\w]+){1,2}$/).test(value), 
+			url:        (/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/).test(value),
+			minLength:	value.length >= parseInt(that.validations.minLength),
+			maxLength:	value.length <= parseInt(that.validations.maxLength)
+		};
+		return regex[type];
+	};*/
+	
+    conf.conditions = {
+        text:       { patt: /^([a-zA-Z\s]+)$/ },
+        email:      { patt: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/ },
+        url:        { patt: /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ },
+        minLength:  { expr: function(a,b) { return a >= b } },
+        maxLength:  { expr: function(a,b) { return a <= b } }
+    }
+	
+    // Messages
+	conf.defaultMessages = {
+		text:		"Usa sólo letras.",
+		email:		"Usa el formato nombre@ejemplo.com.",
+		url:		"Usa el formato http://www.sitio.com.",
+		minLength:	"Ingresa al menos " + conf.minLength + " caracteres.",
+		maxLength:	"El máximo de caracteres es " + conf.maxLength + "."
+	};
+	
+	conf.messages = {}
+	
+    var types = conf.types.split(",");
+	for (var i = 0, j = types.length; i < j; i ++) {
+		for (var val in conf) {
+			if (types[i] == val) {
+				conf.messages[val] = conf.defaultMessages[val];
+			};
+		};
+	};
+	
+    /**
+	 *  Extend Watcher
+	 */
+	var that = ui.watcher(conf);
+
+    /**
+	 *  Public Object
+	 */
+    return that.publish;
+};
+
+
+/**
+ *	@Interface Email validations
+ *	@return An interface object
+ */
+ 
+ui.email = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.email = true;
+
+    return ui.string(conf);
+    
+}
+
+ui.factory({ component: 'email' });
+
+/**
+ *	@Interface URL validations
+ *	@return An interface object
+ */
+ 
+ui.url = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.url = true;
+
+    return ui.string(conf);
+    
+}
+
+ui.factory({ component: 'url' });
+
+/**
+ *	@Interface MinLength validations
+ *	@return An interface object
+ */
+ 
+ui.minLength = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.minLength = conf.value;
+
+    return ui.string(conf);
+    
+}
+
+ui.factory({ component: 'minLength' });
+
+/**
+ *	@Interface MaxLength validations
+ *	@return An interface object
+ */
+ 
+ui.maxLength = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.maxLength = conf.value;
+
+    return ui.string(conf);
+    
+}
+
+ui.factory({ component: 'maxLength' });
+/**
+ *	Number validations
+ *	@author
  *	@Contructor
  *	@return An interface object
  */
 
-ui.validator = function(conf){
-	var that = ui.object(); // Inheritance
-	var validation = true;
-	var watchers = [];
+ui.number = function(conf){
 	
-	// Reset default events
-	$(conf.element).bind('submit', function(event){ that.prevent(event); });
-	$(conf.element).find('input[type=submit]').unbind('click'); // Delete all click handlers asociated to submit button
-	
-	// Watcher constructor
-	var Watcher = function(wconf){
-
-		// Checkbox and radio button special config
-		if(wconf.$element.hasClass('options')){
-			wconf.tag = 'OPTIONS';
-			if(wconf.$element.hasClass('required')){
-			
-				var getInlineTrigger = function(){
-					var h4 = wconf.$element.find('h4');
-					h4.wrapInner('<span>');
-					return h4.children();
-				};
-				
-				wconf.$element = ( // Required trigger (h4 or legend or element -helper will be fire from here-)
-					( (wconf.$element.find('h4').length > 0) ? getInlineTrigger() : false ) || // if exists H4, get H4
-					( (wconf.$element.prev().attr('tagName') == 'LEGEND') ? wconf.$element.prev() : false ) || // if previous element is a legend tag, get previous element
-					wconf.$element // element
-				);
-				
-			};
-		
-			// TODO: en el blur de los options tienen que validar que este ok
-		
-		// Input, select, textarea
-		}else{
-			wconf.$element.bind('blur', function(event){
-				wconf.event = event;
-				watchers[wconf.id].status = validate(wconf);
-			});
+    /**
+	 *  Override Watcher Configuration
+	 */
+	// Validation types
+	conf.types = "number,min,max";
+	// Helper
+	conf.reference = $(conf.element);
+	// Conditions map TODO: float
+	/*conf.checkConditions = function(type){
+		var value = $(conf.element).val();
+		var regex = {
+			number:	!isNaN(value), // value.match(/^\d+$/m),
+			min:	value >= parseInt(that.validations.min),
+			max:	value <= parseInt(that.validations.max)
 		};
+		return regex[type];
+	};*/
+	
+    conf.conditions = {
+        number: { patt: /^\d+$/ },
+        min:    { expr: function(a,b) { return a >= b } },
+        max:    { expr: function(a,b) { return a <= b } }
+    };
     
-		return { 
-			status: true, 
-			helper: ui.helper( wconf ),
-			element: wconf.$element[0],
-			validate: function(){ validate(wconf) }
-		};
- 	};
-	
-	// Validate
-	var validations = function(method, wconf){
-		var value = wconf.$element.val();
-		
-		switch(method){
-			case 'text':		return value.match(/^([a-zA-Z\s]+)$/m); break;
-			case 'number':		return !isNaN(value);/*value.match(/^\d+$/m);*/ break;
-			case 'email':		return value.match(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i); break;
-			case 'url':			return value.match(/^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([\w]+)(.[\w]+){1,2}$/); break;
-			case 'range':		return validations('number', wconf) && validations('min', wconf) && validations('max', wconf); break;
-			case 'required':	return (wconf.tag == 'SELECT') ? value != -1 : $.trim(value).length > 0; break; // Select vs. input, options, textarea
-			case 'min':			return value >= parseInt(wconf.$element.attr('min')); break;
-			case 'max':			return value <= parseInt(wconf.$element.attr('max')); break;
-			case 'minLength':	return value.length >= parseInt(wconf.messages.minLength[0]); break;
-			case 'maxLength':	return value.length <= parseInt(wconf.messages.maxLength[0]); break;
-		};
+    // Messages
+	conf.defaultMessages = {
+		number:	"Usa sólo números.",
+		min:	"La cantidad mínima es " + conf.min + ".",
+		max:	"La cantidad máxima es " + conf.max + "."
 	};
 	
-	var validate = function(wconf){ // TODO: onBlur, si sigue con error tiene que validar otra vez
-		var helper = watchers[wconf.id].helper;
-
-		// Each validation
-		for(var x in wconf.messages){
-			// Don't validate disabled elements
-			if(wconf.$element.parents('label').hasClass('disabled') && wconf.$element.attr('disabled')) break;
-			
-			// Don't validate not required elements (Si no es obligatorio y el campo esta vacio, esta todo ok)
-			if(!wconf.$element.parents('label').hasClass('required') && !validations('required', wconf)) break;
-			
-			// Status error (cut the flow)
-			if(!validations(x, wconf)){
-				// Executed on Blur
-				if(wconf.event.type == 'blur') return false;
-				
-				// Executed on Submit
-				wconf.$element.addClass('error');
-				if($('.helper' + wconf.id)) helper.hide(); // TODO: refactor del hide del helper
-				// Show helper (min/maxLength message vs. normal message)
-				if(x == 'minLength' || x == 'maxLength') helper.show(wconf.messages[x][1]); else helper.show(wconf.messages[x]);
-				return false;
+	conf.messages = {}
+	
+    var types = conf.types.split(",");
+	for (var i = 0, j = types.length; i < j; i ++) {
+		for (var val in conf) {
+			if (types[i] == val) {
+				conf.messages[val] = conf.defaultMessages[val];
 			};
 		};
-		
-		// Status ok
-		// With previous error...
-		if(wconf.$element.hasClass('error')){ helper.hide(); wconf.$element.removeClass('error'); };
-		
-		// Executed on Submit
-		if(wconf.event.type === 'submit') return true;
-		
-		// Executed on Blur (General error checker)
-		validation = true; // Reset general status
-		$.each(watchers, function(i, e){ if(i != wconf.id && !e.status) validation = false }); // Check each watcher status except current watcher, because this time it's true
-		if(validation) removeValidation(); // Remove top helper if no errors
-		return true;
 	};
 	
-	// Remove big helper
-	var removeValidation = function(){
-		$('.ch-validator').fadeOut('fast', function(){ $(this).remove(); });
-		$('.ch-helper').each(function(i,e){ $(e).css('top', parseInt($(e).css('top')) - $('.ch-validator').height() - 20); }); // TODO: temp solution
-	};
-
-	// Form events
-	$(conf.element).bind('submit', function(event){
-		that.prevent(event);
-		
-		// Reset form status
-		if(!validation){ removeValidation(); validation = true; };
-		
-		// Validate each field
-		var index = 0;
-		for(var x in conf.fields){
-			var helper = watchers[index].helper;
-			
-			// Input, select, textarea
-			if(!$(x).hasClass('options')){
-				// Watcher configuration
-				var wconf = {
-					id: index,
-					$element: $(x),
-					tag: $(x).attr('tagName'),
-					messages: conf.fields[x],
-					event: event
-				};
-				
-				// Error
-				if(!validate(wconf)){					
-					watchers[index].status = false;
-					validation = false;
-				// Ok (clean field error)
-				}else{
-					$(x).removeClass('error');
-					helper.hide();
-				};
-			
-			// Checkbox, Radio button (Options)
-			}else{
-				// Error
-				if($(x).find('input:checked').length === 0){
-					if($('.helper' + index)) helper.hide(); // TODO: refactor del hide del helper
-					helper.show(conf.fields[x]['required']);
-					watchers[index].status = false;
-					validation = false;
-				// Ok (clean field error)
-				}else{
-					helper.hide();
-				};
-			};
-			
-			// Increase index
-			index ++;
-		};
-		
-		// General error
-		if(!validation){
-			$(conf.element).before('<p class="ch-validator"><span class="ico error">Error: </span>' + conf.defaults.error + '</p>');
-			$('.ch-helper').each(function(i,e){ $(e).css('top', parseInt($(e).css('top')) + $('.ch-validator').height() + 20); }); // TODO: temp solution
-		// General ok
-		}else{
-			removeValidation();
-			// Callback vs. submit
-			if(conf.callbacks && conf.callbacks.submit) conf.callbacks.submit(); else conf.element.submit();
-		};
-	});
-
+    /**
+	 *  Extend Watcher
+	 */
+ 	var that = ui.watcher(conf);
 	
-	// Create each Watcher
-	for(var x in conf.fields){
-		var wconf = {
-			id: watchers.length, // because length is: 0, 1, 2, 3...
-			$element: $(x),
-			tag: $(x).attr('tagName'), // INPUT, SELECT, TEXTAREA, OPTIONS
-			messages: conf.fields[x]
-		};
-
-		watchers.push( Watcher( wconf ) );
-	};
-
-	
-    // create the publish object to be returned
-
-    that.publish = {
-        uid: conf.id,
-        element: conf.element,
-        type: "ui.validator",
-        fields: watchers,
-        validate: function(event){ validate() }
-    }
-    
-    return that.publish;
-
+    /**
+	 *  Public Object
+	 */
+	return that.publish;
 };
 
 
+/**
+ *	@Interface Min validations
+ *	@return An interface object
+ */
+ 
+ui.min = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.min = conf.value;
+
+    return ui.number(conf);
+    
+}
+
+ui.factory({ component: 'min' });
+
+/**
+ *	@Interface Max validations
+ *	@return An interface object
+ */
+ 
+ui.max = function(conf) {
+    
+    conf = conf || {};
+    
+    conf.max = conf.value;
+
+    return ui.number(conf);
+    
+}
+
+ui.factory({ component: 'max' });
+
+/**
+ *	Required validations
+ *  @Extends Watcher
+ *	@Interface
+ */
+
+ui.required = function(conf){
+
+    /**
+	 *  Override Watcher Configuration
+	 */
+	// Define the validation interface    
+    conf.required = true;
+	// Add validation types
+	conf.types = "required";
+    // Define the conditions of this interface
+	// Conditions absorvs that.isEmpty in checkConditions for compatibility
+	/*conf.checkConditions = function(type) { // We recibe "type" arguemnt, but we don't care
+		return !that.isEmpty(conf);
+	}
+    */
+    conf.conditions = {
+        required: { func:'!that.isEmpty'}
+    }
+    
+	// Messages
+	conf.messages = {
+		required: "Campo requerido."
+	};	
+	
+    // Process Messages
+//    if (that.messages) that.messages = that.processMessages(conf);
+	
+    /**
+	 *  Extend Watcher
+	 */
+ 	var that = ui.watcher(conf);
+
+    /**
+	 *  Public Object
+	 */
+	return that.publish;
+};
 /**
  *	Helper
  *	@author
@@ -1441,35 +2024,357 @@ ui.validator = function(conf){
  *	@return An interface object
  */
 
-ui.helper = function(wconf){
+ui.helper = function(conf){
 	var that = ui.floats(); // Inheritance
 
 	// Global configuration
-	var conf = {
-		name: 'helper',
-        $trigger: wconf.$element,
-		cone: true,
-		classes: 'helper' + wconf.id,
-		visible: false,
-		position: {
-	   		context: wconf.$element,
-	        offset: "15 0",
-			points: "lt rt"
-	    }
-	};
-	
+	var _conf = {};
+	_conf.name = "helper";
+	_conf.$trigger = $(conf.element);
+	_conf.cone = true;
+	_conf.classes = "helper" + conf.id;
+	_conf.visible = false;
+	_conf.position = {};
+	_conf.position.context = conf.reference;
+	_conf.position.offset = "15 0";
+	_conf.position.points = "lt rt";
+
 	var hide = function(){
-		$('.helper' + wconf.id).remove();
-		conf.visible = false;
+		$('.helper' + conf.id).remove();
+		_conf.visible = false;
 		that.callbacks(conf, 'hide');
 	};
 	
 	var show = function(text){
-		conf.content = '<p><span class="ico error">Error: </span>' + text + '</p>';		
-		that.show($.Event(), conf);
+		_conf.content = '<p><span class="ico error">Error: </span>' + text + '</p>';		
+		that.show($.Event(), _conf);
 	};
 
 	return { show: function(text){ show(text) }, hide: hide };
+};
+/**
+ *	Form Controller
+ *	@author
+ *	@Contructor
+ *	@return An interface object
+ */
+
+/*
+
+conf:{
+	[ messages ]: "algo que pisa lo de andentro",
+	[ callbacks ]: {
+		[ submit ]: function,
+		[ clear ]: function
+	},
+}
+*/
+
+ui.forms = function(conf){
+    
+	// Validation
+	// Are there action and submit type?
+	if ($(conf.element).find(":submit").length == 0 || $(conf.element).attr('action') == "" ){ 
+		 alert("Forms fatal error: The <input type=submit> is missing, or need to define a action attribute on the form tag.");
+		 return;
+	};
+	
+	if (ui.instances.forms) {
+	
+	if(ui.instances.forms.length > 0){ // Is there forms in map instances?
+		for(var i = 0, j = ui.instances.forms.length; i < j; i ++){
+			if(ui.instances.forms[i].element === conf.element){
+				return { 
+                    exists: true, 
+                    object: ui.instances.forms[i]
+                };
+			};
+		};
+	};
+	}
+	
+	// Start new forms
+	var that = ui.controllers(); // Inheritance
+	var status = false;
+
+	// patch exists because the components need a trigger
+	$(conf.element).bind('submit', function(event){ that.prevent(event); });
+	$(conf.element).find(":submit").unbind('click'); // Delete all click handlers asociated to submit button >NATAN: Why?
+
+	// Create the Messages for General Error
+	if (!conf.messages) conf.messages = {};
+	conf.messages["general"] = conf.messages["general"] || "Revisa los datos, por favor.";	
+
+
+	// General Error	
+	var createError = function(){ // Create
+		$(conf.element).before('<p class="ch-validator"><span class="ico error">Error: </span>' + conf.messages["general"] + '</p>');
+	};
+	var removeError = function(){ // Remove
+		$('.ch-validator').remove();
+	};
+
+
+	// Publics Methods
+	var checkStatus = function(){
+		// Check status of my childrens
+		for(var i = 0, j = that.children.length; i < j; i ++){
+			// Status error (cut the flow)
+			if( !that.children[i].status ){				
+				if (!status) removeError();				
+				createError();
+				status = false;
+				return;
+			};
+		};
+		
+		// Status OK (with previous error)
+		if (!status) {
+			removeError();
+			status = true;
+		};
+	};
+	
+	var validate = function(event){
+		that.prevent(event);
+		
+		// Shoot validations
+		for(var i = 0, j = that.children.length; i < j; i ++){
+			that.children[i].validate();
+		};
+		
+		checkStatus();
+		
+		return conf.publish; // Return publish object
+	};
+
+
+	var submit = function(event){
+		that.prevent(event);
+		validate(event); // Validate start
+		if (status){ // Status OK	
+			if(conf.callbacks && conf.callbacks.submit) conf.callbacks.submit();
+			conf.element.submit();
+		};		
+		return conf.publish; // Return publish object
+	};
+
+
+	var clear = function(event){		
+		that.prevent(event);		
+		conf.element.reset(); // Reset html form
+		removeError();	
+		for(var i = 0, j = that.children.length; i < j; i ++) that.children[i].reset(); // Reset helpers		
+		return conf.publish; // Return publish object
+	};
+
+
+
+	// Bind the submit
+	$(conf.element).bind('submit', function(event){
+		that.prevent(event);
+		submit(event);
+	});
+	
+	// Bind the reset
+	$(conf.element).find(":reset, .resetForm").bind('click', clear);
+	
+    // create the publish object to be returned
+    conf.publish = {
+        uid: conf.id,
+        element: conf.element,
+        type: "forms",
+        children: that.children,
+		validate: function(event){ return validate(event) },
+		checkStatus: function(event){ return checkStatus(event) },
+		submit: function(event){ return submit(event) },
+		clear: function(event){ return clear(event) }
+    }
+
+	return conf.publish;
+};/**
+ *	Viewer
+ *	@author
+ *	@Contructor
+ *	@return An interface object
+ */
+ui.viewer = function(conf){
+	var that = ui.controllers(); // Inheritance
+	
+	/**
+	 * 	Viewer
+	 */
+	var $viewer = $(conf.element);
+	$viewer.addClass("ch-viewer"); // Create magnifying glass
+
+	/**
+	 * 	Modal of Viewer
+	 */
+	var viewerModal = {};
+	viewerModal.carouselStruct = $(conf.element).find("ul").clone().addClass("carousel");	
+	viewerModal.carouselStruct.find("img").each(function(i, e){
+		$(e).attr("src", $(e).parent().attr("href")) // Image source change
+			.unwrap(); // Link deletion
+	});
+	viewerModal.showContent = function(){
+		$(".ch-viewer-modal-content").parent().addClass("ch-viewer-modal");
+		$(".ch-viewer-modal-content").html( viewerModal.carouselStruct );
+		that.children[2] = viewerModal.carousel = $(".ch-viewer-modal-content").carousel({ pager: true });
+		$(".ch-viewer-modal-content .ch-carousel-content").css("left",0); // Reset position
+		viewerModal.carousel.select(thumbnails.selected);
+		viewerModal.modal.position();
+	};
+	viewerModal.hideContent = function(){
+		$("ch-viewer-modal").remove();
+		
+		viewerModal.carouselStruct.css("left", "0"); // Reset left of carousel in modal
+		
+		for(var i = 0, j = ui.instances.carousel.length; i < j; i += 1){ // TODO pasar al object			
+			if(ui.instances.carousel[i].element === viewerModal.carousel.element){
+				ui.instances.carousel.splice(i, 1);
+				return;
+			} 
+		};		
+	};
+	that.children[1] = viewerModal.modal = $("<a>").modal({ //TODO iniciar componentes sin trigger
+		content: "<div class=\"ch-viewer-modal-content\">",
+		callbacks: {
+			show: viewerModal.showContent,
+			hide: viewerModal.hideContent
+		}
+	});
+		
+	
+	/**
+	 * 	Showcase
+	 */
+	var showcase = {};
+	showcase.wrapper = $("<div>").addClass("ch-viewer-display");
+	showcase.display = $(conf.element).children(":first");
+	$viewer.append( showcase.wrapper.append( showcase.display ).append("<div class=\"ch-lens\">") );
+	
+	showcase.children = showcase.display.find("a");
+	showcase.itemWidth = $(showcase.children[0]).parent().outerWidth();
+	
+	showcase.lens = $viewer.find(".ch-lens") // Get magnifying glass
+	ui.positioner({
+        element: $(showcase.lens),
+        context: $(".ch-viewer li"),
+        offset: "-20px 0"
+	});	
+	showcase.lens.bind("click", function(event){
+		viewerModal.modal.show();
+	});
+	
+	showcase.wrapper
+		// Show magnifying glass
+		.bind("mouseover", function(){
+			showcase.lens.fadeIn(400);
+		})
+		// Hide magnifying glass
+		.bind("mouseleave", function(){
+			showcase.lens.fadeOut(400);
+		});
+	
+	// Set content visual config
+	showcase.display
+		.css('width', showcase.children.length * showcase.itemWidth)
+		.addClass("ch-viewer-content")
+		
+	
+	// Showcase functionality
+	showcase.children.bind("click", function(event){
+		that.prevent(event);
+		viewerModal.modal.show();
+	});
+	
+	
+	/**
+	 * 	Thumbnails
+	 */
+	var thumbnails = {};
+	thumbnails.selected = 0;
+	thumbnails.wrapper = $("<div>").addClass("ch-viewer-triggers");
+	
+	// Create carousel structure
+	$viewer.append( thumbnails.wrapper.append( $viewer.find("ul").clone().addClass("carousel") ) );
+		 
+	thumbnails.children = thumbnails.wrapper.find("a");
+	
+	// Thumbnails behavior
+	thumbnails.children.find("img").each(function(i, e){
+		// Change image parameter (thumbnail size)
+		$(e).attr("src", $(e).attr("src").replace("v=V", "v=M"));
+		
+		// Thumbnail link click
+		$(e).parent().bind("click", function(event){
+			that.prevent(event);
+			select(i);
+		});
+	});
+	// Inits carousel
+	that.children[0] = thumbnails.carousel = thumbnails.wrapper.carousel();
+	
+	
+	/**
+	 * 	Methods
+	 */
+	var select = function(item){
+		// Validation
+		if(item > showcase.children.length-1 || item < 0 || isNaN(item)){
+			alert("Error: Expected to find a number between 0 and " + (showcase.children.length - 1) + ".");
+			return conf.publish;
+		};
+		
+		var visibles = thumbnails.carousel.getSteps(); // Items per page
+		var page = thumbnails.carousel.getPage(); // Current page
+		var nextPage = ~~(item / visibles) + 1; // Page of "item"
+		
+		// Visual config		
+		$(thumbnails.children[thumbnails.selected]).removeClass("on");
+		$(thumbnails.children[item]).addClass("on");
+		
+		// Content movement
+		var movement = { left: -item * showcase.itemWidth };
+		if(ui.features.transition) { // Have CSS3 Transitions feature?
+			showcase.display.css(movement);
+		} else { // Ok, let JQuery do the magic...
+			showcase.display.animate(movement);
+		};
+		
+		// Trigger movement
+		if (thumbnails.selected < visibles && item >= visibles && nextPage > page) {
+			thumbnails.carousel.next();
+		}else if (thumbnails.selected >= visibles && item < visibles && nextPage < page ) {
+			thumbnails.carousel.prev();
+		};
+		
+		// Selected
+		thumbnails.selected = item;
+		
+		// Return public object
+		return conf.publish;
+	};
+	
+	
+	// Public object
+    conf.publish = {
+		uid: conf.id,
+		element: conf.element,
+		type: "viewer",
+		children: that.children,
+		select: function(i){
+			// Callback
+			that.callbacks(conf, 'select');
+			
+			return select(i);
+		}
+    }
+	
+	// Default behavior (Select first item and without callback)
+	select(0);
+	
+	return conf.publish;
 };
 
 ui.init();
