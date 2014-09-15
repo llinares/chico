@@ -107,7 +107,7 @@ module.exports = function (grunt) {
                 'src': files.JS.core.concat(files.JS.abilities).concat(files.JS.components),
                 'options': {
                     'template': './libs/doc-template',
-                    'destination': './doc/' + environment,
+                    'destination': './api-doc/' + '<%= pkg.version %>',
                     'private': false
                 }
             }
@@ -122,6 +122,16 @@ module.exports = function (grunt) {
                     'to': '../../assets/0.3/'
                 }]
             }
+        },
+
+        'git_deploy': {
+            'your_target': {
+                'options': {
+                    'url': 'https://github.com/ibarbieri/chico.git',
+                    'branch': 'gh-pages'
+                },
+                'src': 'api-doc/'
+            },
         }
 
     });
@@ -134,11 +144,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-git-deploy');
 
     // Resgister task(s).
     grunt.registerTask('default', []);
     grunt.registerTask('lint', ['jslint']);
     grunt.registerTask('doc', ['jsdoc']);
+    grunt.registerTask('docToSite', ['git_deploy']);
     grunt.registerTask('dev', ['concat', 'clean']);
     grunt.registerTask('dist', ['concat', 'replace', 'uglify', 'cssmin', 'clean']);
 };
