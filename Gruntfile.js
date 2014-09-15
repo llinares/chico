@@ -126,10 +126,11 @@ module.exports = function (grunt) {
 
         'gh-pages': {
             'options': {
-                'repo': 'https://github.com/ibarbieri/chico'
+                'repo': 'https://github.com/ibarbieri/chico',
+                'message': 'Api-doc content from master to gh-pages',
+                'add': true
             },
-            // These files will get pushed to the `gh-pages` branch (the default).
-            'src': ['test.html']
+            'src': ['api-doc/<%= pkg.version %>/*']
         }
 
     });
