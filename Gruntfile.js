@@ -130,7 +130,7 @@ module.exports = function (grunt) {
                 'message': 'Api-doc content from master to gh-pages',
                 'add': true
             },
-            'src': ['api-doc/<%= pkg.version %>/*']
+            'src': ['api-doc/'+'<%= pkg.version %>'+'/*']
         }
 
     });
