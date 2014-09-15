@@ -124,12 +124,12 @@ module.exports = function (grunt) {
             }
         },
 
-        'gitpush': {
-            'your_target': {
-                'options': {
-                    // Target-specific options go here.
-                }
-            }
+        'gh-pages': {
+            'options': {
+                'repo': 'https://github.com/ibarbieri/chico'
+            },
+            // These files will get pushed to the `gh-pages` branch (the default).
+            'src': ['test.html']
         }
 
     });
@@ -142,14 +142,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-git');
-
+    grunt.loadNpmTasks('grunt-gh-pages');
 
     // Resgister task(s).
     grunt.registerTask('default', []);
     grunt.registerTask('lint', ['jslint']);
     grunt.registerTask('doc', ['jsdoc']);
-    grunt.registerTask('docToSite', ['gitpush']);
+    grunt.registerTask('docToSite', ['gh-pages']);
     grunt.registerTask('dev', ['concat', 'clean']);
     grunt.registerTask('dist', ['concat', 'replace', 'uglify', 'cssmin', 'clean']);
 };
