@@ -59,19 +59,15 @@
         </header>
 
         <section class="main ml-bounds">
-            <article class="ch-g3-4">
-                <div class="ch-leftcolumn">
-                    <h1><?js= title ?></h1>
-                    <?js= content ?>
-                </div>
-            </article>
+            <div class="mesh-12 mesh-m-9 ch-leftcolumn">
+                <h1><?js= title ?></h1>
+                <?js= content ?>
+            </div>
 
-            <aside class="ch-g1-4">
-                <nav class="chico-nav">
-                    <?js= this.nav ?>
-                </nav>
-            </aside>
 
+            <nav class="mesh-12 mesh-m-9 chico-nav">
+                <?js= this.nav ?>
+            </nav>
         </section>
 
         <footer  role="contentinfo" class="ml-footer">
@@ -86,10 +82,9 @@
         <script>
             $(function () {
                 $("#copyright").text((new Date().getFullYear()) + " ");
-
-                var elementToFix = new SlugElement('chico-nav', 'height', 300, 300);
-
             });
+
+            var elementToFix = new SlugElement('chico-nav', 'height', 300, 300);
         </script>
     </body>
 </html>
