@@ -1,9 +1,0 @@
-language: ruby
-rvm:
-- 2.1
-script: jekyll build
-
-# branch whitelist
-branches:
-  only:
-  - gh-pages
