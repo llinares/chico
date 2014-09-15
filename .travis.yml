@@ -6,4 +6,4 @@ script: jekyll build
 # branch whitelist
 branches:
   only:
-  - gh-pages     # test the gh-pages branch
+  - gh-pages
