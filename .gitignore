@@ -3,6 +3,7 @@
 .cache
 .project
 .settings
+.grunt
 nbproject
 thumb.db
 experiment
