@@ -124,14 +124,12 @@ module.exports = function (grunt) {
             }
         },
 
-        'git_deploy': {
+        'gitpush': {
             'your_target': {
                 'options': {
-                    'url': 'https://github.com/ibarbieri/chico.git',
-                    'branch': 'gh-pages'
-                },
-                'src': 'api-doc/'
-            },
+                    // Target-specific options go here.
+                }
+            }
         }
 
     });
@@ -144,13 +142,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-git-deploy');
+    grunt.loadNpmTasks('grunt-git');
+
 
     // Resgister task(s).
     grunt.registerTask('default', []);
     grunt.registerTask('lint', ['jslint']);
     grunt.registerTask('doc', ['jsdoc']);
-    grunt.registerTask('docToSite', ['git_deploy']);
+    grunt.registerTask('docToSite', ['gitpush']);
     grunt.registerTask('dev', ['concat', 'clean']);
     grunt.registerTask('dist', ['concat', 'replace', 'uglify', 'cssmin', 'clean']);
 };
