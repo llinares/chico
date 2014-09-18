@@ -52,13 +52,15 @@ Navigate `./api-doc/version` directory and enjoy!
 
 You can publish the API Doc to gh-pages following these steps:
 
-	A. Run locally from master branch
-	grunt docToSite
+1. Run locally from master branch
+		$ grunt docToSite
 
-	B. Run locally from gh-pages branch
-	git pull origin gh-pages
-	jekyll build
-	git push origin gh-pages the update files
+2. Run locally from gh-pages branch
+		$ git pull origin gh-pages
+		$ jekyll build
+
+3. Commit and push the updates files
+
 
 ## Tests
 You can run our tests in your browser:
