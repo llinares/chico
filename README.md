@@ -43,10 +43,22 @@ You can read our [API Doc](http://chico.mercadolibre.com/).
 
 The API doc may also be run locally by running:
 
-    grunt doc -env=ui
-    grunt doc -env=mobile
+    grunt doc
 
-Navigate `./doc` directory and enjoy!
+Navigate `./api-doc/version` directory and enjoy!
+
+
+## API Doc to gh-pages
+
+You can publish the API Doc to gh-pages following these steps:
+
+	A. Run locally from master branch
+	grunt docToSite
+
+	B. Run locally from gh-pages branch
+	git pull origin gh-pages
+	jekyll build
+	git push origin gh-pages the update files
 
 ## Tests
 You can run our tests in your browser:
