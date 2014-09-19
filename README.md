@@ -59,6 +59,8 @@ You can publish the API Doc to gh-pages following these steps:
 2. Run locally from gh-pages branch:
 
 		$ git pull origin gh-pages
+        $ npm install
+        $ grunt getVersion
 		$ jekyll build
 
 3. Commit and push the updates files
