@@ -350,10 +350,10 @@ exports.publish = function(taffyData, opts, tutorials) {
         outdir = path.join(outdir, packageInfo.name, packageInfo.version);
     }
 
-    var packVersion = packageInfo.version;
-    helper.setVersion(packVersion);
+    // var packVersion = packageInfo.version;
+    // helper.setVersion(packVersion);
 
-    fs.mkPath(outdir);
+    // fs.mkPath(outdir);
 
     // set up templating
     view.layout = 'layout.tmpl';
