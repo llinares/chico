@@ -115,9 +115,13 @@ function generate(title, docs, filename, resolveLinks) {
     var docData = {
         title: title,
         docs: docs
-    };
+    },
+        newFileName;
 
-    var outpath = path.join(outdir, filename),
+    newFileName = filename.replace('ch.', '');
+    newFileName = newFileName.toLowerCase();
+
+    var outpath = path.join(outdir, newFileName),
         html = view.render('container.tmpl', docData);
 
     if (resolveLinks) {
@@ -507,7 +511,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
             var myClasses = helper.find(classes, {longname: longname});
             if (myClasses.length) {
-                generate('ch.' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
+                generate( + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
             }
 
             var myModules = helper.find(modules, {longname: longname});
@@ -539,9 +543,14 @@ exports.publish = function(taffyData, opts, tutorials) {
             header: tutorial.title,
             content: tutorial.parse(),
             children: tutorial.children
-        };
+        },
 
-        var tutorialPath = path.join(outdir, filename),
+            newFileName;
+
+        newFileName = filename.replace('ch.', '');
+        newFileName = newFileName.toLowerCase();
+
+        var tutorialPath = path.join(outdir, newFileName),
             html = view.render('tutorial.tmpl', tutorialData);
 
         // yes, you can use {@link} in tutorials too!
