@@ -5,6 +5,7 @@
 .settings
 .grunt
 nbproject
+node_modules
 thumb.db
 experiment
 npm-debug.log
