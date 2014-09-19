@@ -17,6 +17,17 @@ var template = require('jsdoc/template'),
 
 function find(spec) {
     return helper.find(data, spec);
+
+    // update outdir if necessary, then create outdir
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    if (packageInfo && packageInfo.name) {
+        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
+    }
+
+    var packVersion = packageInfo.version;
+    helper.setVersion(packVersion);
+
+    fs.mkPath(outdir);
 }
 
 function tutoriallink(tutorial) {
@@ -57,11 +68,15 @@ function needsSignature(doclet) {
     return needsSig;
 }
 
+
+
 function addSignatureParams(f) {
     var params = helper.getSignatureParams(f, 'optional');
 
     f.signature = (f.signature || '') + '('+params.join(', ')+')';
 }
+
+
 
 function addSignatureReturns(f) {
     var returnTypes = helper.getSignatureReturns(f);
@@ -75,11 +90,13 @@ function addSignatureTypes(f) {
     f.signature = (f.signature || '') + '<span class="type-signature">'+(types.length? ' :'+types.join('|') : '')+'</span>';
 }
 
+
 function addAttribs(f) {
     var attribs = helper.getAttribs(f);
 
     f.attribs = '<span class="type-signature">'+htmlsafe(attribs.length? '<'+attribs.join(', ')+'> ' : '')+'</span>';
 }
+
 
 function shortenPaths(files, commonPrefix) {
     // always use forward slashes
@@ -327,6 +344,17 @@ exports.publish = function(taffyData, opts, tutorials) {
     var globalUrl = helper.getUniqueFilename('global');
     helper.registerLink('global', globalUrl);
 
+    // update outdir if necessary, then create outdir
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    if (packageInfo && packageInfo.name) {
+        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
+    }
+
+    var packVersion = packageInfo.version;
+    helper.setVersion(packVersion);
+
+    fs.mkPath(outdir);
+
     // set up templating
     view.layout = 'layout.tmpl';
 
@@ -377,12 +405,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
-    // update outdir if necessary, then create outdir
-    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
-    if (packageInfo && packageInfo.name) {
-        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
-    }
-    fs.mkPath(outdir);
+
 
     // copy the template's static files to outdir
     var fromDir = path.join(templatePath, 'static');
