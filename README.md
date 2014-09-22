@@ -39,6 +39,17 @@ Please read through our code style guides:
 
 ## API Doc
 
+[Temporalmente] Before run grunt doc, change [this file](https://github.com/ibarbieri/chico/blob/master/node_modules/grunt-jsdoc/node_modules/jsdoc/lib/jsdoc/util/templateHelper.js#L199). with:
+
+    else {
+
+        var newUrl = url.replace('ch.', '/api-doc/'+options.cssClass+'/');
+        newUrl = newUrl.replace('.html', '');
+        newUrl.toLowerCase();
+
+        return util.format('<a href="%s%s"%s>%s</a>', newUrl, fragmentString, classString, text);
+    }
+
 You can read our [API Doc](http://chico.mercadolibre.com/).
 
 The API doc may also be run locally by running:
