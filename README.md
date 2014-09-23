@@ -39,13 +39,14 @@ Please read through our code style guides:
 
 ## API Doc
 
-[Temporalmente] Before run grunt doc, change [this file](https://github.com/ibarbieri/chico/blob/master/node_modules/grunt-jsdoc/node_modules/jsdoc/lib/jsdoc/util/templateHelper.js#L199). with:
+[Temporally] Before run grunt doc, change [this file](https://github.com/ibarbieri/chico/blob/master/node_modules/grunt-jsdoc/node_modules/jsdoc/lib/jsdoc/util/templateHelper.js#L199) with:
 
     else {
 
         var newUrl = url.replace('ch.', '/api-doc/'+options.cssClass+'/');
-        newUrl = newUrl.replace('.html', '');
-        newUrl.toLowerCase();
+        
+        newUrl = newUrl.toLowerCase();
+       	newUrl.replace('.html', '');
 
         return util.format('<a href="%s%s"%s>%s</a>', newUrl, fragmentString, classString, text);
     }
