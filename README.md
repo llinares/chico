@@ -43,7 +43,7 @@ Please read through our code style guides:
 
     else {
 
-        var newUrl = url.replace('ch.', 'chico/api-doc/'+options.cssClass+'/');
+        var newUrl = url.replace('ch.', '/chico/api-doc/'+options.cssClass+'/');
         newUrl = newUrl.toLowerCase();
         newUrl = newUrl.replace('.html', '');
 
