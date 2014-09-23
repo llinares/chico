@@ -4,6 +4,7 @@
 .project
 .settings
 .grunt
+api-doc
 nbproject
 node_modules
 thumb.db

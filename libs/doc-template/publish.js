@@ -14,6 +14,7 @@ var template = require('jsdoc/template'),
     view,
     outdir = env.opts.destination;
 
+var packVersion = '1.1.1';
 
 function find(spec) {
     return helper.find(data, spec);
@@ -23,9 +24,6 @@ function find(spec) {
     if (packageInfo && packageInfo.name) {
         outdir = path.join(outdir, packageInfo.name, packageInfo.version);
     }
-
-    var packVersion = packageInfo.version;
-    helper.setVersion(packVersion);
 
     fs.mkPath(outdir);
 }
@@ -221,7 +219,7 @@ function buildNav(members) {
         nav += '<h2>Modules</h2><ul>';
         members.modules.forEach(function(m) {
             if ( !hasOwnProp.call(seen, m.longname) ) {
-                nav += '<li>'+linkto(m.longname, m.name, '1.1.1')+'</li>';
+                nav += '<li>'+linkto(m.longname, m.name, packVersion)+'</li>';
             }
             seen[m.longname] = true;
         });
@@ -233,7 +231,7 @@ function buildNav(members) {
         nav += '<h2>Externals</h2><ul>';
         members.externals.forEach(function(e) {
             if ( !hasOwnProp.call(seen, e.longname) ) {
-                nav += '<li>'+linkto( e.longname, e.name.replace(/(^"|"$)/g, ''), '1.1.1')+'</li>';
+                nav += '<li>'+linkto( e.longname, e.name.replace(/(^"|"$)/g, ''), packVersion)+'</li>';
             }
             seen[e.longname] = true;
         });
@@ -244,7 +242,7 @@ function buildNav(members) {
     if (members.classes.length) {
         members.classes.forEach(function(c) {
             if ( !hasOwnProp.call(seen, c.longname) ) {
-                classNav += '<li>'+linkto(c.longname, c.name, '1.1.1')+'</li>';
+                classNav += '<li>'+linkto(c.longname, c.name, packVersion)+'</li>';
             }
             seen[c.longname] = true;
         });
@@ -272,7 +270,7 @@ function buildNav(members) {
         nav += '<h2>Namespaces</h2><ul>';
         members.namespaces.forEach(function(n) {
             if ( !hasOwnProp.call(seen, n.longname) ) {
-                nav += '<li>'+linkto(n.longname, n.name, '1.1.1')+'</li>';
+                nav += '<li>'+linkto(n.longname, n.name, packVersion)+'</li>';
             }
             seen[n.longname] = true;
         });
@@ -284,7 +282,7 @@ function buildNav(members) {
         nav += '<h2>Mixins</h2><ul>';
         members.mixins.forEach(function(m) {
             if ( !hasOwnProp.call(seen, m.longname) ) {
-                nav += '<li>'+linkto(m.longname, m.name, '1.1.1')+'</li>';
+                nav += '<li>'+linkto(m.longname, m.name, packVersion)+'</li>';
             }
             seen[m.longname] = true;
         });
@@ -304,14 +302,14 @@ function buildNav(members) {
     if (members.globals.length) {
         members.globals.forEach(function(g) {
             if ( g.kind !== 'typedef' && !hasOwnProp.call(seen, g.longname) ) {
-                globalNav += '<li>' + linkto(g.longname, g.name, '1.1.1') + '</li>';
+                globalNav += '<li>' + linkto(g.longname, g.name, packVersion) + '</li>';
             }
             seen[g.longname] = true;
         });
 
         if (!globalNav) {
             // turn the heading into a link so you can actually get to the global page
-            nav += '<h3>' + linkto('global', 'Global', '1.1.1') + '</h3>';
+            nav += '<h3>' + linkto('global', 'Global', packVersion) + '</h3>';
         }
         else {
             nav += '<h3>Global</h3><ul>' + globalNav + '</ul>';
@@ -350,10 +348,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         outdir = path.join(outdir, packageInfo.name, packageInfo.version);
     }
 
-    // var packVersion = packageInfo.version;
-    // helper.setVersion(packVersion);
-
-    // fs.mkPath(outdir);
+    fs.mkPath(outdir);
 
     // set up templating
     view.layout = 'layout.tmpl';
