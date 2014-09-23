@@ -44,8 +44,9 @@ Please read through our code style guides:
     else {
 
         var newUrl = url.replace('ch.', '/api-doc/'+options.cssClass+'/');
-        newUrl = newUrl.replace('.html', '');
-        newUrl.toLowerCase();
+        
+        newUrl = newUrl.toLowerCase();
+       	newUrl.replace('.html', '');
 
         return util.format('<a href="%s%s"%s>%s</a>', newUrl, fragmentString, classString, text);
     }
