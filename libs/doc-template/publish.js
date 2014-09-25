@@ -14,18 +14,9 @@ var template = require('jsdoc/template'),
     view,
     outdir = env.opts.destination;
 
-var packVersion = '1.1.1';
 
 function find(spec) {
     return helper.find(data, spec);
-
-    // update outdir if necessary, then create outdir
-    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
-    if (packageInfo && packageInfo.name) {
-        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
-    }
-
-    fs.mkPath(outdir);
 }
 
 function tutoriallink(tutorial) {
@@ -66,15 +57,11 @@ function needsSignature(doclet) {
     return needsSig;
 }
 
-
-
 function addSignatureParams(f) {
     var params = helper.getSignatureParams(f, 'optional');
 
     f.signature = (f.signature || '') + '('+params.join(', ')+')';
 }
-
-
 
 function addSignatureReturns(f) {
     var returnTypes = helper.getSignatureReturns(f);
@@ -88,13 +75,11 @@ function addSignatureTypes(f) {
     f.signature = (f.signature || '') + '<span class="type-signature">'+(types.length? ' :'+types.join('|') : '')+'</span>';
 }
 
-
 function addAttribs(f) {
     var attribs = helper.getAttribs(f);
 
     f.attribs = '<span class="type-signature">'+htmlsafe(attribs.length? '<'+attribs.join(', ')+'> ' : '')+'</span>';
 }
-
 
 function shortenPaths(files, commonPrefix) {
     // always use forward slashes
@@ -131,6 +116,7 @@ function generate(title, docs, filename, resolveLinks) {
         title: title,
         docs: docs
     },
+
         newFileName;
 
     newFileName = filename.replace('ch.', '');
@@ -213,13 +199,14 @@ function buildNav(members) {
         seen = {},
         hasClassList = false,
         classNav = '',
-        globalNav = '';
+        globalNav = '',
+        packageVersion = '1.1.1';
 
     if (members.modules.length) {
         nav += '<h2>Modules</h2><ul>';
         members.modules.forEach(function(m) {
             if ( !hasOwnProp.call(seen, m.longname) ) {
-                nav += '<li>'+linkto(m.longname, m.name, packVersion)+'</li>';
+                nav += '<li>'+linkto(m.longname, m.name, packageVersion)+'</li>';
             }
             seen[m.longname] = true;
         });
@@ -231,7 +218,7 @@ function buildNav(members) {
         nav += '<h2>Externals</h2><ul>';
         members.externals.forEach(function(e) {
             if ( !hasOwnProp.call(seen, e.longname) ) {
-                nav += '<li>'+linkto( e.longname, e.name.replace(/(^"|"$)/g, ''), packVersion)+'</li>';
+                nav += '<li>'+linkto( e.longname, e.name.replace(/(^"|"$)/g, ''), packageVersion)+'</li>';
             }
             seen[e.longname] = true;
         });
@@ -242,7 +229,7 @@ function buildNav(members) {
     if (members.classes.length) {
         members.classes.forEach(function(c) {
             if ( !hasOwnProp.call(seen, c.longname) ) {
-                classNav += '<li>'+linkto(c.longname, c.name, packVersion)+'</li>';
+                classNav += '<li>'+linkto(c.longname, c.name, packageVersion)+'</li>';
             }
             seen[c.longname] = true;
         });
@@ -270,7 +257,7 @@ function buildNav(members) {
         nav += '<h2>Namespaces</h2><ul>';
         members.namespaces.forEach(function(n) {
             if ( !hasOwnProp.call(seen, n.longname) ) {
-                nav += '<li>'+linkto(n.longname, n.name, packVersion)+'</li>';
+                nav += '<li>'+linkto(n.longname, n.name, packageVersion)+'</li>';
             }
             seen[n.longname] = true;
         });
@@ -282,7 +269,7 @@ function buildNav(members) {
         nav += '<h2>Mixins</h2><ul>';
         members.mixins.forEach(function(m) {
             if ( !hasOwnProp.call(seen, m.longname) ) {
-                nav += '<li>'+linkto(m.longname, m.name, packVersion)+'</li>';
+                nav += '<li>'+linkto(m.longname, m.name, packageVersion)+'</li>';
             }
             seen[m.longname] = true;
         });
@@ -302,14 +289,14 @@ function buildNav(members) {
     if (members.globals.length) {
         members.globals.forEach(function(g) {
             if ( g.kind !== 'typedef' && !hasOwnProp.call(seen, g.longname) ) {
-                globalNav += '<li>' + linkto(g.longname, g.name, packVersion) + '</li>';
+                globalNav += '<li>' + linkto(g.longname, g.name, packageVersion) + '</li>';
             }
             seen[g.longname] = true;
         });
 
         if (!globalNav) {
             // turn the heading into a link so you can actually get to the global page
-            nav += '<h3>' + linkto('global', 'Global', packVersion) + '</h3>';
+            nav += '<h3>' + linkto('global', 'Global', packageVersion) + '</h3>';
         }
         else {
             nav += '<h3>Global</h3><ul>' + globalNav + '</ul>';
@@ -341,14 +328,6 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var globalUrl = helper.getUniqueFilename('global');
     helper.registerLink('global', globalUrl);
-
-    // update outdir if necessary, then create outdir
-    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
-    if (packageInfo && packageInfo.name) {
-        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
-    }
-
-    fs.mkPath(outdir);
 
     // set up templating
     view.layout = 'layout.tmpl';
@@ -400,7 +379,12 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     });
 
-
+    // update outdir if necessary, then create outdir
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    if (packageInfo && packageInfo.name) {
+        outdir = path.join(outdir, packageInfo.name, packageInfo.version);
+    }
+    fs.mkPath(outdir);
 
     // copy the template's static files to outdir
     var fromDir = path.join(templatePath, 'static');
@@ -529,7 +513,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
             var myClasses = helper.find(classes, {longname: longname});
             if (myClasses.length) {
-                generate( + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
+                generate('ch.' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
             }
 
             var myModules = helper.find(modules, {longname: longname});
@@ -562,7 +546,6 @@ exports.publish = function(taffyData, opts, tutorials) {
             content: tutorial.parse(),
             children: tutorial.children
         },
-
             newFileName;
 
         newFileName = filename.replace('ch.', '');
