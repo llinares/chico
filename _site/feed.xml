@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chico UI</title>
+    <description>A collection of easy-to-use UI components</description>
+    <link>/chico/</link>
+    <atom:link href="/chico/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 29 Sep 2014 14:37:06 -0300</pubDate>
+    <lastBuildDate>Mon, 29 Sep 2014 14:37:06 -0300</lastBuildDate>
+    <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>Headings</title>
+        <description>&lt;h2 id=&quot;headings&quot;&gt;Headings&lt;/h2&gt;
+
+&lt;p&gt;These are the heading tha you can use to semanticize your html markup.&lt;/p&gt;
+
+&lt;!-- Component example --&gt;
+&lt;div class=&quot;component-example&quot;&gt;
+	&lt;h1&gt;Header 1&lt;/h1&gt;
+	&lt;h2&gt;Header 2&lt;/h2&gt;
+	&lt;h3&gt;Header 3&lt;/h3&gt;
+	&lt;h4&gt;Header 4&lt;/h4&gt;
+	&lt;h5&gt;Header 5&lt;/h5&gt;
+	&lt;h6&gt;Header 6&lt;/h6&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 08 Sep 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/headings</link>
+        <guid isPermaLink="true">/chico/ui-components/headings</guid>
+        
+        <category>headings</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Paragraphs</title>
+        <description>&lt;h2 id=&quot;paragraphs&quot;&gt;Paragraphs&lt;/h2&gt;
+
+&lt;p&gt;Paragraphs description. &lt;strong&gt;importante text&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;!-- Component example --&gt;
+&lt;div class=&quot;component-example&quot;&gt;
+	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec ipsum tellus, quis ultricies nunc. Vestibulum ornare porta nunc, vitae tincidunt massa ornare vel. Nam ut felis odio.&lt;/p&gt;&lt;p&gt;Nam porta nunc vitae orci sollicitudin a ullamcorper purus dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed libero eget purus dictum fringilla non sed lectus. Etiam commodo quam in neque vehicula dapibus.&lt;/p&gt;&lt;p&gt;Phasellus ornare lacus ut purus elementum eget sodales dui placerat. Nunc ultrices porttitor mi, eu varius quam tristique in. Etiam tempor porta sodales.&lt;/p&gt;&lt;p&gt;Phasellus dui nisi, hendrerit a porta vel, tempus bibendum mauris.&lt;/p&gt;&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus bibendum consectetur dignissim.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 07 Sep 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/paragraphs</link>
+        <guid isPermaLink="true">/chico/ui-components/paragraphs</guid>
+        
+        <category>paragraphs</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Links</title>
+        <description>&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;These are the links tha you can use in your html.&lt;/p&gt;
+
+&lt;!-- Component example --&gt;
+&lt;div class=&quot;component-example&quot;&gt;
+	&lt;p&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 06 Sep 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/links</link>
+        <guid isPermaLink="true">/chico/ui-components/links</guid>
+        
+        <category>links</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Lists</title>
+        <description>&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
+
+&lt;p&gt;These are the lists tha you can use in your html.&lt;/p&gt;
+
+&lt;div class=&quot;m-g1-4&quot;&gt;
+    &lt;h3&gt;Unstyled&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;m-g1-4&quot;&gt;
+    &lt;h3&gt;Unordered&lt;/h3&gt;
+    &lt;ul class=&quot;ch-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;m-g1-4&quot;&gt;
+    &lt;h3&gt;Ordered&lt;/h3&gt;
+    &lt;ol class=&quot;ch-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;m-g1-4&quot;&gt;
+    &lt;h3&gt;Description&lt;/h3&gt;
+    &lt;dl class=&quot;ch-list&quot;&gt;
+        &lt;dt&gt;MercadoLibre&lt;/dt&gt;
+        &lt;dd&gt;Donde compras y vendes de todo!&lt;/dd&gt;
+        &lt;dt&gt;MercadoPago&lt;/dt&gt;
+        &lt;dd&gt;La forma más simple de recibir pagos!&lt;/dd&gt;
+        &lt;dt&gt;MercadoShops&lt;/dt&gt;
+        &lt;dd&gt;Tu tienda virtual gratis y en minutos!&lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 05 Sep 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/lists</link>
+        <guid isPermaLink="true">/chico/ui-components/lists</guid>
+        
+        <category>lists</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
