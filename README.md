@@ -4,7 +4,7 @@
 
 ## Install
 
-1. Get [Ruby](https://www.ruby-lang.org/en/installation/).
+1. Get [Ruby 2.1.2 or higher](https://www.ruby-lang.org/en/installation/).
 2. Get [RubyGems](https://rubygems.org/pages/download).
 3. Get [Jekyll](http://jekyllrb.com/): ```gem install jekyll```
 
