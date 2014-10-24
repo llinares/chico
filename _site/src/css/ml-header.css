@@ -447,7 +447,6 @@ ul {
 .ml-header .toggle-input-sub-menu:checked ~ .ml-navicon span:last-child,
 .ml-header .toggle-input-sub-menu:checked + .ml-navigation ul li nav {
   display: block;
-  background-color: red;
 }
 
 .ml-header .toggle-input-sub-menu:checked + .ml-navigation {
@@ -548,7 +547,7 @@ ul {
 .ml-footer {
   padding-bottom: 15px;
   color: #666666;
-  margin-top: 20px;
+  /*margin-top: 10px;*/
 }
 /* line 14, ../../mixins/_clearfix.scss */
 .ml-footer:after {

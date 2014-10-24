@@ -1,0 +1,64 @@
+---
+layout: internal-page
+title:  "Buttons"
+permalink: ui-components/buttons
+tags: buttons
+---
+
+## Buttons
+
+<div class="mesh-12 mesh-m-6">
+    <h3>Default state</h3>
+    <p><input type="button" class="ch-btn ch-btn-large" value="Button Large"/></p>
+    <p><input type="button" class="ch-btn" value="Button"/></p>
+    <p><input type="button" class="ch-btn ch-btn-small" value="Button Small"/></p>
+    <p><input type="button" class="ch-btn-skin ch-btn-small" value="Button Small (Skin)"></p></p>
+    <p><button class="ch-btn-skin ch-btn-small"><i class="ch-icon-cog"></i> With icon</button></p>
+</div>
+<div class="mesh-12 mesh-m-6">
+    <h3>Disabled</h3>
+    <p><input type="button" class="ch-btn ch-btn-large ch-btn-disabled" value="Button Large"/></p>
+    <p><input type="button" class="ch-btn ch-btn-disabled" value="Button"/></p>
+    <p><input type="button" class="ch-btn ch-btn-small ch-btn-disabled" value="Button Small"/></p>
+    <p><input type="button" class="ch-btn-skin ch-btn-small ch-btn-disabled" value="Button Small (Skin)"></p></p>
+    <p><button class="ch-btn-skin ch-btn-small ch-btn-disabled"><i class="ch-icon-cog"></i> With icon</button></p>
+</div>
+
+### How to use
+
+Any button is created in 3 parts:
+
+<dl class="ch-list>
+    <dt>Color</dt>
+    <dd>Add <strong>ch-btn</strong> for default buttons, or <strong>ch-btn-skin</strong> for skin buttons.</dd>
+    <dt>Size</dt>
+    <dd>Optionally, include <strong>ch-btn-small</strong> or <strong>ch-btn-large</strong> to change the default size.</dd>
+    <dt>Availability</dt>
+    <dd>Optionally, include <strong>ch-btn-disabled</strong> to disable any button.</dd>
+</dl>
+
+### Examples
+
+Default button:
+
+<pre class="language-markup">
+<code class="language-markup">&lt;input type="button" class="ch-btn" value="Button"/></code>
+</pre>
+
+Large button:
+
+<pre class="language-markup">
+<code class="language-markup">&lt;input type="button" class="ch-btn ch-btn-large" value="Button Large"/></code>
+</pre>
+
+With icon:
+
+<pre class="language-markup">
+<code class="language-markup">&lt;button class="ch-btn-skin ch-btn-small">&lt;i class="ch-icon-cog">&lt;/i> With icon&lt;/button></code>
+</pre>
+
+Disabled:
+
+<pre class="language-markup">
+<code class="language-markup">&lt;input type="button" class="ch-btn ch-btn-disabled" value="Disabled button"/></code>
+</pre>

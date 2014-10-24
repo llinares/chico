@@ -5,74 +5,291 @@
     <description>A collection of easy-to-use UI components</description>
     <link>/chico/</link>
     <atom:link href="/chico/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 29 Sep 2014 14:37:06 -0300</pubDate>
-    <lastBuildDate>Mon, 29 Sep 2014 14:37:06 -0300</lastBuildDate>
-    <generator>Jekyll v2.3.0</generator>
+    <pubDate>Fri, 24 Oct 2014 16:05:54 -0300</pubDate>
+    <lastBuildDate>Fri, 24 Oct 2014 16:05:54 -0300</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Headings</title>
-        <description>&lt;h2 id=&quot;headings&quot;&gt;Headings&lt;/h2&gt;
+        <title>Messages</title>
+        <description>&lt;h2 id=&quot;messages&quot;&gt;Messages&lt;/h2&gt;
 
-&lt;p&gt;These are the heading tha you can use to semanticize your html markup.&lt;/p&gt;
+&lt;div class=&quot;ch-box-icon ch-box-error&quot;&gt;&lt;i class=&quot;ch-icon-remove-sign&quot;&gt;&lt;/i&gt; Oops, something wrong happened.&lt;/div&gt;
+&lt;div class=&quot;ch-box-icon ch-box-help&quot;&gt;&lt;i class=&quot;ch-icon-help-sign&quot;&gt;&lt;/i&gt; Do you need any help?&lt;/div&gt;
+&lt;div class=&quot;ch-box-icon ch-box-info&quot;&gt;&lt;i class=&quot;ch-icon-info-sign&quot;&gt;&lt;/i&gt; Here&#39;s more information.&lt;/div&gt;
+&lt;div class=&quot;ch-box-icon ch-box-warn&quot;&gt;&lt;i class=&quot;ch-icon-warning-sign&quot;&gt;&lt;/i&gt; Warning! something might be wrong.&lt;/div&gt;
+&lt;div class=&quot;ch-box-icon ch-box-ok&quot;&gt;&lt;i class=&quot;ch-icon-ok-sign&quot;&gt;&lt;/i&gt; Everything is great!&lt;/div&gt;
+&lt;p class=&quot;ch-box-icon&quot;&gt;&lt;i class=&quot;ch-icon-truck&quot;&gt;&lt;/i&gt; Generic message, with an icon.&lt;/p&gt;
 
-&lt;!-- Component example --&gt;
-&lt;div class=&quot;component-example&quot;&gt;
-	&lt;h1&gt;Header 1&lt;/h1&gt;
-	&lt;h2&gt;Header 2&lt;/h2&gt;
-	&lt;h3&gt;Header 3&lt;/h3&gt;
-	&lt;h4&gt;Header 4&lt;/h4&gt;
-	&lt;h5&gt;Header 5&lt;/h5&gt;
-	&lt;h6&gt;Header 6&lt;/h6&gt;
-&lt;/div&gt;
+&lt;h3 id=&quot;how-to-use&quot;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;Add class &lt;strong&gt;ch-box-icon&lt;/strong&gt; to any block element (div, section, p, etc.). Combine with any class listed below to give contextual styling (&lt;a href=&quot;#boxes&quot;&gt;see Boxes&lt;/a&gt;):&lt;/p&gt;
+
+&lt;ul class=&quot;ch-list&quot;&gt;
+    &lt;li&gt;ch-box&lt;/li&gt;
+    &lt;li&gt;ch-box-lite&lt;/li&gt;
+    &lt;li&gt;ch-box-container&lt;/li&gt;
+    &lt;li&gt;ch-box-error&lt;/li&gt;
+    &lt;li&gt;ch-box-help&lt;/li&gt;
+    &lt;li&gt;ch-box-info&lt;/li&gt;
+    &lt;li&gt;ch-box-warn&lt;/li&gt;
+    &lt;li&gt;ch-box-ok&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Add &lt;a href=&quot;#icons&quot;&gt;any icon&lt;/a&gt; into any box for more contextual messages.&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;div class=&quot;ch-box-icon ch-box-error&quot;&amp;gt;
+    &amp;lt;i class=&quot;ch-icon-remove-sign&quot;&amp;gt;&amp;lt;/i&amp;gt; Oops, something wrong happened.
+&amp;lt;/div&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 </description>
-        <pubDate>Mon, 08 Sep 2014 00:00:00 -0300</pubDate>
-        <link>/chico/ui-components/headings</link>
-        <guid isPermaLink="true">/chico/ui-components/headings</guid>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/messages</link>
+        <guid isPermaLink="true">/chico/ui-components/messages</guid>
         
-        <category>headings</category>
+        <category>messages</category>
         
         
       </item>
     
       <item>
-        <title>Paragraphs</title>
-        <description>&lt;h2 id=&quot;paragraphs&quot;&gt;Paragraphs&lt;/h2&gt;
+        <title>Icons</title>
+        <description>&lt;h2 id=&quot;icons&quot;&gt;Icons&lt;/h2&gt;
 
-&lt;p&gt;Paragraphs description. &lt;strong&gt;importante text&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Define any icon classname from the list below, and change size by adding any of these classes:&lt;/p&gt;
 
-&lt;!-- Component example --&gt;
-&lt;div class=&quot;component-example&quot;&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec ipsum tellus, quis ultricies nunc. Vestibulum ornare porta nunc, vitae tincidunt massa ornare vel. Nam ut felis odio.&lt;/p&gt;&lt;p&gt;Nam porta nunc vitae orci sollicitudin a ullamcorper purus dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed libero eget purus dictum fringilla non sed lectus. Etiam commodo quam in neque vehicula dapibus.&lt;/p&gt;&lt;p&gt;Phasellus ornare lacus ut purus elementum eget sodales dui placerat. Nunc ultrices porttitor mi, eu varius quam tristique in. Etiam tempor porta sodales.&lt;/p&gt;&lt;p&gt;Phasellus dui nisi, hendrerit a porta vel, tempus bibendum mauris.&lt;/p&gt;&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus bibendum consectetur dignissim.&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;i class=&quot;ch-icon-camera ch-icon-xx-large&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;ch-icon-camera ch-icon-x-large&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;ch-icon-camera ch-icon-large&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;ch-icon-camera&quot;&gt;&lt;/i&gt;&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;i class=&quot;ch-icon-camera ch-icon-xx-large&quot;&amp;gt;&amp;lt;/i&amp;gt;
+&amp;lt;i class=&quot;ch-icon-camera ch-icon-x-large&quot;&amp;gt;&amp;lt;/i&amp;gt;
+&amp;lt;i class=&quot;ch-icon-camera ch-icon-large&quot;&amp;gt;&amp;lt;/i&amp;gt;
+&amp;lt;i class=&quot;ch-icon-camera&quot;&amp;gt;&amp;lt;/i&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;available-icons&quot;&gt;Available icons&lt;/h3&gt;
+
+&lt;ul class=&quot;components-available-icons ch-clearfix&quot;&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-search ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-search&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-heart ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-heart&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-star ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-star&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-star-empty ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-star-empty&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-user ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-user&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-th-large ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-th-large&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-th ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-th&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-th-list ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-user&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-ok ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-ok&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-remove ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-remove&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-zoom-in ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-zoom-in&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-zoom-out ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-zoom-out&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-cog ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-cog&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-trash ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-trash&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-time ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-time&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-repeat ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-repeat&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-refresh ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-refresh&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-lock ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-lock&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-print ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-print&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-camera ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-camera&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-pencil ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-pencil&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-map-marker ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-map-marker&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-move ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-move&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-chevron-left ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-chevron-left&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-chevron-right ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-chevron-right&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-plus-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-plus-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-minus-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-minus-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-remove-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-remove-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-ok-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-ok-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-help-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-help-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-info-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-info-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-ban-circle ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-ban-circle&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-arrow-left ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-arrow-left&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-arrow-right ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-arrow-right&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-arrow-up ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-arrow-up&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-arrow-down ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-arrow-down&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-plus ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-plus&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-minus ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-minus&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-exclamation-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-exclamation-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-warning-sign ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-warning-sign&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-calendar ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-calendar&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-comment ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-comment&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-chevron-up ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-chevron-up&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-chevron-down ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-chevron-down&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-key ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-key&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-comments ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-comments&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-unlock ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-unlock&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-wrench ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-wrench&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-group ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-group&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-copy ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-copy&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-paper-clip ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-paper-clip&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-reorder ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-reorder&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-truck ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-truck&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-caret-down ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-caret-down&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-caret-up ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-caret-up&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-caret-left ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-caret-left&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-caret-right ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-caret-right&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-sort ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-sort&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-sort-down ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-sort-down&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-sort-up ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-sort-up&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-envelope-alt ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-envelope-alt&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-undo ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-undo&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-comment-alt ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-comment-alt&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-comments-alt ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-comments-alt&lt;/li&gt;
+    &lt;li&gt;&lt;i class=&quot;ch-icon-phone ch-icon-x-large&quot;&gt;&lt;/i&gt; ch-icon-phone&lt;/li&gt;
+&lt;/ul&gt;
 </description>
-        <pubDate>Sun, 07 Sep 2014 00:00:00 -0300</pubDate>
-        <link>/chico/ui-components/paragraphs</link>
-        <guid isPermaLink="true">/chico/ui-components/paragraphs</guid>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/icons</link>
+        <guid isPermaLink="true">/chico/ui-components/icons</guid>
         
-        <category>paragraphs</category>
+        <category>icons</category>
         
         
       </item>
     
       <item>
-        <title>Links</title>
-        <description>&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+        <title>Buttons</title>
+        <description>&lt;h2 id=&quot;buttons&quot;&gt;Buttons&lt;/h2&gt;
 
-&lt;p&gt;These are the links tha you can use in your html.&lt;/p&gt;
-
-&lt;!-- Component example --&gt;
-&lt;div class=&quot;component-example&quot;&gt;
-	&lt;p&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;mesh-12 mesh-m-6&quot;&gt;
+    &lt;h3&gt;Default state&lt;/h3&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-large&quot; value=&quot;Button Large&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn&quot; value=&quot;Button&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-small&quot; value=&quot;Button Small&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn-skin ch-btn-small&quot; value=&quot;Button Small (Skin)&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button class=&quot;ch-btn-skin ch-btn-small&quot;&gt;&lt;i class=&quot;ch-icon-cog&quot;&gt;&lt;/i&gt; With icon&lt;/button&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&quot;mesh-12 mesh-m-6&quot;&gt;
+    &lt;h3&gt;Disabled&lt;/h3&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-large ch-btn-disabled&quot; value=&quot;Button Large&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-disabled&quot; value=&quot;Button&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-small ch-btn-disabled&quot; value=&quot;Button Small&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;button&quot; class=&quot;ch-btn-skin ch-btn-small ch-btn-disabled&quot; value=&quot;Button Small (Skin)&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button class=&quot;ch-btn-skin ch-btn-small ch-btn-disabled&quot;&gt;&lt;i class=&quot;ch-icon-cog&quot;&gt;&lt;/i&gt; With icon&lt;/button&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;how-to-use&quot;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;Any button is created in 3 parts:&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;dl class=”ch-list&amp;gt;
+    &amp;lt;dt&amp;gt;Color&amp;lt;/dt&amp;gt;
+    &amp;lt;dd&amp;gt;Add &lt;strong&gt;ch-btn&lt;/strong&gt; for default buttons, or &lt;strong&gt;ch-btn-skin&lt;/strong&gt; for skin buttons.&amp;lt;/dd&amp;gt;
+    &amp;lt;dt&amp;gt;Size&amp;lt;/dt&amp;gt;
+    &amp;lt;dd&amp;gt;Optionally, include &lt;strong&gt;ch-btn-small&lt;/strong&gt; or &lt;strong&gt;ch-btn-large&lt;/strong&gt; to change the default size.&amp;lt;/dd&amp;gt;
+    &amp;lt;dt&amp;gt;Availability&amp;lt;/dt&amp;gt;
+    &amp;lt;dd&amp;gt;Optionally, include &lt;strong&gt;ch-btn-disabled&lt;/strong&gt; to disable any button.&amp;lt;/dd&amp;gt;
+&amp;lt;/dl&amp;gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;examples&quot;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Default button:&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;input type=&quot;button&quot; class=&quot;ch-btn&quot; value=&quot;Button&quot;/&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Large button:&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-large&quot; value=&quot;Button Large&quot;/&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;With icon:&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;button class=&quot;ch-btn-skin ch-btn-small&quot;&amp;gt;&amp;lt;i class=&quot;ch-icon-cog&quot;&amp;gt;&amp;lt;/i&amp;gt; With icon&amp;lt;/button&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Disabled:&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;input type=&quot;button&quot; class=&quot;ch-btn ch-btn-disabled&quot; value=&quot;Disabled button&quot;/&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 </description>
-        <pubDate>Sat, 06 Sep 2014 00:00:00 -0300</pubDate>
-        <link>/chico/ui-components/links</link>
-        <guid isPermaLink="true">/chico/ui-components/links</guid>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/buttons</link>
+        <guid isPermaLink="true">/chico/ui-components/buttons</guid>
         
-        <category>links</category>
+        <category>buttons</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Boxes</title>
+        <description>&lt;h2 id=&quot;boxes&quot;&gt;Boxes&lt;/h2&gt;
+
+&lt;div class=&quot;ch-box-container&quot;&gt;
+    &lt;h3&gt;Box Container&lt;/h3&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. In accumsan malesuada euismod.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-lite&quot;&gt;
+    &lt;h3&gt;Box Lite&lt;/h3&gt;
+    &lt;p&gt;Maecenas nec eros vitae quam condimentum malesuada eget eu mauris.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box&quot;&gt;
+    &lt;h3&gt;Box&lt;/h3&gt;
+    &lt;p&gt;In viverra, risus at congue porta, risus orci scelerisque sem, vitae lobortis nisl nunc in odio.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-error&quot;&gt;
+    &lt;h3&gt;Box Error&lt;/h3&gt;
+    &lt;p&gt;Oops, something wrong happened.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-help&quot;&gt;
+    &lt;h3&gt;Box Help&lt;/h3&gt;
+    &lt;p&gt;Do you need some help?&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-info&quot;&gt;
+    &lt;h3&gt;Box Info&lt;/h3&gt;
+    &lt;p&gt;Here&#39;s more contextual information about it.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-warn&quot;&gt;
+    &lt;h3&gt;Box Warn&lt;/h3&gt;
+    &lt;p&gt;Warning! something might be wrong.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ch-box-ok&quot;&gt;
+    &lt;h3&gt;Box Ok&lt;/h3&gt;
+    &lt;p&gt;Everything is great!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;how-to-use&quot;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;Add any class listed below to any block element (div, section, p, etc.):&lt;/p&gt;
+
+&lt;ul class=&quot;ch-list&quot;&gt;
+    &lt;li&gt;ch-box&lt;/li&gt;
+    &lt;li&gt;ch-box-lite&lt;/li&gt;
+    &lt;li&gt;ch-box-container&lt;/li&gt;
+    &lt;li&gt;ch-box-error&lt;/li&gt;
+    &lt;li&gt;ch-box-help&lt;/li&gt;
+    &lt;li&gt;ch-box-info&lt;/li&gt;
+    &lt;li&gt;ch-box-warn&lt;/li&gt;
+    &lt;li&gt;ch-box-ok&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;div class=&quot;ch-box-error&quot;&amp;gt;
+    &amp;lt;h3&amp;gt;Box Error&amp;lt;/h3&amp;gt;
+    &amp;lt;p&amp;gt;Oops, something wrong happened.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+</description>
+        <pubDate>Tue, 21 Oct 2014 00:00:00 -0300</pubDate>
+        <link>/chico/ui-components/boxes</link>
+        <guid isPermaLink="true">/chico/ui-components/boxes</guid>
+        
+        <category>boxes</category>
         
         
       </item>
@@ -81,46 +298,52 @@
         <title>Lists</title>
         <description>&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
 
-&lt;p&gt;These are the lists tha you can use in your html.&lt;/p&gt;
-
-&lt;div class=&quot;m-g1-4&quot;&gt;
+&lt;div class=&quot;mesh-12 mesh-m-3&quot;&gt;
     &lt;h3&gt;Unstyled&lt;/h3&gt;
     &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;Foo&lt;/li&gt;
+        &lt;li&gt;Bar&lt;/li&gt;
+        &lt;li&gt;Baz&lt;/li&gt;
+        &lt;li&gt;Qux&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class=&quot;m-g1-4&quot;&gt;
+&lt;div class=&quot;mesh-12 mesh-m-3&quot;&gt;
     &lt;h3&gt;Unordered&lt;/h3&gt;
     &lt;ul class=&quot;ch-list&quot;&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;Foo&lt;/li&gt;
+        &lt;li&gt;Bar&lt;/li&gt;
+        &lt;li&gt;Baz&lt;/li&gt;
+        &lt;li&gt;Qux&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class=&quot;m-g1-4&quot;&gt;
+&lt;div class=&quot;mesh-12 mesh-m-3&quot;&gt;
     &lt;h3&gt;Ordered&lt;/h3&gt;
     &lt;ol class=&quot;ch-list&quot;&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadolibre.com&quot;&gt;MercadoLibre&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadopago.com&quot;&gt;MercadoPago&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoshops.com&quot;&gt;MercadoShops&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;http://www.mercadoclics.com&quot;&gt;MercadoClics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;Foo&lt;/li&gt;
+        &lt;li&gt;Bar&lt;/li&gt;
+        &lt;li&gt;Baz&lt;/li&gt;
+        &lt;li&gt;Qux&lt;/li&gt;
     &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class=&quot;m-g1-4&quot;&gt;
+&lt;div class=&quot;mesh-12 mesh-m-3&quot;&gt;
     &lt;h3&gt;Description&lt;/h3&gt;
     &lt;dl class=&quot;ch-list&quot;&gt;
-        &lt;dt&gt;MercadoLibre&lt;/dt&gt;
-        &lt;dd&gt;Donde compras y vendes de todo!&lt;/dd&gt;
-        &lt;dt&gt;MercadoPago&lt;/dt&gt;
-        &lt;dd&gt;La forma más simple de recibir pagos!&lt;/dd&gt;
-        &lt;dt&gt;MercadoShops&lt;/dt&gt;
-        &lt;dd&gt;Tu tienda virtual gratis y en minutos!&lt;/dd&gt;
+        &lt;dt&gt;Foo&lt;/dt&gt;
+        &lt;dd&gt;Lorem ipsum dolor sit amet.&lt;/dd&gt;
+        &lt;dt&gt;Bar&lt;/dt&gt;
+        &lt;dd&gt;Consectetur adipiscing elit.&lt;/dd&gt;
     &lt;/dl&gt;
 &lt;/div&gt;
+
+&lt;h3 id=&quot;how-to-use&quot;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;Add class &lt;strong&gt;ch-list&lt;/strong&gt; to any HTML list element.&lt;/p&gt;
+
+&lt;pre class=&quot;language-markup&quot;&gt;
+&lt;code class=&quot;language-markup&quot;&gt;&amp;lt;ul class=&quot;ch-list&quot;&amp;gt;
+    ...
+&amp;lt;/ul&amp;gt;&lt;/code&gt;
+&lt;/pre&gt;
 </description>
         <pubDate>Fri, 05 Sep 2014 00:00:00 -0300</pubDate>
         <link>/chico/ui-components/lists</link>

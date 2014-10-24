@@ -1,50 +1,55 @@
 ---
-layout: ui-components
+layout: internal-page
 title:  "Lists"
 permalink: ui-components/lists
 tags: lists
 ---
 
-Lists
----------------------
+## Lists
 
-These are the lists tha you can use in your html.
-
-<div class="m-g1-4">
+<div class="mesh-12 mesh-m-3">
     <h3>Unstyled</h3>
     <ul>
-        <li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-        <li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-        <li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-        <li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+        <li>Qux</li>
     </ul>
 </div>
-<div class="m-g1-4">
+<div class="mesh-12 mesh-m-3">
     <h3>Unordered</h3>
     <ul class="ch-list">
-        <li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-        <li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-        <li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-        <li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+        <li>Qux</li>
     </ul>
 </div>
-<div class="m-g1-4">
+<div class="mesh-12 mesh-m-3">
     <h3>Ordered</h3>
     <ol class="ch-list">
-        <li><a href="http://www.mercadolibre.com">MercadoLibre</a></li>
-        <li><a href="http://www.mercadopago.com">MercadoPago</a></li>
-        <li><a href="http://www.mercadoshops.com">MercadoShops</a></li>
-        <li><a href="http://www.mercadoclics.com">MercadoClics</a></li>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+        <li>Qux</li>
     </ol>
 </div>
-<div class="m-g1-4">
+<div class="mesh-12 mesh-m-3">
     <h3>Description</h3>
     <dl class="ch-list">
-        <dt>MercadoLibre</dt>
-        <dd>Donde compras y vendes de todo!</dd>
-        <dt>MercadoPago</dt>
-        <dd>La forma más simple de recibir pagos!</dd>
-        <dt>MercadoShops</dt>
-        <dd>Tu tienda virtual gratis y en minutos!</dd>
+        <dt>Foo</dt>
+        <dd>Lorem ipsum dolor sit amet.</dd>
+        <dt>Bar</dt>
+        <dd>Consectetur adipiscing elit.</dd>
     </dl>
 </div>
+
+### How to use
+
+Add class **ch-list** to any HTML list element.
+
+<pre class="language-markup">
+<code class="language-markup">&lt;ul class="ch-list">
+    ...
+&lt;/ul></code>
+</pre>

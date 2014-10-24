@@ -1,71 +1,103 @@
-/**
- * MercadoLibre Chico
- * @description:
- */
-
-/* Chico
+/* Basics
 ---------------------------------------------------------------*/
 
-h1 {
+section {
+	padding: 6em 0;
+}
+
+
+/* Header
+---------------------------------------------------------------*/
+
+.ml-header [for='toggle-menu'].toggle-label,
+.ml-header .ml-navicon {
+	display: none;
+}
+
+.ml-header-menu > a {
+	border-left: none;
+}
+
+.ml-header .ch-brand-name {
+	font-size: 20px;
+	margin: 14px 0 0 14px;
+	border-left: 1px solid #333;
+	padding: 5px 12px 3px 12px;
+}
+
+.ml-header a.ml-logo {
+	width: 162px;
+	height: 54px;
+	background-size: 58px auto;
+}
+
+
+/* Footer
+---------------------------------------------------------------*/
+
+.ml-footer {
+	text-align: left;
+}
+
+	.ml-footer .contact {
+		display: inline-block;
+		float: right;
+		border-right: 1px solid #DDD;
+		margin: 18px 14px 0 0;
+		height: 18px;
+		padding: 0 10px;
+		line-height: 18px;
+	}
+
+.link-chico-footer {
+	float: right;
+}
+
+
+/* Internal pages
+---------------------------------------------------------------*/
+
+.internal-page .ml-bounds > [class*='mesh-col-'] {
+	padding-left: 0;
+	padding-right: 30px;
+}
+
+.internal-page .chico-head {
+	padding: 90px 0;
+}
+
+.internal-page .chico-head h1 {
 	font-size: 60px;
 }
 
-.ml-wrapper {
-	padding-bottom: 0;
-}
 
-section {
-	padding: 40px 0 70px;
-}
-
-.chico-head {
-	padding: 90px 70px;
-}
-
-.chico-bottom .ml-bounds {
-	max-width: 800px;
-	margin: auto;
-}
-
-.chico-bottom .mesh-m-6 {
-	float: none;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.chico-bottom .chico-box-circle {
-	float: right;
-	margin-right: 20px;
-}
-
-
-
-/* Navigation
+/* Contents
 ---------------------------------------------------------------*/
 
-.chico-nav {
+.chico-contents {
     display: block;
     float: right;
 }
 
-.chico-nav.sticky {
-	position: fixed;
-	z-index: 555;
-	top: 20px;
-	right: 63px;
-}
-
-.chico-nav ul {
+.chico-contents ul {
     border-left: solid 1px #ccc;
     padding-left: 20px;
 }
 
-.chico-nav li a {
+.chico-contents li a {
 	display: block;
 	padding: 5px 0;
 	color: #0033CC;
 }
 
-.chico-nav li > ul > li {
+.chico-contents li > ul > li {
 	padding-left: 15px;
 }
+
+
+
+
+/*.chico-bottom .chico-box-circle {
+	float: right;
+	margin-right: 20px;
+}*/

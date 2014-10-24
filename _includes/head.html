@@ -1,5 +1,4 @@
 <head>
-    <!-- Define the charset always before the title -->
     <meta charset="utf-8"/>
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
@@ -7,28 +6,42 @@
     <meta http-equiv="cleartype" content="on"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
+    <link rel="prefetch" href="{{ site.baseurl }}"/>
+    <link rel="prefetch" href="{{ site.baseurl }}/getting-started/"/>
+    <link rel="prefetch" href="{{ site.baseurl }}/ui-components/"/>
+    <link rel="prefetch" href="{{ site.baseurl }}/api-doc/1.1.1/autocomplete/"/>
+
     <link rel="shortcut icon" href="http://static.mlstatic.com/org-img/ui/ml/favicon/favicon-1.0.0.ico"/>
 
-    <!-- Font -->
-    <link rel="stylesheet" href="http://static.mlstatic.com/org-img/ui/font/lato/300.css">
-    <link rel="stylesheet" href="http://static.mlstatic.com/org-img/ui/font/lato/700.css">
+    <!--[if lt IE 9]>
+        <script src="http://static.mlstatic.com/org-img/ch/vendor/html5shiv/html5shiv-3.7.0.js"></script>
+    <![endif]-->
 
-    <!-- Chico HTTP -->
+    <script>
+        // To avoid FOUC, remove the "no-js" class name before the body start to render.
+        (function (el) {
+            el.classList ? el.classList.remove('no-js') : el.className = el.className.replace(/(^|\\b)no-js(\\b|$)/gi, ' ');
+        }(document.documentElement));
+    </script>
+
+    <!-- Chico -->
+    <link rel="stylesheet" href="http://static.mlstatic.com/org-img/ch/mesh/4.1.0/mesh.min.css"/>
+    <link rel="stylesheet" href="http://static.mlstatic.com/org-img/ui/font/lato/300.700.css"/>
     <link rel="stylesheet" href="http://static.mlstatic.com/org-img/ch/ui/1.1.1/chico.min.css"/>
 
-    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/mesh.min.css"/>
+    <!-- Chico Site -->
     <link rel="stylesheet" href="{{ site.baseurl }}/src/css/base__small.css"/>
     <link rel="stylesheet" media="(min-width: 768px)" href="{{ site.baseurl }}/src/css/base__large.css"/>
     <link rel="stylesheet" href="{{ site.baseurl }}/src/css/chico__small.css"/>
     <link rel="stylesheet" media="(min-width: 768px)" href="{{ site.baseurl }}/src/css/chico__large.css"/>
-    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/ui-slug_element_component.css"/>
 
-    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/ml-header.css"/>
-    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/gh-pages.css"/>
-    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/prism.css"/>
+    <!-- Add-ons -->
+    <!--link rel="stylesheet" href="{{ site.baseurl }}/src/css/ui-slug_element_component.css"/-->
+    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/ml-header.css"/><!-- Mobile header -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/src/css/prism.css"/><!-- Code highlighter -->
 
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="src/css/base__large.css"/>
-        <link rel="stylesheet" href="src/css/chico__large.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/src/css/base__large.css"/>
+        <link rel="stylesheet" href="{{ site.baseurl }}/src/css/chico__large.css"/>
     <![endif]-->
 </head>

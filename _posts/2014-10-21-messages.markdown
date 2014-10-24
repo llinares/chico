@@ -1,0 +1,38 @@
+---
+layout: internal-page
+title:  "Messages"
+permalink: ui-components/messages
+tags: messages
+---
+
+## Messages
+
+<div class="ch-box-icon ch-box-error"><i class="ch-icon-remove-sign"></i> Oops, something wrong happened.</div>
+<div class="ch-box-icon ch-box-help"><i class="ch-icon-help-sign"></i> Do you need any help?</div>
+<div class="ch-box-icon ch-box-info"><i class="ch-icon-info-sign"></i> Here's more information.</div>
+<div class="ch-box-icon ch-box-warn"><i class="ch-icon-warning-sign"></i> Warning! something might be wrong.</div>
+<div class="ch-box-icon ch-box-ok"><i class="ch-icon-ok-sign"></i> Everything is great!</div>
+<p class="ch-box-icon"><i class="ch-icon-truck"></i> Generic message, with an icon.</p>
+
+### How to use
+
+Add class **ch-box-icon** to any block element (div, section, p, etc.). Combine with any class listed below to give contextual styling ([see Boxes](#boxes)):
+
+<ul class="ch-list">
+    <li>ch-box</li>
+    <li>ch-box-lite</li>
+    <li>ch-box-container</li>
+    <li>ch-box-error</li>
+    <li>ch-box-help</li>
+    <li>ch-box-info</li>
+    <li>ch-box-warn</li>
+    <li>ch-box-ok</li>
+</ul>
+
+Add [any icon](#icons) into any box for more contextual messages.
+
+<pre class="language-markup">
+<code class="language-markup">&lt;div class="ch-box-icon ch-box-error">
+    &lt;i class="ch-icon-remove-sign">&lt;/i> Oops, something wrong happened.
+&lt;/div></code>
+</pre>

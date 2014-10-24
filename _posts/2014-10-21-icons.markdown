@@ -1,0 +1,92 @@
+---
+layout: internal-page
+title:  "Icons"
+permalink: ui-components/icons
+tags: icons
+---
+
+## Icons
+
+Define any icon classname from the list below, and change size by adding any of these classes:
+
+<i class="ch-icon-camera ch-icon-xx-large"></i>
+<i class="ch-icon-camera ch-icon-x-large"></i>
+<i class="ch-icon-camera ch-icon-large"></i>
+<i class="ch-icon-camera"></i>
+
+<pre class="language-markup">
+<code class="language-markup">&lt;i class="ch-icon-camera ch-icon-xx-large">&lt;/i>
+&lt;i class="ch-icon-camera ch-icon-x-large">&lt;/i>
+&lt;i class="ch-icon-camera ch-icon-large">&lt;/i>
+&lt;i class="ch-icon-camera">&lt;/i></code>
+</pre>
+
+### Available icons
+
+<ul class="components-available-icons ch-clearfix">
+    <li><i class="ch-icon-search ch-icon-x-large"></i> ch-icon-search</li>
+    <li><i class="ch-icon-heart ch-icon-x-large"></i> ch-icon-heart</li>
+    <li><i class="ch-icon-star ch-icon-x-large"></i> ch-icon-star</li>
+    <li><i class="ch-icon-star-empty ch-icon-x-large"></i> ch-icon-star-empty</li>
+    <li><i class="ch-icon-user ch-icon-x-large"></i> ch-icon-user</li>
+    <li><i class="ch-icon-th-large ch-icon-x-large"></i> ch-icon-th-large</li>
+    <li><i class="ch-icon-th ch-icon-x-large"></i> ch-icon-th</li>
+    <li><i class="ch-icon-th-list ch-icon-x-large"></i> ch-icon-user</li>
+    <li><i class="ch-icon-ok ch-icon-x-large"></i> ch-icon-ok</li>
+    <li><i class="ch-icon-remove ch-icon-x-large"></i> ch-icon-remove</li>
+    <li><i class="ch-icon-zoom-in ch-icon-x-large"></i> ch-icon-zoom-in</li>
+    <li><i class="ch-icon-zoom-out ch-icon-x-large"></i> ch-icon-zoom-out</li>
+    <li><i class="ch-icon-cog ch-icon-x-large"></i> ch-icon-cog</li>
+    <li><i class="ch-icon-trash ch-icon-x-large"></i> ch-icon-trash</li>
+    <li><i class="ch-icon-time ch-icon-x-large"></i> ch-icon-time</li>
+    <li><i class="ch-icon-repeat ch-icon-x-large"></i> ch-icon-repeat</li>
+    <li><i class="ch-icon-refresh ch-icon-x-large"></i> ch-icon-refresh</li>
+    <li><i class="ch-icon-lock ch-icon-x-large"></i> ch-icon-lock</li>
+    <li><i class="ch-icon-print ch-icon-x-large"></i> ch-icon-print</li>
+    <li><i class="ch-icon-camera ch-icon-x-large"></i> ch-icon-camera</li>
+    <li><i class="ch-icon-pencil ch-icon-x-large"></i> ch-icon-pencil</li>
+    <li><i class="ch-icon-map-marker ch-icon-x-large"></i> ch-icon-map-marker</li>
+    <li><i class="ch-icon-move ch-icon-x-large"></i> ch-icon-move</li>
+    <li><i class="ch-icon-chevron-left ch-icon-x-large"></i> ch-icon-chevron-left</li>
+    <li><i class="ch-icon-chevron-right ch-icon-x-large"></i> ch-icon-chevron-right</li>
+    <li><i class="ch-icon-plus-sign ch-icon-x-large"></i> ch-icon-plus-sign</li>
+    <li><i class="ch-icon-minus-sign ch-icon-x-large"></i> ch-icon-minus-sign</li>
+    <li><i class="ch-icon-remove-sign ch-icon-x-large"></i> ch-icon-remove-sign</li>
+    <li><i class="ch-icon-ok-sign ch-icon-x-large"></i> ch-icon-ok-sign</li>
+    <li><i class="ch-icon-help-sign ch-icon-x-large"></i> ch-icon-help-sign</li>
+    <li><i class="ch-icon-info-sign ch-icon-x-large"></i> ch-icon-info-sign</li>
+    <li><i class="ch-icon-ban-circle ch-icon-x-large"></i> ch-icon-ban-circle</li>
+    <li><i class="ch-icon-arrow-left ch-icon-x-large"></i> ch-icon-arrow-left</li>
+    <li><i class="ch-icon-arrow-right ch-icon-x-large"></i> ch-icon-arrow-right</li>
+    <li><i class="ch-icon-arrow-up ch-icon-x-large"></i> ch-icon-arrow-up</li>
+    <li><i class="ch-icon-arrow-down ch-icon-x-large"></i> ch-icon-arrow-down</li>
+    <li><i class="ch-icon-plus ch-icon-x-large"></i> ch-icon-plus</li>
+    <li><i class="ch-icon-minus ch-icon-x-large"></i> ch-icon-minus</li>
+    <li><i class="ch-icon-exclamation-sign ch-icon-x-large"></i> ch-icon-exclamation-sign</li>
+    <li><i class="ch-icon-warning-sign ch-icon-x-large"></i> ch-icon-warning-sign</li>
+    <li><i class="ch-icon-calendar ch-icon-x-large"></i> ch-icon-calendar</li>
+    <li><i class="ch-icon-comment ch-icon-x-large"></i> ch-icon-comment</li>
+    <li><i class="ch-icon-chevron-up ch-icon-x-large"></i> ch-icon-chevron-up</li>
+    <li><i class="ch-icon-chevron-down ch-icon-x-large"></i> ch-icon-chevron-down</li>
+    <li><i class="ch-icon-key ch-icon-x-large"></i> ch-icon-key</li>
+    <li><i class="ch-icon-comments ch-icon-x-large"></i> ch-icon-comments</li>
+    <li><i class="ch-icon-unlock ch-icon-x-large"></i> ch-icon-unlock</li>
+    <li><i class="ch-icon-wrench ch-icon-x-large"></i> ch-icon-wrench</li>
+    <li><i class="ch-icon-group ch-icon-x-large"></i> ch-icon-group</li>
+    <li><i class="ch-icon-copy ch-icon-x-large"></i> ch-icon-copy</li>
+    <li><i class="ch-icon-paper-clip ch-icon-x-large"></i> ch-icon-paper-clip</li>
+    <li><i class="ch-icon-reorder ch-icon-x-large"></i> ch-icon-reorder</li>
+    <li><i class="ch-icon-truck ch-icon-x-large"></i> ch-icon-truck</li>
+    <li><i class="ch-icon-caret-down ch-icon-x-large"></i> ch-icon-caret-down</li>
+    <li><i class="ch-icon-caret-up ch-icon-x-large"></i> ch-icon-caret-up</li>
+    <li><i class="ch-icon-caret-left ch-icon-x-large"></i> ch-icon-caret-left</li>
+    <li><i class="ch-icon-caret-right ch-icon-x-large"></i> ch-icon-caret-right</li>
+    <li><i class="ch-icon-sort ch-icon-x-large"></i> ch-icon-sort</li>
+    <li><i class="ch-icon-sort-down ch-icon-x-large"></i> ch-icon-sort-down</li>
+    <li><i class="ch-icon-sort-up ch-icon-x-large"></i> ch-icon-sort-up</li>
+    <li><i class="ch-icon-envelope-alt ch-icon-x-large"></i> ch-icon-envelope-alt</li>
+    <li><i class="ch-icon-undo ch-icon-x-large"></i> ch-icon-undo</li>
+    <li><i class="ch-icon-comment-alt ch-icon-x-large"></i> ch-icon-comment-alt</li>
+    <li><i class="ch-icon-comments-alt ch-icon-x-large"></i> ch-icon-comments-alt</li>
+    <li><i class="ch-icon-phone ch-icon-x-large"></i> ch-icon-phone</li>
+</ul>

@@ -547,7 +547,7 @@ ul {
 .ml-footer {
   padding-bottom: 15px;
   color: #666666;
-  margin-top: 20px;
+  /*margin-top: 10px;*/
 }
 /* line 14, ../../mixins/_clearfix.scss */
 .ml-footer:after {

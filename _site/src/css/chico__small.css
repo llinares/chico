@@ -1,39 +1,28 @@
-/**
- * MercadoLibre Chico
- * @description:
- */
-
-/* Chico
+/* Basics
 ---------------------------------------------------------------*/
 
 body {
-	font-family: 'Lato';
+	font-family: 'Lato', Arial, sans-serif;
 	font-weight: 300;
 }
 
-.ml-wrapper {
-	padding-bottom: 0;
-}
-
 h1 {
-	font-size: 3.1em;
+	font-size: 3em;
 	line-height: 1em;
 	margin: 10px 0;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 h2 {
 	font-size: 2.6em;
-	line-height: 2em;
-	font-weight: lighter;
+	font-weight: 300;
 	letter-spacing: 0.03em;
-/*	margin-bottom: 40px;*/
-	margin: 30px 0 15px 0;
 }
 
 h3 {
 	font-size: 1.5em;
 	line-height: 1.5em;
+	margin-top: 2em;
 }
 
 h4 {
@@ -43,118 +32,217 @@ h4 {
 }
 
 p {
-	font-family: Helvetica, Arial,sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1.1em;
-	font-weight: lighter;
+	font-weight: 300;
 	line-height: 22px;
 }
 
 section {
-	padding: 40px 0 70px;
+	padding: 3.5em 0;
 }
 
-article {
-	padding-bottom: 40px;
+
+/* Cross-site
+---------------------------------------------------------------*/
+
+.ml-wrapper {
+	padding-top: 0;
+	min-height: 100%;
+	padding-bottom: 55px;
 }
 
-pre.language-javascript {
-	display: block;
-	padding: 9.5px;
-	margin: 20px 0;
-	font-size: 13px;
-	line-height: 1.42857143;
-	word-break: break-all;
-	word-wrap: break-word;
-	color: #333333;
-	background-color: #f5f5f5;
-	border: 1px solid #cccccc;
-	border-radius: 4px;
-}
+	.ml-wrapper:after {
+		height: 0;
+	}
 
 .row {
 	margin: 0 auto;
 }
 
-.chico-title-section {
-	text-align: center;
-}
+	.row > [class*="mesh"] {
+		padding-left: 0;
+	}
 
-.chico-hero {
-	padding: 60px 0;
-	text-align: center;
-}
-
-.chico-hero h1 {
-	font-size: 3.1em;
-}
-
-.chico-hero figure {
-	text-align: center;
-}
-
-.chico-hero-img {
-	max-width: 100%;
-	max-height: 100%;
-	display: inline-block;
-	overflow: hidden;
+.chico-nav {
+	display: none;
 }
 
 .chico-bg-noise {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAABGdBTUEAALGPC/xhBQAAACFQTFRF7u7u+Pj47+/v8PDw9/f38fHx9vb28vLy9fX19PT08/PzyraY2wAABANJREFUOMsN1Lt22zYAgGGMbR8gp51zfGpnbONY0tjoQmmsLVHU1sjibZVIAthSkyCArZFIAhgjCgTwlM0L/Nv3g6HAx6Jh+SYnFg11MzaGPQe1ZaBPrMPOvdeepbvSbEjLqEUd9UDSBAw/94abXH8M45wl8Ip4vruB6kgOw3qanpaFQPkiZ3i4bjvRMzBk6VW1q70+dg0fmRzFiJ1dSyuQ6aTxJ6dDTlefZpNknBaD6KTeI9C1nTBBK63jrarMLqoDX14uNwVCobWUzOtYrF7t3KhmK30SNjuwLkThSpjlKSQ9ni/sgSqLIhUD5JuaMmTYn25sdg7131ebIe6jEryuNY3dakv9chj5XU2o6oqG4A54Qdza9voyQLEftfmsCF6MdH33BGJdaNgF9HFaHLkXWE6oTuccjwD1P9SxbJe7CxkZS090gmPYqMgCVVSWN3AxhqWKUBYcC7zfYB050LZfpsxiq6Cnz483yg99csycSkCp31aKcUbxQjNBUhglW0sGV4OePmpUyszz6UMc66wKFkjyoaXAFKobUTucs3isq8D+nbmwnw4rCRpd1/f4nWFx1DkBl/k65AqhfQTeJ06MhxtkvwWn0wLCIHTzOozetkAiXY+Oz07VdyksByW+YTPIjm3Aro07Sr45BBfhZL5j0fohfjtiVQLNXGpOV3G9D8M7I5zL+j3yCVwBLfOmlnWaQxe/2Xp4asg8NNhEIDgXX6NY/zU5tNozlayz16nErQ3AaEjLL+2wzwlRrzlfLkTdkwcBIYh79b4u+NbcIz5ydKFHFZ8q+VmAlCx9epdcvKIfhjIkXqMCTrzPGMTioBKziK6FJytSYvnsIyWLsACbjTXMe8Vr0hyj4j+kOsZFm+Q1yG9msS34ZNnYT1RY33RMpn03dEDKBNkgh0thFhN7HenWXdKpDBxQpHoMcTCNQrr6BfmM5zC9pOfxGihx3ib4YNV8QX+HQUolYXYSlg70Z59lJ/xPZ8nH3jJFOpFHP/hhYGsRCzEKYaz7l/DXcTlwF9/aVoGH1W9dRPwUJYNJ9hh6UKQ8PZoUYI1wus+NrFo+a+AcUU+uPZdoUFeBkzFmvU8erRFJX3PrVuNuDA5rE9E6PF8+oJ1RO3Fpir5geUrAcS6usKhoct/MB9/J9Lari0R1ITin6b4QwtCxerdWgteoPdRDHF8ArmZxl7fuNqY/+vpfRNh3MjdLBAKbETbTYdFN4DnLf2xIt7J7dWfwikjHZxt/RPIwcXfGKvL5j9NhM4CTcLhYlUqzBiXVzzKz8inTNycAV2rlwkRP5RWq6qfltqVbHG9cDESYXneTrJs/JXwRjW6RdeTlFqZvIEnSdRowe9glq4Sn3J1h81WqfPY/NvRcq/PK60EAAAAASUVORK5CYII=);
 }
 
-.chico-features {
-	text-align: center;
-}
-
-.chico-box-circle {
-	background: #CCC;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-	border-radius: 50%;
-	display: block;
-	margin: 0 auto 10px;
-}
-
-.chico-box-circle-medium {
-	width: 150px;
-	height: 150px;
-}
-
-.chico-box-circle-large {
-	width: 250px;
-	height: 250px;
-}
-
-.chico-nav {
-	display: none;
-}
 
 /* Header
 ---------------------------------------------------------------*/
 
-.ml-header-menu > a {
-	border: none;
+.ml-header {
+	background-image: none;
 }
+
+.ml-header-inner {
+	max-width: 1200px;
+	margin: 0 auto;
+	position: relative;
+}
+
+	.ml-header .ml-logo-mobile {
+		text-decoration: none;
+		color: #333;
+	}
+
+	.ml-header .ml-logo {
+		position: absolute;
+		left: 10px;
+		top: 0;
+		display: inline;
+		margin: 0;
+		background: url(http://static.mlstatic.com/org-img/mobile/ch/0.4.7/assets/logo-large-new.png?v2) no-repeat left center;
+		background-size: 58px auto;
+		text-indent: -999px;
+		overflow: hidden;
+	}
+
+
+/* Home - Hero
+---------------------------------------------------------------*/
+
+.chico-hero {
+	text-align: center;
+}
+
+	.chico-hero h1,
+	.chico-hero a {
+		margin-top: .5em;
+	}
+
+
+/* Home - Features
+---------------------------------------------------------------*/
+
+.chico-features {
+	text-align: center;
+	padding: 70px;
+}
+
+	.chico-features h3 {
+		font-weight: 700;
+	}
+
+
+/* Home - Bottom
+---------------------------------------------------------------*/
+
+.chico-bottom {
+	text-align: center;
+	oveflow: hidden;
+}
+
+	.chico-bottom h2 {
+		font-size: 2em;
+	}
+
+	.chico-bottom .brand-ml {
+		margin: 1em auto 4em;
+		display: block;
+	}
+
 
 /* Footer
 ---------------------------------------------------------------*/
 
-.ml-footer a {
-	border-left: solid 1px #CCC;
-	margin-left: 5px;
+.ml-footer {
+	height: 55px;
+	line-height: 55px;
+	margin-top: -55px;
+	text-align: center;
+	color: #666;
 }
 
-.ml-footer nav {
-	display: inline-block;
+	.ml-footer nav {
+		display: inline-block;
+		padding: 0 .8em;
+	}
+
+	.ml-footer a {
+		border-right: solid 1px #CCC;
+		border-left: solid 1px #CCC;
+		padding: 0 .8em;
+	}
+
+	.ml-footer .contact {
+		display: none;
+	}
+
+.ml-footer a.link-chico-footer {
+	border: none;
 }
 
-.ml-footer nav,
-.ml-footer nav a {
-	padding: 0 .8em;
+	.link-chico-footer [class*=ch-icon-].ch-icon-envelope-alt {
+		vertical-align: -.15em;
+		text-indent: -10px;
+		line-height: 1em;
+		margin: 0;
+	}
+
+
+/* Internal pages
+---------------------------------------------------------------*/
+
+.internal-page .chico-head h3 {
+	font-weight: normal;
 }
 
-.ml-bounds small a {
-	border-left: none;
-	margin-left: 0;
+
+.internal-page h2,
+.api-title {
+	margin: 60px 0 40px;
 }
+
+.internal-page > div {
+	margin: 50px auto;
+}
+
+	.internal-page .mesh-col-12.mesh-col-m-9 > h3 {
+		margin-top: 25px;
+		font-weight: normal;
+	}
+
+
+/* About page
+---------------------------------------------------------------*/
+
+.about-card {
+	text-align: center;
+	padding: 30px;
+	float: left;
+}
+
+	.about-card img {
+		border-radius: 100%;
+		width: 48px;
+		height: 48px;
+	}
+
+	.about-card h3 {
+		margin: 0;
+	}
+
+.about-slides {
+	margin-top: 50px;
+}
+
+/* Components
+---------------------------------------------------------------*/
+
+.components-available-icons li {
+	width: 100px;
+	float: left;
+	height: 100px;
+	text-align: center;
+}
+
+	.components-available-icons i {
+		display: block;
+		margin: 0 auto;
+	}
