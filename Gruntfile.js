@@ -126,7 +126,7 @@ module.exports = function (grunt) {
 
         'gh-pages': {
             'options': {
-                'repo': 'https://github.com/ibarbieri/chico',
+                'repo': 'https://github.com/llinares/chico',
                 'message': 'Api-doc content from master to gh-pages',
                 'add': true
             },
