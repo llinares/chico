@@ -7,7 +7,7 @@ var data = obj,
 ?>
 
 
-<h4><code class=" language-markup"><?js= (data.kind === 'function' ? '.' + shortname + (data.signature ? data.signature : '') : '\'' +shortname + '\'') ?></code></h4>
+<h3><code class="language-markup"><?js= (data.kind === 'function' ? '.' + shortname + (data.signature ? data.signature : '') : '\'' +shortname + '\'') ?></code></h3>
 <pre><?js= a.join(' - ') ?></pre>
 <?js if (data.description) { ?>
     <p><?js= data.description ?></p>

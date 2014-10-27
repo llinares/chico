@@ -6,7 +6,11 @@ id: api-doc
 <section class="chico-bg-noise chico-head">
     <div class="ml-bounds">
         <h1><?js= title ?></h1>
-        <h3>The complete documentation about the API of this component.</h3>
+        <?js if (doc.description) { ?>
+            <h3><?js= doc.description ?></h3>
+        <?js } else { ?>
+            <h3>All the documented members of this component.</h3>
+        <?js } ?>
     </div>
 </section>
 

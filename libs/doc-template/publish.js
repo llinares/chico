@@ -235,7 +235,7 @@ function buildNav(members) {
         });
 
         if (classNav !== '') {
-            nav += '<h2>Components</h2><ul>';
+            nav += '<h3>Components</h3><ul>';
             nav += classNav;
             nav += '</ul>';
         }
@@ -254,7 +254,7 @@ function buildNav(members) {
     // }
 
     if (members.namespaces.length) {
-        nav += '<h2>Namespaces</h2><ul>';
+        nav += '<h3>Namespaces</h3><ul>';
         members.namespaces.forEach(function(n) {
             if ( !hasOwnProp.call(seen, n.longname) ) {
                 nav += '<li>'+linkto(n.longname, n.name, packageVersion)+'</li>';
@@ -266,7 +266,7 @@ function buildNav(members) {
     }
 
     if (members.mixins.length) {
-        nav += '<h2>Mixins</h2><ul>';
+        nav += '<h3>Mixins</h3><ul>';
         members.mixins.forEach(function(m) {
             if ( !hasOwnProp.call(seen, m.longname) ) {
                 nav += '<li>'+linkto(m.longname, m.name, packageVersion)+'</li>';
@@ -278,7 +278,7 @@ function buildNav(members) {
     }
 
     if (members.tutorials.length) {
-        nav += '<h2>Tutorials</h2><ul>';
+        nav += '<h3>Tutorials</h3><ul>';
         members.tutorials.forEach(function(t) {
             nav += '<li>'+tutoriallink(t.name)+'</li>';
         });
